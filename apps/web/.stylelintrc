@@ -1,0 +1,73 @@
+{
+  "customSyntax": "postcss-html",
+  "extends": "stylelint-config-recommended",
+  "plugins": [
+    "stylelint-declaration-strict-value",
+    "stylelint-high-performance-animation",
+    "stylelint-no-unsupported-browser-features",
+    "stylelint-order",
+    "stylelint-z-index-value-constraint"
+  ],
+  "rules": {
+    "declaration-no-important": true,
+    "function-no-unknown": [
+      true,
+      {
+        "ignoreFunctions": [
+          "v-bind"
+        ]
+      }
+    ],
+    "indentation": 2,
+    "max-nesting-depth": 2,
+    "order/properties-alphabetical-order": true,
+    "plugin/no-low-performance-animation-properties": [
+      true,
+      {
+        "ignore": "paint-properties"
+      }
+    ],
+    "plugin/no-unsupported-browser-features": [
+      true,
+      {
+        "ignore": [
+          "css3-cursors"
+        ]
+      }
+    ],
+    "plugin/z-index-value-constraint": {
+      "max": 10,
+      "min": 0
+    },
+    "property-case": "lower",
+    "scale-unlimited/declaration-strict-value": [
+      [
+        "/^margin/",
+        "/^padding/",
+        "/color$/",
+        "/height/",
+        "/width/",
+        "border-radius",
+        "font-family",
+        "font-size",
+        "z-index"
+      ],
+      {
+        "ignoreValues": [
+          "-1",
+          "0",
+          "1",
+          "100%",
+          "100vh",
+          "100vw",
+          "auto",
+          "none",
+          "sans-serif",
+          "transparent"
+        ]
+      }
+    ],
+    "string-quotes": "double",
+    "unit-case": "lower"
+  }
+}

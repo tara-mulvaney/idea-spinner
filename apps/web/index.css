@@ -1,0 +1,32 @@
+:root {
+  font-size: 16px;
+
+  --max-supported-width: 1080px;
+  --min-supported-width: 320px;
+
+  --hairline: 1px;
+  --gutter-narrow: 0.75rem;
+  --gutter-standard: 1rem;
+  --gutter-wide: 1.5rem;
+
+  --color-primary: hsl(204, 64%, 90%);
+  --color-primary-foreground: hsl(0, 0%, 0%);
+  --color-primary-variant: hsl(202, 68%, 42%);
+  --color-primary-variant-foreground: hsl(0, 0%, 100%);
+
+  --font-primary: "HelveticaNeue", Helvetica, sans-serif;
+  --font-secondary: "Menlo", monospace;
+
+  --animation-timing: 240ms;
+}
+
+body,
+body * {
+  all: initial;
+
+  background: transparent;
+  vertical-align: baseline;
+  box-sizing: border-box;
+
+  font-family: var(--font-primary);
+}

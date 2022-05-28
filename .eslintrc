@@ -1,0 +1,242 @@
+{
+  "env": {
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:jest/recommended",
+    "plugin:jest/style",
+    "plugin:compat/recommended"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "test.ts"
+      ],
+      "rules": {
+        "compat/compat": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-magic-numbers": "off",
+        "@typescript-eslint/require-await": "off"
+      }
+    }
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "compat",
+    "jest",
+    "jsdoc"
+  ],
+  "rules": {
+    "@typescript-eslint/array-type": [
+      "error",
+      {
+        "default": "array-simple"
+      }
+    ],
+    "@typescript-eslint/brace-style": [
+      "error"
+    ],
+    "@typescript-eslint/comma-spacing": "error",
+    "@typescript-eslint/consistent-type-definitions": [
+      "error",
+      "interface"
+    ],
+    "@typescript-eslint/explicit-member-accessibility": [
+      "error",
+      {
+        "accessibility": "no-public"
+      }
+    ],
+    "@typescript-eslint/func-call-spacing": "error",
+    "@typescript-eslint/indent": [
+      "error",
+      2
+    ],
+    "@typescript-eslint/keyword-spacing": "error",
+    "@typescript-eslint/member-ordering": "error",
+    "@typescript-eslint/no-extra-parens": "error",
+    "@typescript-eslint/no-extraneous-class": "error",
+    "@typescript-eslint/no-floating-promises": [
+      "error",
+      {
+        "ignoreVoid": true
+      }
+    ],
+    "@typescript-eslint/no-magic-numbers": [
+      "error",
+      {
+        "ignore": [
+          1,
+          0,
+          -1
+        ],
+        "ignoreArrayIndexes": true,
+        "ignoreEnums": true,
+        "ignoreReadonlyClassProperties": true
+      }
+    ],
+    "@typescript-eslint/no-parameter-properties": [
+      "error",
+      {
+        "allows": [
+          "readonly"
+        ]
+      }
+    ],
+    "@typescript-eslint/no-require-imports": "error",
+    "@typescript-eslint/no-unnecessary-condition": "error",
+    "@typescript-eslint/no-unnecessary-qualifier": "error",
+    "@typescript-eslint/no-unnecessary-type-arguments": "error",
+    "@typescript-eslint/no-useless-constructor": "error",
+    // Require 1 or more newlines after blocks of code for legibility
+    "@typescript-eslint/padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "next": "*",
+        "prev": "block-like"
+      }
+    ],
+    "@typescript-eslint/prefer-for-of": "error",
+    "@typescript-eslint/prefer-function-type": "error",
+    "@typescript-eslint/prefer-readonly": "error",
+    "@typescript-eslint/promise-function-async": "error",
+    "@typescript-eslint/quotes": "error",
+    "@typescript-eslint/restrict-plus-operands": "error",
+    "@typescript-eslint/semi": "error",
+    "@typescript-eslint/strict-boolean-expressions": "error",
+    "brace-style": "off",
+    "camelcase": "error",
+    "curly": [
+      "error",
+      "multi-line"
+    ],
+    "dot-notation": [
+      "error",
+      {
+        "allowPattern": "^[a-z]+([-_][a-z]+)+$"
+      }
+    ], // `css-case` and `python_case` allowed
+    "eol-last": "error", // end files w/ newline - this is git-friendly
+    "eqeqeq": "error", // please check for type
+    "indent": "off",
+    "jsdoc/check-alignment": "error",
+    "jsdoc/check-examples": "error",
+    "jsdoc/check-indentation": "error",
+    "jsdoc/check-line-alignment": "error",
+    "jsdoc/check-param-names": "error",
+    "jsdoc/check-property-names": "error",
+    "jsdoc/newline-after-description": "error",
+    "jsdoc/no-bad-blocks": "error",
+    "jsdoc/no-multi-asterisks": [
+      "error",
+      {
+        "allowWhitespace": true
+      }
+    ],
+    "jsdoc/no-types": "error",
+    "jsdoc/require-asterisk-prefix": "error",
+    "jsdoc/require-description": "error",
+    "jsdoc/require-example": "error",
+    "jsdoc/require-jsdoc": [
+      "error",
+      {
+        "publicOnly": true,
+        "require": {
+          "ClassDeclaration": true,
+          "MethodDefinition": true
+        }
+      }
+    ],
+    "jsdoc/require-param": "error",
+    "jsdoc/require-returns": "error",
+    "jsdoc/require-throws": "error",
+    "jsdoc/require-yields": "error",
+    "jsdoc/sort-tags": [
+      "error",
+      {
+        "alphabetizeExtras": true,
+        "tagSequence": [
+          "description",
+          "param",
+          "returns",
+          "example"
+        ]
+      }
+    ],
+    "max-len": "error",
+    "no-await-in-loop": "warn", // consider Promise.all instead so async calls are fired at once
+    "no-console": "error", // we shouldn't be logging from stateless components
+    "no-eval": "error", // this is an attack vector
+    "no-extra-parens": "off",
+    "no-implicit-coercion": "error", // be kind, use `Boolean()` - not `!!`
+    "no-magic-numbers": "off",
+    "no-return-assign": "error",
+    "no-shadow": "error", // inner-scope vars should have names separate from outer-scope vars to minimize confusion
+    "no-template-curly-in-string": "error", // backticks are required
+    "no-trailing-spaces": "error",
+    "no-unneeded-ternary": "error", // forbids `thing ? true : false;`
+    "no-useless-constructor": "off",
+    // enforce es6 features
+    "no-var": "error", // use `let` or `const`
+    // you must create a github isssue and comment the number
+    "no-warning-comments": [
+      "error",
+      {
+        "location": "start",
+        "terms": [
+          "TODO",
+          "FIXME"
+        ]
+      }
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "padding-line-between-statements": "off",
+    "prefer-const": "error", // use `const` when the variable doesn't change
+    "prefer-destructuring": "error",
+    "prefer-object-spread": "error",
+    "prefer-rest-params": "error",
+    "prefer-spread": "error",
+    "prefer-template": "error",
+    "quotes": "off",
+    "semi": "off",
+    // sort identifiers so it's easier to find things
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "memberSyntaxSortOrder": [
+          "none",
+          "single",
+          "multiple",
+          "all"
+        ]
+      }
+    ],
+    "sort-keys": [
+      "error",
+      "asc",
+      {
+        "caseSensitive": false,
+        "natural": true
+      }
+    ],
+    "sort-vars": "error",
+    "yoda": "error" // `"red" === color` => `color === "red"`
+  },
+  "settings": {
+    "jest": {
+      "version": 28
+    }
+  }
+}

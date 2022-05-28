@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+<article
+  class="Spinner"
+>
+  <ul
+    class="SpinnerWheels"
+  >
+    
+    <spinner-wheel-stub
+      isspinning="true"
+      name="color"
+      value="red"
+    />
+    <spinner-wheel-stub
+      isspinning="true"
+      name="shape"
+      value="round"
+    />
+    <spinner-wheel-stub
+      isspinning="false"
+      name="feeling"
+      value="sad"
+    />
+    
+  </ul>
+  <button
+    class="SpinnerLever"
+  >
+    Click to Spin!
+  </button>
+</article>
+`;
+
+exports[` 2`] = `
+<article
+  class="Spinner"
+>
+  <ul
+    class="SpinnerWheels"
+  >
+    
+    <spinner-wheel-stub
+      isspinning="true"
+      name="color"
+      value="red"
+    />
+    <spinner-wheel-stub
+      isspinning="true"
+      name="shape"
+      value="round"
+    />
+    <spinner-wheel-stub
+      isspinning="false"
+      name="feeling"
+      value="sad"
+    />
+    
+  </ul>
+  <button
+    class="SpinnerLever"
+    disabled=""
+  >
+    Spinning...
+  </button>
+</article>
+`;

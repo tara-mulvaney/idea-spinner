@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+<li
+  class="SpinnerWheel SpinnerWheel--stopped"
+>
+  <h2
+    class="SpinnerWheel__name"
+  >
+    Demo Wheel
+  </h2>
+  <div
+    class="SpinnerWheel__value"
+  >
+    Clowns
+  </div>
+</li>
+`;
