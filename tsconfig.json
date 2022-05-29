@@ -3,22 +3,24 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "importHelpers": true,
     "moduleResolution": "node",
-    "preserveSymlinks": true,
     "removeComments": true,
     "resolveJsonModule": true,
-    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
     "sourceMap": true,
     "strict": true,
     "target": "es6",
     // see: https://github.com/storybookjs/storybook/issues/12505
     "paths": {
-      "react": ["./void.d.ts"]
+      "react": [
+        "./void.d.ts"
+      ]
     }
   },
   "exclude": [
     "dist",
+    "coverage",
+    ".parcel-cache",
     "node_modules"
   ]
 }

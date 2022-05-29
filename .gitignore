@@ -6,8 +6,10 @@
 !.yarn/sdks
 !.yarn/versions
 
+.vscode/*
+!.vscode/extensions.json
+
 .parcel-cache
-.vscode
 coverage
 dist
 node_modules

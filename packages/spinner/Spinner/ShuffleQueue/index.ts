@@ -13,7 +13,9 @@ export class ShuffleQueue<T> {
    * @param inventory The inventory of elements to populate the queue.
    *
    * @example
-   * new ShuffleQueue(["item1", "item2", "item3"])
+   * ```js
+   * new ShuffleQueue(["item1", "item2", "item3"]);
+   * ```
    */
   constructor(inventory: T[] = []) {
     this.inventory = inventory;

@@ -12,25 +12,26 @@
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
     "@typescript-eslint/utils": "^5.22.0",
-    "babel-jest": "28",
+    "babel-jest": "^28",
     "concurrently": "^7.1.0",
     "eslint": "^8.15.0",
     "eslint-plugin-compat": "^4.0.2",
     "eslint-plugin-jest": "^26.1.5",
     "eslint-plugin-jsdoc": "^39.3.0",
-    "jest": "28",
+    "jest": "^28",
     "nodemon": "^2.0.16",
-    "ts-jest": "28",
+    "ts-jest": "^28",
     "tslib": "^2.4.0",
+    "typedoc": "^0.22.15",
+    "typedoc-plugin-markdown": "^3.12.1",
     "typescript": "^4.6.4"
   },
-  "main": "index.ts",
   "name": "@idea-spinner/spinner",
   "scripts": {
+    "docs": "typedoc",
     "lint": "eslint **/*.ts",
     "test": "jest .",
-    "watch:lint": "nodemon --exec 'yarn lint' -e ts",
-    "watch": "concurrently -n test,lint 'jest --watch .' 'yarn watch:lint'"
+    "watch": "concurrently -n lint,test 'nodemon --exec \"yarn lint\" -e ts' 'jest --watch .'"
   },
   "version": "1.0.0"
 }

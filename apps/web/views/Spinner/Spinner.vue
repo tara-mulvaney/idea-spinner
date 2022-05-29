@@ -20,18 +20,11 @@ defineEmits(["spin"]);
 <template>
   <article class="Spinner">
     <ul class="SpinnerWheels">
-      <SpinnerWheel
-        v-for="wheel in wheels"
-        :key="wheel.name"
-        v-bind="wheel"
-      />
+      <SpinnerWheel v-for="wheel in wheels" :key="wheel.name" v-bind="wheel" />
     </ul>
 
-    <button
-      class="SpinnerLever"
-      @click.prevent="$emit('spin', true)"
-      :disabled="isSpinning"
-    >
+    <button class="SpinnerLever" @click.prevent="$emit('spin', true)"
+      :disabled="isSpinning">
       {{ leverText }}
     </button>
   </article>

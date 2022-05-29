@@ -3,24 +3,39 @@
 [![.github/workflows/production-tests.yml](https://github.com/daniellacosse/idea-spinner/actions/workflows/production-tests.yml/badge.svg)](https://github.com/daniellacosse/idea-spinner/actions/workflows/production-tests.yml)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-<!-- WIP -->
-
 ## quick start
 
 ```sh
+# download the workspace
 git clone https://github.com/daniellacosse/idea-spinner.git
+cd idea-spinner
+
+# start the dev server
 yarn watch
 ```
 
+<!-- WIP -->
+
+## tour
+
+- monorepo using yarn 3 and typescript
+  - apps are platform-specific services
+  - packages are resuable javascript modules (they shouldn't contain any platform-specific APIs)
+- web app using vue 3
+- trunk development
+- valid scripts are all in root package.json
+  - to run a script on a specific package, `yarn workspace <package name> <script name>` e.g. `yarn workspace @idea-spinner/storybook build`
+
 ## setting up VSCode
+yarn 3 makes it a bit funky in places so we opted to not support vscode directly (for now)
 
-Add these to your `.vscode/settings.json`:
+1. Install recommended plugins. (Why?)
+2. Create your `.vscode/settings.json`:
 
 ```
-  "typescript.enablePromptUseWorkspaceTsdk": true,
+{
   "typescript.tsdk": ".yarn/sdks/typescript/lib"
+}
 ```
 
-Opt to use our typescript when the prompt comes up.
-
-(recommend github link extension)
+> 💡 Whenever you have funny issues, confirm that TS in the bottom-bar is set to our SDK. You can click on it to change.

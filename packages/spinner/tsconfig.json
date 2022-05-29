@@ -1,3 +1,12 @@
 {
-  "extends": "../../tsconfig.json"
+  "extends": "../../tsconfig.json",
+  "typedocOptions": {
+    "entryPoints": [
+      "./index.ts"
+    ],
+    "excludePrivate": true,
+    "githubPages": false,
+    "plugin": "typedoc-plugin-markdown",
+    "readme": "none"
+  }
 }

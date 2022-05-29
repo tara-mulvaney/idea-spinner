@@ -25,19 +25,19 @@
     "pinst": "^3.0.0",
     "ts-node": "^10.7.0",
     "tslib": "^2.4.0",
-    "typedoc": "^0.22.15",
-    "typedoc-plugin-markdown": "^3.12.1",
     "typescript": "^4.6.4"
   },
-  "name": "idea-spinner-workspace",
+  "engines": {
+    "node": "16.x"
+  },
+  "name": "idea-spinner",
   "packageManager": "yarn@3.2.0",
   "scripts": {
     "build": "yarn workspaces foreach -piv run build",
-    "docs": "typedoc  --name 'Idea Spinner' --githubPages false --entryPointStrategy packages .",
+    "docs": "yarn workspaces foreach -piv run docs",
     "lint": "yarn workspaces foreach -piv run lint",
     "test": "yarn workspaces foreach -piv run test",
-    "watch": "yarn workspaces foreach -piv run watch",
-    "prepare": "husky install"
+    "watch": "yarn workspaces foreach -piv run watch"
   },
   "workspaces": [
     "apps/*",

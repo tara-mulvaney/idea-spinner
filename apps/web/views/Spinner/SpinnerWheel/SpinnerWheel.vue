@@ -23,14 +23,11 @@ function clearChange() {
 </script>
 
 <template>
-  <li
-    :class="{
-      'SpinnerWheel': true,
-      'SpinnerWheel--stopped': !isSpinning,
-      'SpinnerWheel--tick': isAnimating,
-    }"
-    @animationend="clearChange"
-  >
+  <li :class="{
+    'SpinnerWheel': true,
+    'SpinnerWheel--stopped': !isSpinning,
+    'SpinnerWheel--tick': isAnimating,
+  }" @animationend="clearChange">
     <h2 class="SpinnerWheel__name">{{ name }}</h2>
     <div class="SpinnerWheel__value">{{ value }}</div>
   </li>
@@ -73,7 +70,9 @@ function clearChange() {
   transition: color var(--animation-timing) ease-out;
 }
 
-.SpinnerWheel, .SpinnerWheel__name, .SpinnerWheel__value {
+.SpinnerWheel,
+.SpinnerWheel__name,
+.SpinnerWheel__value {
   align-items: center;
   display: flex;
   justify-content: center;
@@ -88,6 +87,7 @@ function clearChange() {
     background-color: var(--color-primary-variant);
     border-color: var(--color-primary-variant-foreground);
   }
+
   to {
     background-color: var(--color-primary);
     border-color: var(--color-primary-variant-foreground);
@@ -98,11 +98,11 @@ function clearChange() {
   background: var(--color-primary-variant);
 }
 
-.SpinnerWheel--stopped > .SpinnerWheel__value {
+.SpinnerWheel--stopped>.SpinnerWheel__value {
   color: var(--color-primary-variant-foreground);
 }
 
-.SpinnerWheel--stopped > .SpinnerWheel__name {
+.SpinnerWheel--stopped>.SpinnerWheel__name {
   border-color: var(--color-primary-variant-foreground);
 }
 </style>
