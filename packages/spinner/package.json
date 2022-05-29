@@ -3,7 +3,6 @@
     "cuid": "^2.1.8"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16",
     "@babel/core": "^7.17.10",
     "@jest/globals": "^28.1.0",
     "@types/babel__core": "^7",
@@ -20,6 +19,7 @@
     "eslint-plugin-jest": "^26.1.5",
     "eslint-plugin-jsdoc": "^39.3.0",
     "jest": "28",
+    "nodemon": "^2.0.16",
     "ts-jest": "28",
     "tslib": "^2.4.0",
     "typescript": "^4.6.4"

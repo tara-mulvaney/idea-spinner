@@ -62,6 +62,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-vue", "virtual:877d74aac91ca5ee7a8a7146974851b3925aa3e05f91ce6b1ec97fb60e7aaa2db6d98341649038bae133995891a6030e374613ca264e27bb5700eb3006190dfb#npm:8.7.1"],\
             ["eslint-watch", "virtual:877d74aac91ca5ee7a8a7146974851b3925aa3e05f91ce6b1ec97fb60e7aaa2db6d98341649038bae133995891a6030e374613ca264e27bb5700eb3006190dfb#npm:8.0.0"],\
             ["husky", "npm:8.0.1"],\
+            ["pinst", "npm:3.0.0"],\
             ["ts-node", "virtual:877d74aac91ca5ee7a8a7146974851b3925aa3e05f91ce6b1ec97fb60e7aaa2db6d98341649038bae133995891a6030e374613ca264e27bb5700eb3006190dfb#npm:10.7.0"],\
             ["tslib", "npm:2.4.0"],\
             ["typedoc", "virtual:877d74aac91ca5ee7a8a7146974851b3925aa3e05f91ce6b1ec97fb60e7aaa2db6d98341649038bae133995891a6030e374613ca264e27bb5700eb3006190dfb#npm:0.22.15"],\
@@ -20773,6 +20774,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-vue", "virtual:877d74aac91ca5ee7a8a7146974851b3925aa3e05f91ce6b1ec97fb60e7aaa2db6d98341649038bae133995891a6030e374613ca264e27bb5700eb3006190dfb#npm:8.7.1"],\
             ["eslint-watch", "virtual:877d74aac91ca5ee7a8a7146974851b3925aa3e05f91ce6b1ec97fb60e7aaa2db6d98341649038bae133995891a6030e374613ca264e27bb5700eb3006190dfb#npm:8.0.0"],\
             ["husky", "npm:8.0.1"],\
+            ["pinst", "npm:3.0.0"],\
             ["ts-node", "virtual:877d74aac91ca5ee7a8a7146974851b3925aa3e05f91ce6b1ec97fb60e7aaa2db6d98341649038bae133995891a6030e374613ca264e27bb5700eb3006190dfb#npm:10.7.0"],\
             ["tslib", "npm:2.4.0"],\
             ["typedoc", "virtual:877d74aac91ca5ee7a8a7146974851b3925aa3e05f91ce6b1ec97fb60e7aaa2db6d98341649038bae133995891a6030e374613ca264e27bb5700eb3006190dfb#npm:0.22.15"],\
@@ -25413,6 +25415,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["pinkie-promise", "npm:2.0.1"],\
             ["pinkie", "npm:2.0.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["pinst", [\
+        ["npm:3.0.0", {\
+          "packageLocation": "./.yarn/cache/pinst-npm-3.0.0-5d2b6c1dda-4ae48a6a60.zip/node_modules/pinst/",\
+          "packageDependencies": [\
+            ["pinst", "npm:3.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\

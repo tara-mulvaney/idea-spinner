@@ -21,7 +21,8 @@
     "eslint-plugin-jsdoc": "^39.3.0",
     "eslint-plugin-vue": "^8.7.1",
     "eslint-watch": "^8.0.0",
-    "husky": "^8.0.1",
+    "husky": "^8.0.0",
+    "pinst": "^3.0.0",
     "ts-node": "^10.7.0",
     "tslib": "^2.4.0",
     "typedoc": "^0.22.15",
@@ -35,11 +36,8 @@
     "docs": "typedoc  --name 'Idea Spinner' --githubPages false --entryPointStrategy packages .",
     "lint": "yarn workspaces foreach -piv run lint",
     "test": "yarn workspaces foreach -piv run test",
-    "watch": "yarn workspaces foreach -piv run watch"
-  },
-  "husky": {
-    "pre-commit": "yarn docs && git add docs",
-    "prepare-commit-msg": "exec < /dev/tty && yarn cz --hook || true"
+    "watch": "yarn workspaces foreach -piv run watch",
+    "prepare": "husky install"
   },
   "workspaces": [
     "apps/*",
