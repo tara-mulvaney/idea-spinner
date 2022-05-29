@@ -24,10 +24,10 @@
     "eslint-plugin-jest": "^26.1.5",
     "eslint-plugin-jsdoc": "^39.3.0",
     "eslint-plugin-vue": "^8.7.1",
-    "eslint-watch": "^8.0.0",
     "jest": "28",
     "jest-environment-jsdom": "^28.1.0",
     "jest-serializer-vue": "^2.0.2",
+    "nodemon": "^2.0.16",
     "parcel": "^2.6.0",
     "stylelint": "^14.8.2",
     "stylelint-config-recommended": "^7.0.0",
@@ -47,6 +47,7 @@
     "lint": "concurrently -n eslint,stylelint 'eslint **/*.{ts,vue}' 'stylelint **/*.vue'",
     "start": "parcel index.html --open",
     "test": "jest .",
-    "watch": "concurrently -n test,start,lint 'jest --watch .' 'yarn start' 'esw --watch **/*.{ts,vue}'"
+    "watch": "concurrently -n test,start,lint 'jest --watch .' 'yarn start' 'yarn watch:lint'",
+    "watch:lint": "nodemon --exec 'yarn lint' -e 'ts,vue'"
   }
 }

@@ -3,6 +3,7 @@
     "cuid": "^2.1.8"
   },
   "devDependencies": {
+    "nodemon": "^2.0.16",
     "@babel/core": "^7.17.10",
     "@jest/globals": "^28.1.0",
     "@types/babel__core": "^7",
@@ -18,7 +19,6 @@
     "eslint-plugin-compat": "^4.0.2",
     "eslint-plugin-jest": "^26.1.5",
     "eslint-plugin-jsdoc": "^39.3.0",
-    "eslint-watch": "^8.0.0",
     "jest": "28",
     "ts-jest": "28",
     "tslib": "^2.4.0",
@@ -29,7 +29,8 @@
   "scripts": {
     "lint": "eslint **/*.ts",
     "test": "jest .",
-    "watch": "concurrently -n test,lint 'jest --watch .' 'esw --watch **/*.ts'"
+    "watch:lint": "nodemon --exec 'yarn lint' -e ts",
+    "watch": "concurrently -n test,lint 'jest --watch .' 'yarn watch:lint'"
   },
   "version": "1.0.0"
 }

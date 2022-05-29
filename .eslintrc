@@ -128,8 +128,6 @@
     "eqeqeq": "error", // please check for type
     "indent": "off",
     "jsdoc/check-alignment": "error",
-    "jsdoc/check-examples": "error",
-    "jsdoc/check-indentation": "error",
     "jsdoc/check-line-alignment": "error",
     "jsdoc/check-param-names": "error",
     "jsdoc/check-property-names": "error",

@@ -12,5 +12,5 @@ export const Example = (wheel: SpinnerWheelProps) => ({
   setup() {
     return { wheel };
   },
-  template: `<SpinnerWheel v-bind="wheel" />`
+  template: "<SpinnerWheel v-bind='wheel' />"
 });
