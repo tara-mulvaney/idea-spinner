@@ -8,7 +8,7 @@
 
 #### Defined in
 
-[Spinner/index.ts:9](https://github.com/daniellacosse/idea-spinner/blob/19933cb/packages/spinner/Spinner/index.ts#L9)
+[Spinner/index.ts:9](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L9)
 
 ___
 
@@ -18,7 +18,7 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:10](https://github.com/daniellacosse/idea-spinner/blob/19933cb/packages/spinner/Spinner/index.ts#L10)
+[Spinner/index.ts:10](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L10)
 
 ___
 
@@ -28,4 +28,4 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:8](https://github.com/daniellacosse/idea-spinner/blob/19933cb/packages/spinner/Spinner/index.ts#L8)
+[Spinner/index.ts:8](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L8)

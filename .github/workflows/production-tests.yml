@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Clone Repository
         uses: actions/checkout@v2
+      - name: Link Dependencies
+        run: yarn
       - name: Lint
         run: yarn lint
       - name: Test

@@ -32,7 +32,7 @@ const spinner = new Spinner({ wheels:
 
 #### Defined in
 
-[Spinner/index.ts:39](https://github.com/daniellacosse/idea-spinner/blob/19933cb/packages/spinner/Spinner/index.ts#L39)
+[Spinner/index.ts:39](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L39)
 
 ## Properties
 
@@ -48,7 +48,7 @@ const spinner = new Spinner({ wheels:
 
 #### Defined in
 
-[Spinner/index.ts:19](https://github.com/daniellacosse/idea-spinner/blob/19933cb/packages/spinner/Spinner/index.ts#L19)
+[Spinner/index.ts:19](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L19)
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:20](https://github.com/daniellacosse/idea-spinner/blob/19933cb/packages/spinner/Spinner/index.ts#L20)
+[Spinner/index.ts:20](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L20)
 
 ## Methods
 
@@ -88,7 +88,7 @@ What's shown on the Spinner at the current or future time.
 
 #### Defined in
 
-[Spinner/index.ts:80](https://github.com/daniellacosse/idea-spinner/blob/19933cb/packages/spinner/Spinner/index.ts#L80)
+[Spinner/index.ts:80](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L80)
 
 ___
 
@@ -121,4 +121,4 @@ The ID of the spin you've just started.
 
 #### Defined in
 
-[Spinner/index.ts:59](https://github.com/daniellacosse/idea-spinner/blob/19933cb/packages/spinner/Spinner/index.ts#L59)
+[Spinner/index.ts:59](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L59)
