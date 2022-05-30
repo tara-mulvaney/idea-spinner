@@ -1,5 +1,3 @@
-[@idea-spinner/spinner](../README.md) / ShuffleQueue
-
 # Class: ShuffleQueue<T\>
 
 A queue of items from which the elements you take from it are randomly drawn.
@@ -10,17 +8,6 @@ Ensures you don't get the same element twice in a row.
 | Name |
 | :------ |
 | `T` |
-
-## Table of contents
-
-### Constructors
-
-- [constructor](ShuffleQueue.md#constructor)
-
-### Accessors
-
-- [inventory](ShuffleQueue.md#inventory)
-- [randomItem](ShuffleQueue.md#randomitem)
 
 ## Constructors
 
@@ -49,7 +36,7 @@ new ShuffleQueue(["item1", "item2", "item3"]);
 
 #### Defined in
 
-[Spinner/ShuffleQueue/index.ts:20](https://github.com/daniellacosse/idea-spinner/blob/811f418/packages/spinner/Spinner/ShuffleQueue/index.ts#L20)
+[Spinner/ShuffleQueue/index.ts:20](https://github.com/daniellacosse/idea-spinner/blob/3a83ecb/packages/spinner/Spinner/ShuffleQueue/index.ts#L20)
 
 ## Accessors
 
@@ -71,7 +58,7 @@ Replace the inventory of items in the queue.
 
 #### Defined in
 
-[Spinner/ShuffleQueue/index.ts:51](https://github.com/daniellacosse/idea-spinner/blob/811f418/packages/spinner/Spinner/ShuffleQueue/index.ts#L51)
+[Spinner/ShuffleQueue/index.ts:51](https://github.com/daniellacosse/idea-spinner/blob/3a83ecb/packages/spinner/Spinner/ShuffleQueue/index.ts#L51)
 
 ___
 
@@ -90,4 +77,4 @@ A random item from the queue.
 
 #### Defined in
 
-[Spinner/ShuffleQueue/index.ts:30](https://github.com/daniellacosse/idea-spinner/blob/811f418/packages/spinner/Spinner/ShuffleQueue/index.ts#L30)
+[Spinner/ShuffleQueue/index.ts:30](https://github.com/daniellacosse/idea-spinner/blob/3a83ecb/packages/spinner/Spinner/ShuffleQueue/index.ts#L30)

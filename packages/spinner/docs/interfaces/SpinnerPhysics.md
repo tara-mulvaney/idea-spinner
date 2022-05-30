@@ -1,14 +1,4 @@
-[@idea-spinner/spinner](../README.md) / SpinnerPhysics
-
 # Interface: SpinnerPhysics
-
-## Table of contents
-
-### Properties
-
-- [endingFrameLength](SpinnerPhysics.md#endingframelength)
-- [friction](SpinnerPhysics.md#friction)
-- [startingFrameLength](SpinnerPhysics.md#startingframelength)
 
 ## Properties
 
@@ -18,7 +8,7 @@
 
 #### Defined in
 
-[Spinner/index.ts:9](https://github.com/daniellacosse/idea-spinner/blob/811f418/packages/spinner/Spinner/index.ts#L9)
+[Spinner/index.ts:9](https://github.com/daniellacosse/idea-spinner/blob/3a83ecb/packages/spinner/Spinner/index.ts#L9)
 
 ___
 
@@ -28,7 +18,7 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:10](https://github.com/daniellacosse/idea-spinner/blob/811f418/packages/spinner/Spinner/index.ts#L10)
+[Spinner/index.ts:10](https://github.com/daniellacosse/idea-spinner/blob/3a83ecb/packages/spinner/Spinner/index.ts#L10)
 
 ___
 
@@ -38,4 +28,4 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:8](https://github.com/daniellacosse/idea-spinner/blob/811f418/packages/spinner/Spinner/index.ts#L8)
+[Spinner/index.ts:8](https://github.com/daniellacosse/idea-spinner/blob/3a83ecb/packages/spinner/Spinner/index.ts#L8)

@@ -1,23 +1,6 @@
-[@idea-spinner/spinner](../README.md) / Wheel
-
 # Class: Wheel
 
 Represents a wheel in a spin simulation.
-
-## Table of contents
-
-### Constructors
-
-- [constructor](Wheel.md#constructor)
-
-### Properties
-
-- [physics](Wheel.md#physics)
-- [queue](Wheel.md#queue)
-
-### Methods
-
-- [getStatus](Wheel.md#getstatus)
 
 ## Constructors
 
@@ -48,31 +31,31 @@ const wheel = new Wheel({
 | :------ | :------ |
 | `parameters` | `Object` |
 | `parameters.items` | `string`[] |
-| `parameters.physics` | [`SpinnerPhysics`](../interfaces/SpinnerPhysics.md) |
+| `parameters.physics` | [`SpinnerPhysics`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/interfaces/SpinnerPhysics.md) |
 
 #### Defined in
 
-[Spinner/index.ts:185](https://github.com/daniellacosse/idea-spinner/blob/811f418/packages/spinner/Spinner/index.ts#L185)
+[Spinner/index.ts:185](https://github.com/daniellacosse/idea-spinner/blob/3a83ecb/packages/spinner/Spinner/index.ts#L185)
 
 ## Properties
 
 ### physics
 
-• **physics**: [`SpinnerPhysics`](../interfaces/SpinnerPhysics.md)
+• **physics**: [`SpinnerPhysics`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/interfaces/SpinnerPhysics.md)
 
 #### Defined in
 
-[Spinner/index.ts:156](https://github.com/daniellacosse/idea-spinner/blob/811f418/packages/spinner/Spinner/index.ts#L156)
+[Spinner/index.ts:156](https://github.com/daniellacosse/idea-spinner/blob/3a83ecb/packages/spinner/Spinner/index.ts#L156)
 
 ___
 
 ### queue
 
-• **queue**: [`ShuffleQueue`](ShuffleQueue.md)<`string`\>
+• **queue**: [`ShuffleQueue`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/ShuffleQueue.md)<`string`\>
 
 #### Defined in
 
-[Spinner/index.ts:157](https://github.com/daniellacosse/idea-spinner/blob/811f418/packages/spinner/Spinner/index.ts#L157)
+[Spinner/index.ts:157](https://github.com/daniellacosse/idea-spinner/blob/3a83ecb/packages/spinner/Spinner/index.ts#L157)
 
 ## Methods
 
@@ -101,4 +84,4 @@ The display of the Wheel at the current or future time.
 
 #### Defined in
 
-[Spinner/index.ts:206](https://github.com/daniellacosse/idea-spinner/blob/811f418/packages/spinner/Spinner/index.ts#L206)
+[Spinner/index.ts:206](https://github.com/daniellacosse/idea-spinner/blob/3a83ecb/packages/spinner/Spinner/index.ts#L206)

@@ -1,16 +1,12 @@
-@idea-spinner/spinner
-
 # @idea-spinner/spinner
 
-## Table of contents
+## Classes
 
-### Classes
+- [ShuffleQueue](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/ShuffleQueue.md)
+- [Spin](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)
+- [Spinner](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spinner.md)
+- [Wheel](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Wheel.md)
 
-- [ShuffleQueue](classes/ShuffleQueue.md)
-- [Spin](classes/Spin.md)
-- [Spinner](classes/Spinner.md)
-- [Wheel](classes/Wheel.md)
+## Interfaces
 
-### Interfaces
-
-- [SpinnerPhysics](interfaces/SpinnerPhysics.md)
+- [SpinnerPhysics](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/interfaces/SpinnerPhysics.md)

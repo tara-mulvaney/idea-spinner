@@ -1,26 +1,8 @@
-[@idea-spinner/spinner](../README.md) / Spinner
-
 # Class: Spinner
 
 Simulates the spinning of a slot-machine-like object.
 You can spin it multiple times simultaneously
  and poll for changes in real time.
-
-## Table of contents
-
-### Constructors
-
-- [constructor](Spinner.md#constructor)
-
-### Properties
-
-- [parameters](Spinner.md#parameters)
-- [spins](Spinner.md#spins)
-
-### Methods
-
-- [getSpinStatus](Spinner.md#getspinstatus)
-- [spin](Spinner.md#spin)
 
 ## Constructors
 
@@ -50,7 +32,7 @@ const spinner = new Spinner({ wheels:
 
 #### Defined in
 
-[Spinner/index.ts:39](https://github.com/daniellacosse/idea-spinner/blob/811f418/packages/spinner/Spinner/index.ts#L39)
+[Spinner/index.ts:39](https://github.com/daniellacosse/idea-spinner/blob/3a83ecb/packages/spinner/Spinner/index.ts#L39)
 
 ## Properties
 
@@ -66,17 +48,17 @@ const spinner = new Spinner({ wheels:
 
 #### Defined in
 
-[Spinner/index.ts:19](https://github.com/daniellacosse/idea-spinner/blob/811f418/packages/spinner/Spinner/index.ts#L19)
+[Spinner/index.ts:19](https://github.com/daniellacosse/idea-spinner/blob/3a83ecb/packages/spinner/Spinner/index.ts#L19)
 
 ___
 
 ### spins
 
-• **spins**: `Map`<`string`, [`Spin`](Spin.md)\>
+• **spins**: `Map`<`string`, [`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)\>
 
 #### Defined in
 
-[Spinner/index.ts:20](https://github.com/daniellacosse/idea-spinner/blob/811f418/packages/spinner/Spinner/index.ts#L20)
+[Spinner/index.ts:20](https://github.com/daniellacosse/idea-spinner/blob/3a83ecb/packages/spinner/Spinner/index.ts#L20)
 
 ## Methods
 
@@ -106,7 +88,7 @@ What's shown on the Spinner at the current or future time.
 
 #### Defined in
 
-[Spinner/index.ts:80](https://github.com/daniellacosse/idea-spinner/blob/811f418/packages/spinner/Spinner/index.ts#L80)
+[Spinner/index.ts:80](https://github.com/daniellacosse/idea-spinner/blob/3a83ecb/packages/spinner/Spinner/index.ts#L80)
 
 ___
 
@@ -129,7 +111,7 @@ const spinID = spinner.spin({
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `physics` | [`SpinnerPhysics`](../interfaces/SpinnerPhysics.md) | The `physics` parameters allow you to customize  the time between ticks on the spinner. |
+| `physics` | [`SpinnerPhysics`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/interfaces/SpinnerPhysics.md) | The `physics` parameters allow you to customize  the time between ticks on the spinner. |
 
 #### Returns
 
@@ -139,4 +121,4 @@ The ID of the spin you've just started.
 
 #### Defined in
 
-[Spinner/index.ts:59](https://github.com/daniellacosse/idea-spinner/blob/811f418/packages/spinner/Spinner/index.ts#L59)
+[Spinner/index.ts:59](https://github.com/daniellacosse/idea-spinner/blob/3a83ecb/packages/spinner/Spinner/index.ts#L59)

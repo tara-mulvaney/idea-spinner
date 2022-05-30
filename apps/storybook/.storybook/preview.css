@@ -1,3 +1,25 @@
+:root {
+  font-size: 16px;
+
+  --max-supported-width: 1080px;
+  --min-supported-width: 320px;
+
+  --hairline: 1px;
+  --gutter-narrow: 0.75rem;
+  --gutter-standard: 1rem;
+  --gutter-wide: 1.5rem;
+
+  --color-primary: hsl(204, 64%, 90%);
+  --color-primary-foreground: hsl(0, 0%, 0%);
+  --color-primary-variant: hsl(202, 68%, 42%);
+  --color-primary-variant-foreground: hsl(0, 0%, 100%);
+
+  --font-primary: "HelveticaNeue", Helvetica, sans-serif;
+  --font-secondary: "Menlo", monospace;
+
+  --animation-timing: 240ms;
+}
+
 body {
   height: 100vh;
 }
@@ -7,6 +29,27 @@ body {
   height: 100%;
 }
 
-script {
-  display: none;
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 0.5rem;
+}
+
+thead {
+  border-bottom: 1px solid black;
+}
+
+tr:nth-child(even) {
+  background: hsl(0, 0%, 97%);
+}
+
+a > code:after {
+  content: "⍈";
+  padding: 0 0.25rem;
+}
+
+summary {
+  text-decoration: underline;
 }

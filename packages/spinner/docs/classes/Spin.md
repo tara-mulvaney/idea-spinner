@@ -1,22 +1,6 @@
-[@idea-spinner/spinner](../README.md) / Spin
-
 # Class: Spin
 
 An ongoing spin of a set of simulated wheels.
-
-## Table of contents
-
-### Constructors
-
-- [constructor](Spin.md#constructor)
-
-### Properties
-
-- [wheels](Spin.md#wheels)
-
-### Methods
-
-- [getStatus](Spin.md#getstatus)
 
 ## Constructors
 
@@ -47,22 +31,22 @@ const spin = new Spin({
 | Name | Type |
 | :------ | :------ |
 | `parameters` | `Object` |
-| `parameters.physics` | [`SpinnerPhysics`](../interfaces/SpinnerPhysics.md) |
+| `parameters.physics` | [`SpinnerPhysics`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/interfaces/SpinnerPhysics.md) |
 | `parameters.wheels` | `Map`<`string`, `string`[]\> |
 
 #### Defined in
 
-[Spinner/index.ts:117](https://github.com/daniellacosse/idea-spinner/blob/811f418/packages/spinner/Spinner/index.ts#L117)
+[Spinner/index.ts:117](https://github.com/daniellacosse/idea-spinner/blob/3a83ecb/packages/spinner/Spinner/index.ts#L117)
 
 ## Properties
 
 ### wheels
 
-• **wheels**: `Map`<`string`, [`Wheel`](Wheel.md)\>
+• **wheels**: `Map`<`string`, [`Wheel`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Wheel.md)\>
 
 #### Defined in
 
-[Spinner/index.ts:92](https://github.com/daniellacosse/idea-spinner/blob/811f418/packages/spinner/Spinner/index.ts#L92)
+[Spinner/index.ts:92](https://github.com/daniellacosse/idea-spinner/blob/3a83ecb/packages/spinner/Spinner/index.ts#L92)
 
 ## Methods
 
@@ -91,4 +75,4 @@ The display of the Spin at the current or future time.
 
 #### Defined in
 
-[Spinner/index.ts:141](https://github.com/daniellacosse/idea-spinner/blob/811f418/packages/spinner/Spinner/index.ts#L141)
+[Spinner/index.ts:141](https://github.com/daniellacosse/idea-spinner/blob/3a83ecb/packages/spinner/Spinner/index.ts#L141)
