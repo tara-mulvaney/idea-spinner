@@ -48,6 +48,6 @@
   },
   "name": "@idea-spinner/storybook",
   "scripts": {
-    "watch": "start-storybook --docs --quiet"
+    "watch": "start-storybook --quiet --no-manager-cache"
   }
 }

@@ -4,7 +4,14 @@ import args, { SpinnerWheelProps } from "./props";
 export default {
   args,
   component: SpinnerWheel,
-  title: "Spinner/Spinner Wheel"
+  title: "Views/Spinner/Spinner Wheel",
+  parameters: {
+    previewTabs: {
+      "storybook/docs/panel": {
+        hidden: true
+      }
+    }
+  }
 };
 
 export const Example = (wheel: SpinnerWheelProps) => ({

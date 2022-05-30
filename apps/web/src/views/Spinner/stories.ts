@@ -9,7 +9,14 @@ export default {
     }
   },
   component: Spinner,
-  title: "Spinner"
+  title: "Views/Spinner",
+  parameters: {
+    previewTabs: {
+      "storybook/docs/panel": {
+        hidden: true
+      }
+    }
+  }
 };
 
 export const Example = ({
