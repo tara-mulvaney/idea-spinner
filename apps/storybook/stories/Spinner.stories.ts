@@ -1,5 +1,6 @@
-import Spinner from "./Spinner.vue";
-import args, { SpinnerProps } from "./props";
+import Spinner from "../../web/src/views/Spinner/Spinner.vue";
+import args, { SpinnerProps } from "../../web/src/views/Spinner/props";
+import parameters from "../hideDocsTab";
 
 export default {
   args,
@@ -10,13 +11,7 @@ export default {
   },
   component: Spinner,
   title: "Views/Spinner",
-  parameters: {
-    previewTabs: {
-      "storybook/docs/panel": {
-        hidden: true
-      }
-    }
-  }
+  parameters
 };
 
 export const Example = ({
