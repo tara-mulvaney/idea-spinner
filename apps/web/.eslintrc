@@ -40,8 +40,7 @@
   "overrides": [
     {
       "files": [
-        "**/test.ts",
-        "**/stories.ts"
+        "**/test.ts"
       ],
       "rules": {
         "@typescript-eslint/no-unsafe-assignment": "off",

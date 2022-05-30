@@ -36,7 +36,7 @@ const spin = new Spin({
 
 #### Defined in
 
-[Spinner/index.ts:117](https://github.com/daniellacosse/idea-spinner/blob/c20a4a0/packages/spinner/Spinner/index.ts#L117)
+[Spinner/index.ts:117](https://github.com/daniellacosse/idea-spinner/blob/4cf8973/packages/spinner/Spinner/index.ts#L117)
 
 ## Properties
 
@@ -46,7 +46,7 @@ const spin = new Spin({
 
 #### Defined in
 
-[Spinner/index.ts:92](https://github.com/daniellacosse/idea-spinner/blob/c20a4a0/packages/spinner/Spinner/index.ts#L92)
+[Spinner/index.ts:92](https://github.com/daniellacosse/idea-spinner/blob/4cf8973/packages/spinner/Spinner/index.ts#L92)
 
 ## Methods
 
@@ -75,4 +75,4 @@ The display of the Spin at the current or future time.
 
 #### Defined in
 
-[Spinner/index.ts:141](https://github.com/daniellacosse/idea-spinner/blob/c20a4a0/packages/spinner/Spinner/index.ts#L141)
+[Spinner/index.ts:141](https://github.com/daniellacosse/idea-spinner/blob/4cf8973/packages/spinner/Spinner/index.ts#L141)

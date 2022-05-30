@@ -32,6 +32,12 @@
   },
   "name": "idea-spinner",
   "packageManager": "yarn@3.2.0",
+  "resolutions": {
+    "glob-parent": "5.1.2",
+    "minimst": "1.2.6",
+    "trim": "0.0.3",
+    "trim-newlines": "3.0.1"
+  },
   "scripts": {
     "build": "yarn workspaces foreach -piv run build",
     "docs": "yarn workspaces foreach -piv run docs",
