@@ -60,15 +60,15 @@ export const SpinnerStore = createStore<SpinnerStoreState>({
       }
 
       state.display = [...spinObject.wheels.entries()].map(
-        ([name, { value, isSpinning }]) => ({ name, value, isSpinning })
+        ([name, { value, isSpinning }]) => ({ isSpinning, name, value })
       );
       state.isSpinning = spinObject.isSpinning;
     }
   },
   state() {
     return {
-      isSpinning: false,
-      display: []
+      display: [],
+      isSpinning: false
     };
   }
 });

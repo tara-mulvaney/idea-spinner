@@ -48,7 +48,7 @@ export class Spinner {
    *
    * @example
    * ```js
-   * const spinID = spinner.spin({
+   * const spinID = spinner.createSpin({
    *   startingFrameLength: 300,
    *   endingFrameLength: 600,
    *   friction: 0.5
@@ -63,17 +63,26 @@ export class Spinner {
     return spinID;
   }
 
+  /**
+   * Gets a previously started spin object.
+   *
+   * @param spinID
+   * @returns The Spin object.
+   *
+   * @example
+   * ```js
+   * const spinObject = spinner.getSpin(spinID);
+   * ```
+   */
   getSpin(spinID: string) {
     return this.spins.get(spinID);
   }
 
   /**
-   * Polls a previously started spin to see what it says.
+   * Advances a previously started spin.
    *
    * @param spinID The ID of the spin you're polling.
-   * @param time You can optionally provide a
-   *  advanceTime to look into the future.
-   * @returns What's shown on the Spinner at the current or future time.
+   * @param time How much further you're advancing the spinner.
    *
    * @example
    * ```js
@@ -120,16 +129,18 @@ export class Spin {
     physics: SpinnerPhysics;
   }) {
     for (const [wheelName, wheelItems] of parameters.wheels) {
-      const randomLength = (frameLength: number, variance: number) => {
-        const coeff = frameLength * variance;
-
-        return coeff * (2 * Math.random() + 1);
-      };
+      const {
+        endingFrameLength,
+        startingFrameLength,
+        variance
+      } = parameters.physics;
 
       const physics = {
         ...parameters.physics,
-        startingFrameLength: randomLength(parameters.physics.startingFrameLength, parameters.physics.variance),
-        endingFrameLength: randomLength(parameters.physics.endingFrameLength, parameters.physics.variance)
+        endingFrameLength:
+          endingFrameLength * variance * (Math.random() << 1 + 1),
+        startingFrameLength:
+          startingFrameLength * variance * (Math.random() << 1 + 1),
       };
 
       this.wheels.set(
@@ -139,6 +150,11 @@ export class Spin {
     }
   }
 
+  /**
+   * Whether or not the Spin object is still spinning.
+   *
+   * @returns Whether or not the Spin object is still spinning.
+   */
   get isSpinning() {
     return [...this.wheels.values()].some(wheel => wheel.isSpinning);
   }
@@ -206,10 +222,20 @@ export class Wheel {
     this.previousItem = this.queue.randomItem;
   }
 
+  /**
+   * The currently selected value on the Wheel.
+   *
+   * @returns The currently selected value on the Wheel.
+   */
   get value() {
     return this.previousItem;
   }
 
+  /**
+   * Whether or not this Wheel is still spinning.
+   *
+   * @returns Whether or not this Wheel is still spinning.
+   */
   get isSpinning() {
     return this.previousFrameLength <= this.physics.endingFrameLength;
   }

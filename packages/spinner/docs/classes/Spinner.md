@@ -32,7 +32,7 @@ const spinner = new Spinner({ wheels:
 
 #### Defined in
 
-[Spinner/index.ts:38](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L38)
+[Spinner/index.ts:38](https://github.com/daniellacosse/idea-spinner/blob/ee47dcc/packages/spinner/Spinner/index.ts#L38)
 
 ## Properties
 
@@ -48,7 +48,7 @@ const spinner = new Spinner({ wheels:
 
 #### Defined in
 
-[Spinner/index.ts:18](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L18)
+[Spinner/index.ts:18](https://github.com/daniellacosse/idea-spinner/blob/ee47dcc/packages/spinner/Spinner/index.ts#L18)
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:19](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L19)
+[Spinner/index.ts:19](https://github.com/daniellacosse/idea-spinner/blob/ee47dcc/packages/spinner/Spinner/index.ts#L19)
 
 ## Methods
 
@@ -66,7 +66,7 @@ ___
 
 ▸ **advanceSpin**(`spinID`, `time`): `void`
 
-Polls a previously started spin to see what it says.
+Advances a previously started spin.
 
 **`example`**
 ```js
@@ -78,17 +78,15 @@ spinner.advanceSpin(spinID, 1000);
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `spinID` | `string` | The ID of the spin you're polling. |
-| `time` | `number` | You can optionally provide a  advanceTime to look into the future. |
+| `time` | `number` | How much further you're advancing the spinner. |
 
 #### Returns
 
 `void`
 
-What's shown on the Spinner at the current or future time.
-
 #### Defined in
 
-[Spinner/index.ts:83](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L83)
+[Spinner/index.ts:92](https://github.com/daniellacosse/idea-spinner/blob/ee47dcc/packages/spinner/Spinner/index.ts#L92)
 
 ___
 
@@ -100,7 +98,7 @@ Spins the spinner.
 
 **`example`**
 ```js
-const spinID = spinner.spin({
+const spinID = spinner.createSpin({
   startingFrameLength: 300,
   endingFrameLength: 600,
   friction: 0.5
@@ -121,13 +119,20 @@ The ID of the spin you've just started.
 
 #### Defined in
 
-[Spinner/index.ts:58](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L58)
+[Spinner/index.ts:58](https://github.com/daniellacosse/idea-spinner/blob/ee47dcc/packages/spinner/Spinner/index.ts#L58)
 
 ___
 
 ### getSpin
 
 ▸ **getSpin**(`spinID`): `undefined` \| [`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)
+
+Gets a previously started spin object.
+
+**`example`**
+```js
+const spinObject = spinner.getSpin(spinID);
+```
 
 #### Parameters
 
@@ -139,6 +144,8 @@ ___
 
 `undefined` \| [`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)
 
+The Spin object.
+
 #### Defined in
 
-[Spinner/index.ts:66](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L66)
+[Spinner/index.ts:77](https://github.com/daniellacosse/idea-spinner/blob/ee47dcc/packages/spinner/Spinner/index.ts#L77)

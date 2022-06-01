@@ -35,7 +35,7 @@ const wheel = new Wheel({
 
 #### Defined in
 
-[Spinner/index.ts:199](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L199)
+[Spinner/index.ts:215](https://github.com/daniellacosse/idea-spinner/blob/ee47dcc/packages/spinner/Spinner/index.ts#L215)
 
 ## Properties
 
@@ -45,7 +45,7 @@ const wheel = new Wheel({
 
 #### Defined in
 
-[Spinner/index.ts:169](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L169)
+[Spinner/index.ts:185](https://github.com/daniellacosse/idea-spinner/blob/ee47dcc/packages/spinner/Spinner/index.ts#L185)
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:170](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L170)
+[Spinner/index.ts:186](https://github.com/daniellacosse/idea-spinner/blob/ee47dcc/packages/spinner/Spinner/index.ts#L186)
 
 ## Accessors
 
@@ -63,13 +63,17 @@ ___
 
 • `get` **isSpinning**(): `boolean`
 
+Whether or not this Wheel is still spinning.
+
 #### Returns
 
 `boolean`
 
+Whether or not this Wheel is still spinning.
+
 #### Defined in
 
-[Spinner/index.ts:213](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L213)
+[Spinner/index.ts:239](https://github.com/daniellacosse/idea-spinner/blob/ee47dcc/packages/spinner/Spinner/index.ts#L239)
 
 ___
 
@@ -77,13 +81,17 @@ ___
 
 • `get` **value**(): `string`
 
+The currently selected value on the Wheel.
+
 #### Returns
 
 `string`
 
+The currently selected value on the Wheel.
+
 #### Defined in
 
-[Spinner/index.ts:209](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L209)
+[Spinner/index.ts:230](https://github.com/daniellacosse/idea-spinner/blob/ee47dcc/packages/spinner/Spinner/index.ts#L230)
 
 ## Methods
 
@@ -112,4 +120,4 @@ The display of the Wheel at the current or future time.
 
 #### Defined in
 
-[Spinner/index.ts:229](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L229)
+[Spinner/index.ts:255](https://github.com/daniellacosse/idea-spinner/blob/ee47dcc/packages/spinner/Spinner/index.ts#L255)

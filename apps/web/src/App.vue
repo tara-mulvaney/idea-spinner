@@ -64,6 +64,7 @@ main {
 }
 
 :root {
+  /* stylelint-disable scale-unlimited/declaration-strict-value */
   font-size: 16px;
 
   --max-supported-width: 1080px;

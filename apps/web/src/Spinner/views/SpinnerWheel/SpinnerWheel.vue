@@ -12,6 +12,7 @@ const props = defineProps<SpinnerWheelProps>();
 
 const isAnimating = ref(false);
 
+// ISSUE #24: wheels in the spinner don't flash on each prop change
 watch(
   () => props.value,
   () => isAnimating.value = true

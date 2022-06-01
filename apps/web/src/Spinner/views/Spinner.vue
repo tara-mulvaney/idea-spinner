@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, reactive } from "vue";
+import { ref } from "vue";
 import { SpinnerWheel, SpinnerWheelProps } from "./SpinnerWheel";
 
 // see: https://github.com/vuejs/core/issues/4294
