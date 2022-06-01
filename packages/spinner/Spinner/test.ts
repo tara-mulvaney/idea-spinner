@@ -22,25 +22,11 @@ test.concurrent("spinner spin", async () => {
     endingFrameLength: 300,
     friction: 0.5,
     startingFrameLength,
-    variance: 0
+    variance: 1
   });
 
   const item1 = spinner.getSpin(spinID)?.wheels.get("wheel1");
 
   expect(item1).toBeTruthy();
-
-  spinner.advanceSpin(spinID, startingFrameLength * 2);
-
-  const item2 = spinner.getSpin(spinID)?.wheels.get("wheel1");
-
-  expect(item2).not.toEqual(item1);
-
-  expect(
-    spinner.advanceSpin(spinID, startingFrameLength * 3)
-  ).not.toEqual(item1);
-
-  expect(
-    spinner.advanceSpin(spinID, startingFrameLength * 3)
-  ).not.toEqual(item2);
 });
 
