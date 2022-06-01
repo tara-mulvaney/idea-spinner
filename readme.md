@@ -17,9 +17,7 @@ yarn
 yarn watch
 ```
 
-<!-- WIP -->
-
-## tour
+## tour (wip)
 
 - monorepo using yarn 3 and typescript
   - apps are platform-specific services
@@ -29,7 +27,7 @@ yarn watch
 - valid scripts are all in root package.json
   - to run a script on a specific package, `yarn workspace <package name> <script name>` e.g. `yarn workspace @idea-spinner/storybook build`
 
-## setting up VSCode
+## setting up VSCode (wip)
 yarn 3 makes it a bit funky in places so we opted to not support vscode directly (for now)
 
 1. Install recommended plugins. (Why?)
