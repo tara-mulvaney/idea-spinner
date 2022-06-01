@@ -32,7 +32,7 @@ export class ShuffleQueue<T> {
     let randomElement: T;
 
     do {
-      randomIndex = Math.round(Math.random() * this.queue.length - 1);
+      randomIndex = Math.floor(Math.random() * this.queue.length);
       randomElement = this.queue[randomIndex];
     } while (randomElement === this.previousItem);
 

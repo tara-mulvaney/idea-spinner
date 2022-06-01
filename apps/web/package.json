@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "vue": "^3.2.33"
+    "@idea-spinner/spinner": "workspace:^",
+    "vue": "^3.2.33",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
@@ -43,9 +45,9 @@
   },
   "name": "@idea-spinner/web",
   "scripts": {
-    "build": "parcel build index.html",
+    "build": "parcel build src/index.html",
     "lint": "concurrently -n eslint,stylelint 'eslint **/*.{ts,vue}' 'stylelint **/*.vue'",
     "test": "jest .",
-    "watch": "concurrently -n built,lint,test 'parcel index.html --open' 'nodemon --exec \"yarn lint\" -e \"ts,vue\"' 'jest --watch .'"
+    "watch": "concurrently -n built,lint,test 'parcel src/index.html --open' 'nodemon --exec \"yarn lint\" -e \"ts,vue\"' 'jest --watch .'"
   }
 }

@@ -32,7 +32,7 @@ const spinner = new Spinner({ wheels:
 
 #### Defined in
 
-[Spinner/index.ts:39](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L39)
+[Spinner/index.ts:38](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L38)
 
 ## Properties
 
@@ -48,7 +48,7 @@ const spinner = new Spinner({ wheels:
 
 #### Defined in
 
-[Spinner/index.ts:19](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L19)
+[Spinner/index.ts:18](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L18)
 
 ___
 
@@ -58,19 +58,19 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:20](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L20)
+[Spinner/index.ts:19](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L19)
 
 ## Methods
 
-### getSpinStatus
+### advanceSpin
 
-▸ **getSpinStatus**(`spinID`, `timeOffset?`): `Optional`<{ `[wheelName: string]`: `string`;  }\>
+▸ **advanceSpin**(`spinID`, `time`): `void`
 
 Polls a previously started spin to see what it says.
 
 **`example`**
 ```js
-spinner.getSpinStatus(spinID, 1000);
+spinner.advanceSpin(spinID, 1000);
 ```
 
 #### Parameters
@@ -78,23 +78,23 @@ spinner.getSpinStatus(spinID, 1000);
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `spinID` | `string` | The ID of the spin you're polling. |
-| `timeOffset?` | `number` | You can optionally provide a  timeOffset to look into the future. |
+| `time` | `number` | You can optionally provide a  advanceTime to look into the future. |
 
 #### Returns
 
-`Optional`<{ `[wheelName: string]`: `string`;  }\>
+`void`
 
 What's shown on the Spinner at the current or future time.
 
 #### Defined in
 
-[Spinner/index.ts:80](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L80)
+[Spinner/index.ts:83](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L83)
 
 ___
 
-### spin
+### createSpin
 
-▸ **spin**(`physics`): `string`
+▸ **createSpin**(`physics`): `string`
 
 Spins the spinner.
 
@@ -121,4 +121,24 @@ The ID of the spin you've just started.
 
 #### Defined in
 
-[Spinner/index.ts:59](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L59)
+[Spinner/index.ts:58](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L58)
+
+___
+
+### getSpin
+
+▸ **getSpin**(`spinID`): `undefined` \| [`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `spinID` | `string` |
+
+#### Returns
+
+`undefined` \| [`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)
+
+#### Defined in
+
+[Spinner/index.ts:66](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L66)

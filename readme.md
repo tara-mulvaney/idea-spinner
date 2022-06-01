@@ -10,6 +10,9 @@
 git clone https://github.com/daniellacosse/idea-spinner.git
 cd idea-spinner
 
+# link dependencies
+yarn
+
 # start the dev server
 yarn watch
 ```

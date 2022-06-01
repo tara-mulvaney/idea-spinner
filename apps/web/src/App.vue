@@ -1,61 +1,87 @@
-<!-- <template>
-  <article class="Main">
-    <slot-machine ref="slotMachine" :slots="slots" @done="stopSpinning">
-    </slot-machine>
-    <slot-lever @pull="startSpinning" :is-spinning="isSpinning"></slot-lever>
-  </article>
-</template>
+<script setup lang="ts">
+import { computed } from "vue";
+import spinnerDemo from "./demo.json";
+import { useStore } from "vuex";
+import { Spinner, SpinnerStoreMutations, SpinnerStoreState } from "./Spinner";
 
-<script lang="ts">
-import Component from "vue-class-component";
+const store = useStore<SpinnerStoreState>();
 
-import { SpinnerView } from "./views";
+store.commit(
+  SpinnerStoreMutations.INITIALIZE,
+  new Map(Object.entries(spinnerDemo.wheels))
+);
 
-import Vue from "vue";
+const wheels = computed(() => store.state.display);
+const isSpinning = computed(() => store.state.isSpinning);
 
-@Component({
-  components: {
-    SlotLever,
-    SlotMachine,
-  },
-})
-/**
- * Main, default page. contains the app.
- */
-export default class Main extends Vue {
-  isSpinning = false;
-  slots = config.slots;
+function spin() {
+  store.commit(SpinnerStoreMutations.SPIN, spinnerDemo.physics);
 
-  /**
-   * spins the slot machine
-   *
-   * @returns {void}
-   */
-  startSpinning() {
-    this.isSpinning = true;
+  let lastFrameTS = Date.now();
 
-    (this.$refs.slotMachine as SlotMachine).spin();
-  }
+  const renderLoop = () => {
+    requestAnimationFrame(() => {
+      const currentFrameTS = Date.now();
 
-  /**
-   * stops the slot machine
-   *
-   * @returns {void}
-   */
-  stopSpinning() {
-    this.isSpinning = false;
-  }
+      store.commit(SpinnerStoreMutations.ADVANCE, currentFrameTS - lastFrameTS);
+
+      lastFrameTS = currentFrameTS;
+
+      if (store.state.isSpinning) {
+        renderLoop();
+      }
+    });
+  };
+
+  renderLoop();
 }
 </script>
 
-<style scoped>
-.Main {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  justify-content: space-evenly;
+<template>
+  <div class="SpinnerContainer">
+    <Spinner :is-spinning="isSpinning" :wheels="wheels" @spin="spin" />
+  </div>
+</template>
 
+<style>
+html,
+main,
+.SpinnerContainer {
+  height: 100vh;
   width: 100vw;
 }
-</style> -->
+
+main {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.SpinnerContainer {
+  display: block;
+  max-height: var(--min-supported-width);
+  max-width: var(--max-supported-width);
+}
+
+:root {
+  font-size: 16px;
+
+  --max-supported-width: 1080px;
+  --min-supported-width: 320px;
+
+  --hairline: 1px;
+  --gutter-narrow: 0.75rem;
+  --gutter-standard: 1rem;
+  --gutter-wide: 1.5rem;
+
+  --color-primary: hsl(204, 64%, 90%);
+  --color-primary-foreground: hsl(0, 0%, 0%);
+  --color-primary-variant: hsl(202, 68%, 42%);
+  --color-primary-variant-foreground: hsl(0, 0%, 100%);
+
+  --font-primary: "HelveticaNeue", Helvetica, sans-serif;
+  --font-secondary: "Menlo", monospace;
+
+  --animation-timing: 240ms;
+}
+</style>

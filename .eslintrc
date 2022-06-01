@@ -19,10 +19,9 @@
         "test.ts"
       ],
       "rules": {
-        "compat/compat": "off",
-        "@typescript-eslint/ban-ts-comment": "off",
         "@typescript-eslint/no-magic-numbers": "off",
-        "@typescript-eslint/require-await": "off"
+        "@typescript-eslint/require-await": "off",
+        "compat/compat": "off"
       }
     }
   ],
@@ -91,6 +90,9 @@
       }
     ],
     "@typescript-eslint/no-require-imports": "error",
+    "@typescript-eslint/no-shadow": [
+      "error"
+    ], // inner-scope vars should have names separate from outer-scope vars to minimize confusion
     "@typescript-eslint/no-unnecessary-condition": "error",
     "@typescript-eslint/no-unnecessary-qualifier": "error",
     "@typescript-eslint/no-unnecessary-type-arguments": "error",
@@ -177,7 +179,7 @@
     "no-implicit-coercion": "error", // be kind, use `Boolean()` - not `!!`
     "no-magic-numbers": "off",
     "no-return-assign": "error",
-    "no-shadow": "error", // inner-scope vars should have names separate from outer-scope vars to minimize confusion
+    "no-shadow": "off",
     "no-template-curly-in-string": "error", // backticks are required
     "no-trailing-spaces": "error",
     "no-unneeded-ternary": "error", // forbids `thing ? true : false;`

@@ -1,18 +1,17 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import { SpinnerWheel, SpinnerWheelProps } from "./SpinnerWheel";
 
 // see: https://github.com/vuejs/core/issues/4294
 interface SpinnerProps {
   isSpinning: boolean;
-  maxColumns: number;
+  maxColumns?: number;
   wheels: SpinnerWheelProps[];
 }
 
 const props = withDefaults(defineProps<SpinnerProps>(), { maxColumns: 4 });
 
 const rowCount = ref(Math.ceil(props.wheels.length / props.maxColumns));
-const leverText = ref(props.isSpinning ? "Spinning..." : "Click to Spin!");
 
 defineEmits(["spin"]);
 </script>
@@ -25,7 +24,7 @@ defineEmits(["spin"]);
 
     <button class="SpinnerLever" @click.prevent="$emit('spin', true)"
       :disabled="isSpinning">
-      {{ leverText }}
+      {{ isSpinning ? "Spinning..." : "Click to Spin!" }}
     </button>
   </article>
 </template>
@@ -62,6 +61,7 @@ defineEmits(["spin"]);
   cursor: pointer;
   font-size: var(--gutter-wide);
   padding: var(--gutter-narrow) var(--gutter-wide);
+  font-family: var(--font-primary);
   text-align: center;
 }
 

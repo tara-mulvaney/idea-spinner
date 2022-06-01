@@ -2,6 +2,7 @@ import config from "../../jest.config";
 
 export default {
   ...config,
+  collectCoverageFrom: ["./src/**/*.{ts,vue}"],
   snapshotSerializers: ["jest-serializer-vue"],
   testEnvironment: "jsdom",
   transform: {

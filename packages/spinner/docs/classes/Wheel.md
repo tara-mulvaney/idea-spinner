@@ -35,7 +35,7 @@ const wheel = new Wheel({
 
 #### Defined in
 
-[Spinner/index.ts:185](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L185)
+[Spinner/index.ts:199](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L199)
 
 ## Properties
 
@@ -45,7 +45,7 @@ const wheel = new Wheel({
 
 #### Defined in
 
-[Spinner/index.ts:156](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L156)
+[Spinner/index.ts:169](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L169)
 
 ___
 
@@ -55,13 +55,41 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:157](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L157)
+[Spinner/index.ts:170](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L170)
+
+## Accessors
+
+### isSpinning
+
+• `get` **isSpinning**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[Spinner/index.ts:213](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L213)
+
+___
+
+### value
+
+• `get` **value**(): `string`
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[Spinner/index.ts:209](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L209)
 
 ## Methods
 
-### getStatus
+### advanceTime
 
-▸ **getStatus**(`timeOffset?`): `string`
+▸ **advanceTime**(`time`): `void`
 
 Get the current display of this wheel.
 
@@ -72,16 +100,16 @@ wheel.getStatus(1000);
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `timeOffset` | `number` | `0` | You can optionally provide a  timeOffset to look into the future. |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `time` | `number` | You can optionally provide an  advanceTime to advance the spinner into the future. |
 
 #### Returns
 
-`string`
+`void`
 
 The display of the Wheel at the current or future time.
 
 #### Defined in
 
-[Spinner/index.ts:206](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L206)
+[Spinner/index.ts:229](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L229)

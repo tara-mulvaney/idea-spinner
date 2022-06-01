@@ -2544,7 +2544,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@idea-spinner/spinner@workspace:packages/spinner":
+"@idea-spinner/spinner@workspace:^, @idea-spinner/spinner@workspace:packages/spinner":
   version: 0.0.0-use.local
   resolution: "@idea-spinner/spinner@workspace:packages/spinner"
   dependencies:
@@ -2629,6 +2629,7 @@ __metadata:
   resolution: "@idea-spinner/web@workspace:apps/web"
   dependencies:
     "@babel/core": ^7.17.10
+    "@idea-spinner/spinner": "workspace:^"
     "@jest/globals": ^28.1.0
     "@parcel/package-manager": 2.6.0
     "@parcel/transformer-vue": 2.6.0
@@ -2666,6 +2667,7 @@ __metadata:
     typescript: ^4.6.4
     vue: ^3.2.33
     vue-eslint-parser: ^9.0.2
+    vuex: ^4.0.2
   languageName: unknown
   linkType: soft
 
@@ -6765,6 +6767,13 @@ __metadata:
     "@vue/compiler-dom": 3.2.36
     "@vue/shared": 3.2.36
   checksum: 2dd899c991e3173195ca6e802bf306799059bec3b6efd0daab65a3b53b0a9d227a083931096988af772a780e6fbcae88df47cf1a5417884000c7de29eac113c9
+  languageName: node
+  linkType: hard
+
+"@vue/devtools-api@npm:^6.0.0-beta.11":
+  version: 6.1.4
+  resolution: "@vue/devtools-api@npm:6.1.4"
+  checksum: 027bb138b03ec7147dd15e5d0ef28d5b72c822530396cc8a86bc6fdb049dc6850314b9e897e497064e3ed47fad229a18141f56b8b8ca3d41092a576dc5b6538d
   languageName: node
   linkType: hard
 
@@ -22293,6 +22302,17 @@ __metadata:
     "@vue/server-renderer": 3.2.33
     "@vue/shared": 3.2.33
   checksum: 878a63cc19dc6b2e255929cee3a47ea416668446d44d7c7f61ba785836a112a3814fd014e9472f92183ed05c8113946c4c83c831f2ec142d0c975a84976a2de9
+  languageName: node
+  linkType: hard
+
+"vuex@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "vuex@npm:4.0.2"
+  dependencies:
+    "@vue/devtools-api": ^6.0.0-beta.11
+  peerDependencies:
+    vue: ^3.0.2
+  checksum: d7c03f0afcbad045ef58921a4baa9ec23bc12c71dbaf1317f1df94e7d8740ce839b9fac48ec775955ce7a8893dceb7217bc05e45421fc6bacc559ed3541e6052
   languageName: node
   linkType: hard
 

@@ -1,8 +1,6 @@
 import { Spinner } from ".";
 import { expect, test } from "@jest/globals";
 
-const sleep =
-  async (time: number) => new Promise((resolve) => setTimeout(resolve, time));
 
 test.concurrent("spinner constructor", async () => {
   expect(() => new Spinner({
@@ -20,35 +18,29 @@ test.concurrent("spinner spin", async () => {
   });
 
   const startingFrameLength = 100;
-  const spinID = spinner.spin({
+  const spinID = spinner.createSpin({
     endingFrameLength: 300,
     friction: 0.5,
-    startingFrameLength
+    startingFrameLength,
+    variance: 0
   });
 
-  const item1 = spinner.getSpinStatus(spinID)?.wheel1;
+  const item1 = spinner.getSpin(spinID)?.wheels.get("wheel1");
 
   expect(item1).toBeTruthy();
 
-  await sleep(startingFrameLength * 2);
+  spinner.advanceSpin(spinID, startingFrameLength * 2);
 
-  const item2 = spinner.getSpinStatus(spinID)?.wheel1;
+  const item2 = spinner.getSpin(spinID)?.wheels.get("wheel1");
 
   expect(item2).not.toEqual(item1);
 
   expect(
-    spinner.getSpinStatus(spinID, startingFrameLength * 3)
+    spinner.advanceSpin(spinID, startingFrameLength * 3)
   ).not.toEqual(item1);
 
   expect(
-    spinner.getSpinStatus(spinID, startingFrameLength * 3)
+    spinner.advanceSpin(spinID, startingFrameLength * 3)
   ).not.toEqual(item2);
 });
 
-test.concurrent("spinner empty spinID", async () => {
-  const spinner = new Spinner({
-    wheels: new Map()
-  });
-
-  expect(spinner.getSpinStatus("")).toBeFalsy();
-});

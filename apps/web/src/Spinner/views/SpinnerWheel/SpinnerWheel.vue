@@ -11,11 +11,11 @@ interface SpinnerWheelProps {
 const props = defineProps<SpinnerWheelProps>();
 
 const isAnimating = ref(false);
-const valueRef = ref(props.value);
 
-watch(valueRef, () => {
-  isAnimating.value = true;
-});
+watch(
+  () => props.value,
+  () => isAnimating.value = true
+);
 
 function clearChange() {
   isAnimating.value = false;
@@ -26,7 +26,7 @@ function clearChange() {
   <li :class="{
     'SpinnerWheel': true,
     'SpinnerWheel--stopped': !isSpinning,
-    'SpinnerWheel--tick': isAnimating,
+    'SpinnerWheel--tick': isAnimating && isSpinning,
   }" @animationend="clearChange">
     <h2 class="SpinnerWheel__name">{{ name }}</h2>
     <div class="SpinnerWheel__value">{{ value }}</div>
@@ -66,8 +66,10 @@ function clearChange() {
   color: var(--color-primary-foreground);
   flex-grow: 1;
   font-family: var(--font-secondary);
+  text-align: center;
   font-size: var(--gutter-wide);
   transition: color var(--animation-timing) ease-out;
+  padding: var(--gutter-narrow);
 }
 
 .SpinnerWheel,
@@ -86,11 +88,13 @@ function clearChange() {
   from {
     background-color: var(--color-primary-variant);
     border-color: var(--color-primary-variant-foreground);
+    color: var(--color-primary-variant-foreground);
   }
 
   to {
     background-color: var(--color-primary);
-    border-color: var(--color-primary-variant-foreground);
+    border-color: var(--color-primary-foreground);
+    color: var(--color-primary-foreground);
   }
 }
 

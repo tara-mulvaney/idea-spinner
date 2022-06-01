@@ -1,6 +1,7 @@
 # Class: Spin
 
-An ongoing spin of a set of simulated wheels.
+An ongoing spin of a set of simulated wheels. Responsible
+for handling the variance in physics across the wheels.
 
 ## Constructors
 
@@ -36,7 +37,7 @@ const spin = new Spin({
 
 #### Defined in
 
-[Spinner/index.ts:117](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L117)
+[Spinner/index.ts:118](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L118)
 
 ## Properties
 
@@ -46,13 +47,27 @@ const spin = new Spin({
 
 #### Defined in
 
-[Spinner/index.ts:92](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L92)
+[Spinner/index.ts:93](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L93)
+
+## Accessors
+
+### isSpinning
+
+• `get` **isSpinning**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[Spinner/index.ts:142](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L142)
 
 ## Methods
 
-### getStatus
+### advanceTime
 
-▸ **getStatus**(`timeOffset?`): `Object`
+▸ **advanceTime**(`time`): `void`
 
 Get the current display of this spin.
 
@@ -63,16 +78,16 @@ spin.getStatus(1000);
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `timeOffset` | `number` | `0` | You can optionally provide a  timeOffset to look into the future. |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `time` | `number` | You can optionally provide an  advanceTime to advance the spin into the future. |
 
 #### Returns
 
-`Object`
+`void`
 
 The display of the Spin at the current or future time.
 
 #### Defined in
 
-[Spinner/index.ts:141](https://github.com/daniellacosse/idea-spinner/blob/83eeabf/packages/spinner/Spinner/index.ts#L141)
+[Spinner/index.ts:158](https://github.com/daniellacosse/idea-spinner/blob/29acf61/packages/spinner/Spinner/index.ts#L158)

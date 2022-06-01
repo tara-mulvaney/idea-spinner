@@ -1,13 +1,12 @@
 import cuid from "cuid";
 import { ShuffleQueue } from "./ShuffleQueue";
 
-type Optional<T> = T | undefined;
-
 // ISSUE #1: validate physics object
 export interface SpinnerPhysics {
   startingFrameLength: number;
   endingFrameLength: number;
   friction: number;
+  variance: number;
 }
 
 /**
@@ -56,7 +55,7 @@ export class Spinner {
    * });
    * ```
    */
-  spin(physics: SpinnerPhysics) {
+  createSpin(physics: SpinnerPhysics) {
     const spinID = cuid();
 
     this.spins.set(spinID, new Spin({ ...this.parameters, physics }));
@@ -64,29 +63,31 @@ export class Spinner {
     return spinID;
   }
 
+  getSpin(spinID: string) {
+    return this.spins.get(spinID);
+  }
+
   /**
    * Polls a previously started spin to see what it says.
    *
    * @param spinID The ID of the spin you're polling.
-   * @param timeOffset You can optionally provide a
-   *  timeOffset to look into the future.
+   * @param time You can optionally provide a
+   *  advanceTime to look into the future.
    * @returns What's shown on the Spinner at the current or future time.
    *
    * @example
    * ```js
-   * spinner.getSpinStatus(spinID, 1000);
+   * spinner.advanceSpin(spinID, 1000);
    * ```
    */
-  getSpinStatus(
-    spinID: string,
-    timeOffset?: number
-  ): Optional<{ [wheelName: string]: string; }> {
-    return this.spins.get(spinID)?.getStatus(timeOffset);
+  advanceSpin(spinID: string, time: number) {
+    this.spins.get(spinID)?.advanceTime(time);
   }
 }
 
 /**
- * An ongoing spin of a set of simulated wheels.
+ * An ongoing spin of a set of simulated wheels. Responsible
+ * for handling the variance in physics across the wheels.
  */
 export class Spin {
   wheels: Map<string, Wheel> = new Map();
@@ -119,18 +120,34 @@ export class Spin {
     physics: SpinnerPhysics;
   }) {
     for (const [wheelName, wheelItems] of parameters.wheels) {
+      const randomLength = (frameLength: number, variance: number) => {
+        const coeff = frameLength * variance;
+
+        return coeff * (2 * Math.random() + 1);
+      };
+
+      const physics = {
+        ...parameters.physics,
+        startingFrameLength: randomLength(parameters.physics.startingFrameLength, parameters.physics.variance),
+        endingFrameLength: randomLength(parameters.physics.endingFrameLength, parameters.physics.variance)
+      };
+
       this.wheels.set(
         wheelName,
-        new Wheel({ items: wheelItems, physics: parameters.physics })
+        new Wheel({ items: wheelItems, physics })
       );
     }
+  }
+
+  get isSpinning() {
+    return [...this.wheels.values()].some(wheel => wheel.isSpinning);
   }
 
   /**
    * Get the current display of this spin.
    *
-   * @param timeOffset You can optionally provide a
-   *  timeOffset to look into the future.
+   * @param time You can optionally provide an
+   *  advanceTime to advance the spin into the future.
    * @returns The display of the Spin at the current or future time.
    *
    * @example
@@ -138,14 +155,10 @@ export class Spin {
    * spin.getStatus(1000);
    * ```
    */
-  getStatus(timeOffset = 0) {
-    const result: { [wheelName: string]: string; } = {};
-
-    for (const [wheelName, wheel] of this.wheels) {
-      result[wheelName] = wheel.getStatus(timeOffset);
+  advanceTime(time: number) {
+    for (const [, wheel] of this.wheels) {
+      wheel.advanceTime(time);
     }
-
-    return result;
   }
 }
 
@@ -156,6 +169,7 @@ export class Wheel {
   physics: SpinnerPhysics;
   queue: ShuffleQueue<string>;
 
+  private clock: number;
   private previousFrameLength: number;
   private previousCheckTime: number;
   private previousItem: string;
@@ -186,16 +200,25 @@ export class Wheel {
     this.queue = new ShuffleQueue<string>(parameters.items);
     this.physics = parameters.physics;
 
+    this.clock = 0;
     this.previousFrameLength = this.physics.startingFrameLength;
-    this.previousCheckTime = Date.now();
+    this.previousCheckTime = 0;
     this.previousItem = this.queue.randomItem;
+  }
+
+  get value() {
+    return this.previousItem;
+  }
+
+  get isSpinning() {
+    return this.previousFrameLength <= this.physics.endingFrameLength;
   }
 
   /**
    * Get the current display of this wheel.
    *
-   * @param timeOffset You can optionally provide a
-   *  timeOffset to look into the future.
+   * @param time You can optionally provide an
+   *  advanceTime to advance the spinner into the future.
    * @returns The display of the Wheel at the current or future time.
    *
    * @example
@@ -203,20 +226,22 @@ export class Wheel {
    * wheel.getStatus(1000);
    * ```
    */
-  getStatus(timeOffset = 0) {
-    const currentCheckTime = Date.now() + timeOffset;
+  advanceTime(time: number) {
+    this.clock += time;
 
-    if (currentCheckTime > this.previousCheckTime + this.previousFrameLength) {
+    if (!this.isSpinning) {
+      return;
+    }
+
+    if (this.clock > this.previousCheckTime + this.previousFrameLength) {
       // ISSUE #2: derive constant-time mathematical solution based on compound
       // interest formula
       do {
         this.previousCheckTime += this.previousFrameLength;
         this.previousFrameLength *= 1 + this.physics.friction;
-      } while (this.previousCheckTime < currentCheckTime);
+      } while (this.previousCheckTime < this.clock);
 
       this.previousItem = this.queue.randomItem;
     }
-
-    return this.previousItem;
   }
 }
