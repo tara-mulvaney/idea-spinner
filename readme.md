@@ -1,6 +1,7 @@
 # idea-spinner
 
 [![.github/workflows/production-tests.yml](https://github.com/daniellacosse/idea-spinner/actions/workflows/production-tests.yml/badge.svg)](https://github.com/daniellacosse/idea-spinner/actions/workflows/production-tests.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/9bc0a87e673be83e89fa/maintainability)](https://codeclimate.com/github/daniellacosse/idea-spinner/maintainability)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 ## quick start
