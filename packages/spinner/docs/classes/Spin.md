@@ -37,7 +37,7 @@ const spin = new Spin({
 
 #### Defined in
 
-[Spinner/index.ts:127](https://github.com/daniellacosse/idea-spinner/blob/15b325f/packages/spinner/Spinner/index.ts#L127)
+[Spinner/index.ts:127](https://github.com/daniellacosse/idea-spinner/blob/111884c/packages/spinner/Spinner/index.ts#L127)
 
 ## Properties
 
@@ -47,7 +47,7 @@ const spin = new Spin({
 
 #### Defined in
 
-[Spinner/index.ts:102](https://github.com/daniellacosse/idea-spinner/blob/15b325f/packages/spinner/Spinner/index.ts#L102)
+[Spinner/index.ts:102](https://github.com/daniellacosse/idea-spinner/blob/111884c/packages/spinner/Spinner/index.ts#L102)
 
 ## Accessors
 
@@ -65,7 +65,7 @@ Whether or not the Spin object is still spinning.
 
 #### Defined in
 
-[Spinner/index.ts:158](https://github.com/daniellacosse/idea-spinner/blob/15b325f/packages/spinner/Spinner/index.ts#L158)
+[Spinner/index.ts:158](https://github.com/daniellacosse/idea-spinner/blob/111884c/packages/spinner/Spinner/index.ts#L158)
 
 ## Methods
 
@@ -94,4 +94,4 @@ The display of the Spin at the current or future time.
 
 #### Defined in
 
-[Spinner/index.ts:174](https://github.com/daniellacosse/idea-spinner/blob/15b325f/packages/spinner/Spinner/index.ts#L174)
+[Spinner/index.ts:174](https://github.com/daniellacosse/idea-spinner/blob/111884c/packages/spinner/Spinner/index.ts#L174)
