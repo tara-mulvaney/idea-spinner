@@ -35,7 +35,7 @@ const wheel = new Wheel({
 
 #### Defined in
 
-[Spinner/index.ts:215](https://github.com/daniellacosse/idea-spinner/blob/841b1a5/packages/spinner/Spinner/index.ts#L215)
+[Spinner/index.ts:215](https://github.com/daniellacosse/idea-spinner/blob/15b325f/packages/spinner/Spinner/index.ts#L215)
 
 ## Properties
 
@@ -45,7 +45,7 @@ const wheel = new Wheel({
 
 #### Defined in
 
-[Spinner/index.ts:185](https://github.com/daniellacosse/idea-spinner/blob/841b1a5/packages/spinner/Spinner/index.ts#L185)
+[Spinner/index.ts:185](https://github.com/daniellacosse/idea-spinner/blob/15b325f/packages/spinner/Spinner/index.ts#L185)
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:186](https://github.com/daniellacosse/idea-spinner/blob/841b1a5/packages/spinner/Spinner/index.ts#L186)
+[Spinner/index.ts:186](https://github.com/daniellacosse/idea-spinner/blob/15b325f/packages/spinner/Spinner/index.ts#L186)
 
 ## Accessors
 
@@ -73,7 +73,7 @@ Whether or not this Wheel is still spinning.
 
 #### Defined in
 
-[Spinner/index.ts:239](https://github.com/daniellacosse/idea-spinner/blob/841b1a5/packages/spinner/Spinner/index.ts#L239)
+[Spinner/index.ts:239](https://github.com/daniellacosse/idea-spinner/blob/15b325f/packages/spinner/Spinner/index.ts#L239)
 
 ___
 
@@ -91,7 +91,7 @@ The currently selected value on the Wheel.
 
 #### Defined in
 
-[Spinner/index.ts:230](https://github.com/daniellacosse/idea-spinner/blob/841b1a5/packages/spinner/Spinner/index.ts#L230)
+[Spinner/index.ts:230](https://github.com/daniellacosse/idea-spinner/blob/15b325f/packages/spinner/Spinner/index.ts#L230)
 
 ## Methods
 
@@ -120,4 +120,4 @@ The display of the Wheel at the current or future time.
 
 #### Defined in
 
-[Spinner/index.ts:255](https://github.com/daniellacosse/idea-spinner/blob/841b1a5/packages/spinner/Spinner/index.ts#L255)
+[Spinner/index.ts:255](https://github.com/daniellacosse/idea-spinner/blob/15b325f/packages/spinner/Spinner/index.ts#L255)

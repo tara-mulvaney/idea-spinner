@@ -32,7 +32,7 @@ checks:
 plugins:
   nodesecurity:
     enabled: true
-exclude_patters:
+exclude_patterns:
   - .yarn/
   - .pnp.cjs
   - .pnp.loader.mjs
