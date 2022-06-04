@@ -36,3 +36,5 @@ exclude_patterns:
   - .yarn/
   - .pnp.cjs
   - .pnp.loader.mjs
+  - "**/test.ts"
+  - "**/stories.ts"
