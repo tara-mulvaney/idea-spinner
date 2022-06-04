@@ -1,6 +1,7 @@
 # idea-spinner
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/9bc0a87e673be83e89fa/maintainability)](https://codeclimate.com/github/daniellacosse/idea-spinner/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/9bc0a87e673be83e89fa/test_coverage)](https://codeclimate.com/github/daniellacosse/idea-spinner/test_coverage)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 ## quick start

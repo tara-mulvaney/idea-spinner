@@ -38,8 +38,8 @@
     "trim-newlines": "3.0.1"
   },
   "scripts": {
-    "build": "yarn workspaces foreach -piv run build",
-    "docs": "yarn workspaces foreach -piv run docs",
+    "build": "yarn workspaces foreach -pivt run build",
+    "docs": "yarn workspaces foreach -piv --since run docs",
     "lint": "yarn workspaces foreach -piv run lint",
     "test": "yarn workspaces foreach -piv run test",
     "watch": "yarn workspaces foreach -piv run watch"

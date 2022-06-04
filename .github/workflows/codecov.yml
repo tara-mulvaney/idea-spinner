@@ -1,0 +1,28 @@
+---
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.head_ref || github.ref }}
+jobs:
+  test:
+    name: Update Codecov
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v2
+      - name: Link Dependencies
+        run: yarn
+      - name: Generate Coverage
+        run: yarn test
+      - uses: codecov/codecov-action@v2
+        with:
+          files: ./**/coverage-final.json
+          flags: unittests
+    timeout-minutes: 5
+name: Codecov
+'on':
+  push:
+    branches:
+      - main
+steps:
+- uses: actions/checkout@master
+
