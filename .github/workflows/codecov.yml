@@ -23,6 +23,3 @@ name: Codecov
   push:
     branches:
       - main
-steps:
-- uses: actions/checkout@master
-
