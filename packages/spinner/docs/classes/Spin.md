@@ -1,7 +1,7 @@
 # Class: Spin
 
 An ongoing spin of a set of simulated wheels. Responsible
-for handling the variance in physics across the wheels.
+for handling the variance in physics across the wheels, if any.
 
 ## Constructors
 
@@ -37,7 +37,7 @@ const spin = new Spin({
 
 #### Defined in
 
-[Spinner/index.ts:127](https://github.com/daniellacosse/idea-spinner/blob/4c962e9/packages/spinner/Spinner/index.ts#L127)
+[Spinner/index.ts:128](https://github.com/daniellacosse/idea-spinner/blob/da71a18/packages/spinner/Spinner/index.ts#L128)
 
 ## Properties
 
@@ -47,7 +47,7 @@ const spin = new Spin({
 
 #### Defined in
 
-[Spinner/index.ts:102](https://github.com/daniellacosse/idea-spinner/blob/4c962e9/packages/spinner/Spinner/index.ts#L102)
+[Spinner/index.ts:103](https://github.com/daniellacosse/idea-spinner/blob/da71a18/packages/spinner/Spinner/index.ts#L103)
 
 ## Accessors
 
@@ -61,11 +61,11 @@ Whether or not the Spin object is still spinning.
 
 `boolean`
 
-Whether or not the Spin object is still spinning.
+True or false.
 
 #### Defined in
 
-[Spinner/index.ts:158](https://github.com/daniellacosse/idea-spinner/blob/4c962e9/packages/spinner/Spinner/index.ts#L158)
+[Spinner/index.ts:159](https://github.com/daniellacosse/idea-spinner/blob/da71a18/packages/spinner/Spinner/index.ts#L159)
 
 ## Methods
 
@@ -73,7 +73,7 @@ Whether or not the Spin object is still spinning.
 
 ▸ **advanceTime**(`time`): `void`
 
-Get the current display of this spin.
+Advances the spin object.
 
 **`example`**
 ```js
@@ -84,14 +84,12 @@ spin.getStatus(1000);
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `time` | `number` | You can optionally provide an  advanceTime to advance the spin into the future. |
+| `time` | `number` | How much further you're advancing the spinner. The units should be the same as those in the physics object. |
 
 #### Returns
 
 `void`
 
-The display of the Spin at the current or future time.
-
 #### Defined in
 
-[Spinner/index.ts:174](https://github.com/daniellacosse/idea-spinner/blob/4c962e9/packages/spinner/Spinner/index.ts#L174)
+[Spinner/index.ts:174](https://github.com/daniellacosse/idea-spinner/blob/da71a18/packages/spinner/Spinner/index.ts#L174)

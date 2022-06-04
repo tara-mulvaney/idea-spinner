@@ -6,13 +6,12 @@ export interface SpinnerPhysics {
   startingFrameLength: number;
   endingFrameLength: number;
   friction: number;
-  variance: number;
+  variance?: number;
 }
 
 /**
  * Simulates the spinning of a slot-machine-like object.
- * You can spin it multiple times simultaneously
- *  and poll for changes in real time.
+ * It can manage multiple spins simultaneously.
  */
 export class Spinner {
   parameters: { wheels: Map<string, string[]>; };
@@ -43,7 +42,8 @@ export class Spinner {
    * Spins the spinner.
    *
    * @param physics The `physics` parameters allow you to customize
-   *  the time between ticks on the spinner.
+   *  the spacing between changes on the spinner. Note that the
+   *  units you use in this object will carry through the spin instance.
    * @returns The ID of the spin you've just started.
    *
    * @example
@@ -83,6 +83,7 @@ export class Spinner {
    *
    * @param spinID The ID of the spin you're polling.
    * @param time How much further you're advancing the spinner.
+   * The units should be the same as those in the physics object.
    *
    * @example
    * ```js
@@ -96,7 +97,7 @@ export class Spinner {
 
 /**
  * An ongoing spin of a set of simulated wheels. Responsible
- * for handling the variance in physics across the wheels.
+ * for handling the variance in physics across the wheels, if any.
  */
 export class Spin {
   wheels: Map<string, Wheel> = new Map();
@@ -135,13 +136,13 @@ export class Spin {
         variance
       } = parameters.physics;
 
-      const physics = {
+      const physics = variance ? {
         ...parameters.physics,
         endingFrameLength:
           endingFrameLength * variance * (Math.random() << 1 + 1),
         startingFrameLength:
           startingFrameLength * variance * (Math.random() << 1 + 1),
-      };
+      } : parameters.physics;
 
       this.wheels.set(
         wheelName,
@@ -153,18 +154,17 @@ export class Spin {
   /**
    * Whether or not the Spin object is still spinning.
    *
-   * @returns Whether or not the Spin object is still spinning.
+   * @returns True or false.
    */
   get isSpinning() {
     return [...this.wheels.values()].some(wheel => wheel.isSpinning);
   }
 
   /**
-   * Get the current display of this spin.
+   * Advances the spin object.
    *
-   * @param time You can optionally provide an
-   *  advanceTime to advance the spin into the future.
-   * @returns The display of the Spin at the current or future time.
+   * @param time How much further you're advancing the spinner.
+   * The units should be the same as those in the physics object.
    *
    * @example
    * ```js
@@ -225,7 +225,7 @@ export class Wheel {
   /**
    * The currently selected value on the Wheel.
    *
-   * @returns The currently selected value on the Wheel.
+   * @returns The current message.
    */
   get value() {
     return this.previousItem;
@@ -234,18 +234,17 @@ export class Wheel {
   /**
    * Whether or not this Wheel is still spinning.
    *
-   * @returns Whether or not this Wheel is still spinning.
+   * @returns True or false.
    */
   get isSpinning() {
     return this.previousFrameLength <= this.physics.endingFrameLength;
   }
 
   /**
-   * Get the current display of this wheel.
+   * Advances the wheel forward in the simulation.
    *
-   * @param time You can optionally provide an
-   *  advanceTime to advance the spinner into the future.
-   * @returns The display of the Wheel at the current or future time.
+   * @param time How much further the wheel is being advanced.
+   * The units should be the same as those in the physics object.
    *
    * @example
    * ```js

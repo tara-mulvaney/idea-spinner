@@ -1,8 +1,7 @@
 # Class: Spinner
 
 Simulates the spinning of a slot-machine-like object.
-You can spin it multiple times simultaneously
- and poll for changes in real time.
+It can manage multiple spins simultaneously.
 
 ## Constructors
 
@@ -32,7 +31,7 @@ const spinner = new Spinner({ wheels:
 
 #### Defined in
 
-[Spinner/index.ts:38](https://github.com/daniellacosse/idea-spinner/blob/4c962e9/packages/spinner/Spinner/index.ts#L38)
+[Spinner/index.ts:37](https://github.com/daniellacosse/idea-spinner/blob/da71a18/packages/spinner/Spinner/index.ts#L37)
 
 ## Properties
 
@@ -48,7 +47,7 @@ const spinner = new Spinner({ wheels:
 
 #### Defined in
 
-[Spinner/index.ts:18](https://github.com/daniellacosse/idea-spinner/blob/4c962e9/packages/spinner/Spinner/index.ts#L18)
+[Spinner/index.ts:17](https://github.com/daniellacosse/idea-spinner/blob/da71a18/packages/spinner/Spinner/index.ts#L17)
 
 ___
 
@@ -58,7 +57,7 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:19](https://github.com/daniellacosse/idea-spinner/blob/4c962e9/packages/spinner/Spinner/index.ts#L19)
+[Spinner/index.ts:18](https://github.com/daniellacosse/idea-spinner/blob/da71a18/packages/spinner/Spinner/index.ts#L18)
 
 ## Methods
 
@@ -78,7 +77,7 @@ spinner.advanceSpin(spinID, 1000);
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `spinID` | `string` | The ID of the spin you're polling. |
-| `time` | `number` | How much further you're advancing the spinner. |
+| `time` | `number` | How much further you're advancing the spinner. The units should be the same as those in the physics object. |
 
 #### Returns
 
@@ -86,7 +85,7 @@ spinner.advanceSpin(spinID, 1000);
 
 #### Defined in
 
-[Spinner/index.ts:92](https://github.com/daniellacosse/idea-spinner/blob/4c962e9/packages/spinner/Spinner/index.ts#L92)
+[Spinner/index.ts:93](https://github.com/daniellacosse/idea-spinner/blob/da71a18/packages/spinner/Spinner/index.ts#L93)
 
 ___
 
@@ -109,7 +108,7 @@ const spinID = spinner.createSpin({
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `physics` | [`SpinnerPhysics`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/interfaces/SpinnerPhysics.md) | The `physics` parameters allow you to customize  the time between ticks on the spinner. |
+| `physics` | [`SpinnerPhysics`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/interfaces/SpinnerPhysics.md) | The `physics` parameters allow you to customize  the spacing between changes on the spinner. Note that the  units you use in this object will carry through the spin instance. |
 
 #### Returns
 
@@ -119,7 +118,7 @@ The ID of the spin you've just started.
 
 #### Defined in
 
-[Spinner/index.ts:58](https://github.com/daniellacosse/idea-spinner/blob/4c962e9/packages/spinner/Spinner/index.ts#L58)
+[Spinner/index.ts:58](https://github.com/daniellacosse/idea-spinner/blob/da71a18/packages/spinner/Spinner/index.ts#L58)
 
 ___
 
@@ -148,4 +147,4 @@ The Spin object.
 
 #### Defined in
 
-[Spinner/index.ts:77](https://github.com/daniellacosse/idea-spinner/blob/4c962e9/packages/spinner/Spinner/index.ts#L77)
+[Spinner/index.ts:77](https://github.com/daniellacosse/idea-spinner/blob/da71a18/packages/spinner/Spinner/index.ts#L77)

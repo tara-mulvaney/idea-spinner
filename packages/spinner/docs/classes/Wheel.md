@@ -35,7 +35,7 @@ const wheel = new Wheel({
 
 #### Defined in
 
-[Spinner/index.ts:215](https://github.com/daniellacosse/idea-spinner/blob/4c962e9/packages/spinner/Spinner/index.ts#L215)
+[Spinner/index.ts:215](https://github.com/daniellacosse/idea-spinner/blob/da71a18/packages/spinner/Spinner/index.ts#L215)
 
 ## Properties
 
@@ -45,7 +45,7 @@ const wheel = new Wheel({
 
 #### Defined in
 
-[Spinner/index.ts:185](https://github.com/daniellacosse/idea-spinner/blob/4c962e9/packages/spinner/Spinner/index.ts#L185)
+[Spinner/index.ts:185](https://github.com/daniellacosse/idea-spinner/blob/da71a18/packages/spinner/Spinner/index.ts#L185)
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:186](https://github.com/daniellacosse/idea-spinner/blob/4c962e9/packages/spinner/Spinner/index.ts#L186)
+[Spinner/index.ts:186](https://github.com/daniellacosse/idea-spinner/blob/da71a18/packages/spinner/Spinner/index.ts#L186)
 
 ## Accessors
 
@@ -69,11 +69,11 @@ Whether or not this Wheel is still spinning.
 
 `boolean`
 
-Whether or not this Wheel is still spinning.
+True or false.
 
 #### Defined in
 
-[Spinner/index.ts:239](https://github.com/daniellacosse/idea-spinner/blob/4c962e9/packages/spinner/Spinner/index.ts#L239)
+[Spinner/index.ts:239](https://github.com/daniellacosse/idea-spinner/blob/da71a18/packages/spinner/Spinner/index.ts#L239)
 
 ___
 
@@ -87,11 +87,11 @@ The currently selected value on the Wheel.
 
 `string`
 
-The currently selected value on the Wheel.
+The current message.
 
 #### Defined in
 
-[Spinner/index.ts:230](https://github.com/daniellacosse/idea-spinner/blob/4c962e9/packages/spinner/Spinner/index.ts#L230)
+[Spinner/index.ts:230](https://github.com/daniellacosse/idea-spinner/blob/da71a18/packages/spinner/Spinner/index.ts#L230)
 
 ## Methods
 
@@ -99,7 +99,7 @@ The currently selected value on the Wheel.
 
 ▸ **advanceTime**(`time`): `void`
 
-Get the current display of this wheel.
+Advances the wheel forward in the simulation.
 
 **`example`**
 ```js
@@ -110,14 +110,12 @@ wheel.getStatus(1000);
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `time` | `number` | You can optionally provide an  advanceTime to advance the spinner into the future. |
+| `time` | `number` | How much further the wheel is being advanced. The units should be the same as those in the physics object. |
 
 #### Returns
 
 `void`
 
-The display of the Wheel at the current or future time.
-
 #### Defined in
 
-[Spinner/index.ts:255](https://github.com/daniellacosse/idea-spinner/blob/4c962e9/packages/spinner/Spinner/index.ts#L255)
+[Spinner/index.ts:254](https://github.com/daniellacosse/idea-spinner/blob/da71a18/packages/spinner/Spinner/index.ts#L254)
