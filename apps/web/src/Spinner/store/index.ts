@@ -15,9 +15,12 @@ export enum SpinnerStoreMutations {
   ADVANCE = "spinner/advance"
 }
 
-export const SpinnerStore = createStore<SpinnerStoreState>({
+export const SpinnerStore = {
   mutations: {
-    [SpinnerStoreMutations.INITIALIZE](state, wheels: Map<string, string[]>) {
+    [SpinnerStoreMutations.INITIALIZE](
+      state: SpinnerStoreState,
+      wheels: Map<string, string[]>
+    ) {
       state.spinner = new Spinner({ wheels });
       state.display = [...wheels.keys()].map(
         name => ({
@@ -27,7 +30,10 @@ export const SpinnerStore = createStore<SpinnerStoreState>({
         })
       );
     },
-    [SpinnerStoreMutations.SPIN](state, physics: SpinnerPhysics) {
+    [SpinnerStoreMutations.SPIN](
+      state: SpinnerStoreState,
+      physics: SpinnerPhysics
+    ) {
       if (!state.spinner) {
         throw new TypeError(
           "You must INITIALIZE the spinner store before starting a spin!"
@@ -37,7 +43,7 @@ export const SpinnerStore = createStore<SpinnerStoreState>({
       state.currentSpinID = state.spinner.createSpin(physics);
       state.isSpinning = true;
     },
-    [SpinnerStoreMutations.ADVANCE](state, time: number) {
+    [SpinnerStoreMutations.ADVANCE](state: SpinnerStoreState, time: number) {
       if (!state.spinner) {
         throw new TypeError(
           "You must INITIALIZE the spinner and then " +
@@ -53,11 +59,13 @@ export const SpinnerStore = createStore<SpinnerStoreState>({
 
       const spinObject = state.spinner.getSpin(state.currentSpinID);
 
-      state.spinner.advanceSpin(state.currentSpinID, time);
-
       if (!spinObject) {
-        return;
+        throw new RangeError(
+          `SpinnerStore currentSpinID "${state.currentSpinID}" not found!`
+        );
       }
+
+      state.spinner.advanceSpin(state.currentSpinID, time);
 
       state.display = [...spinObject.wheels.entries()].map(
         ([name, { value, isSpinning }]) => ({ isSpinning, name, value })
@@ -71,4 +79,7 @@ export const SpinnerStore = createStore<SpinnerStoreState>({
       isSpinning: false
     };
   }
-});
+};
+
+export const createSpinnerStore =
+  () => createStore<SpinnerStoreState>(SpinnerStore);

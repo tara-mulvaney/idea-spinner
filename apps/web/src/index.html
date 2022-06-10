@@ -18,10 +18,10 @@
     import demoData from "./demo.json";
     import {createApp} from "vue";
 
-    import {SpinnerStore} from "./Spinner";
+    import {createSpinnerStore} from "./Spinner";
 
     const app=createApp(App);
-    app.use(SpinnerStore);
+    app.use(createSpinnerStore());
     app.mount("#app");
   </script>
 </body>
