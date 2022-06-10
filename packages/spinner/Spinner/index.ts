@@ -136,7 +136,7 @@ export class Spin {
         variance
       } = parameters.physics;
 
-      const physics = variance ? {
+      const physics = variance !== undefined ? {
         ...parameters.physics,
         endingFrameLength:
           endingFrameLength * variance * (Math.random() << 1 + 1),
