@@ -1,7 +1,7 @@
 # idea spinner 🎰
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/9bc0a87e673be83e89fa/maintainability)](https://codeclimate.com/github/daniellacosse/idea-spinner/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/9bc0a87e673be83e89fa/test_coverage)](https://codeclimate.com/github/daniellacosse/idea-spinner/test_coverage)
+[![codecov](https://codecov.io/gh/daniellacosse/idea-spinner/branch/main/graph/badge.svg?token=ZVNL2L4LPB)](https://codecov.io/gh/daniellacosse/idea-spinner)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 The Idea Spinner is an application design to help you quickly generate prompts for any defined creative activity or endeavor.
