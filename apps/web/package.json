@@ -31,6 +31,8 @@
     "jest-serializer-vue": "^2.0.2",
     "nodemon": "^2.0.16",
     "parcel": "^2.6.0",
+    "posthtml": "^0.16.6",
+    "posthtml-head-elements": "^0.5.1",
     "stylelint": "^14.8.2",
     "stylelint-config-recommended": "^7.0.0",
     "stylelint-declaration-strict-value": "^1.8.0",
@@ -43,10 +45,12 @@
     "typescript": "^4.6.4",
     "vue-eslint-parser": "^9.0.2"
   },
+  "source": "src/index.html",
   "name": "@idea-spinner/web",
   "scripts": {
-    "build": "parcel build src/index.html",
+    "build": "parcel build",
     "lint": "concurrently -n eslint,stylelint 'eslint **/*.{ts,vue}' 'stylelint **/*.vue'",
+    "start": "parcel",
     "test": "jest .",
     "watch": "concurrently -n built,lint,test 'parcel src/index.html --open' 'nodemon --exec \"yarn lint\" -e \"ts,vue\"' 'jest --watch .'"
   }
