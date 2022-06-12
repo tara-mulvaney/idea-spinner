@@ -2655,8 +2655,6 @@ __metadata:
     jest-serializer-vue: ^2.0.2
     nodemon: ^2.0.16
     parcel: ^2.6.0
-    posthtml: ^0.16.6
-    posthtml-head-elements: ^0.5.1
     stylelint: ^14.8.2
     stylelint-config-recommended: ^7.0.0
     stylelint-declaration-strict-value: ^1.8.0
@@ -17846,13 +17844,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"posthtml-head-elements@npm:^0.5.1":
-  version: 0.5.1
-  resolution: "posthtml-head-elements@npm:0.5.1"
-  checksum: 4cea7c1f52a710178db68b86e49fc8fd8f0a0024b9906aa36ef34827c4171014a111876aad059d76ccaf1a7b7c41db8b786dc18eed4f6ff2113182479781782e
-  languageName: node
-  linkType: hard
-
 "posthtml-parser@npm:^0.10.1":
   version: 0.10.2
   resolution: "posthtml-parser@npm:0.10.2"
@@ -17880,7 +17871,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"posthtml@npm:^0.16.4, posthtml@npm:^0.16.5, posthtml@npm:^0.16.6":
+"posthtml@npm:^0.16.4, posthtml@npm:^0.16.5":
   version: 0.16.6
   resolution: "posthtml@npm:0.16.6"
   dependencies:

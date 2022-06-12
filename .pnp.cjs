@@ -6737,8 +6737,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-serializer-vue", "npm:2.0.2"],\
             ["nodemon", "npm:2.0.16"],\
             ["parcel", "npm:2.6.0"],\
-            ["posthtml", "npm:0.16.6"],\
-            ["posthtml-head-elements", "npm:0.5.1"],\
             ["stylelint", "npm:14.8.2"],\
             ["stylelint-config-recommended", "virtual:734ec96b3bf4f08efac0cab93f70fec294faf5a0787bd7fdd29ea3e176787c71356fd7693fa7599586a6304117d01e85d12354bb58a044d5175c9eb4d3e3e5fd#npm:7.0.0"],\
             ["stylelint-declaration-strict-value", "virtual:734ec96b3bf4f08efac0cab93f70fec294faf5a0787bd7fdd29ea3e176787c71356fd7693fa7599586a6304117d01e85d12354bb58a044d5175c9eb4d3e3e5fd#npm:1.8.0"],\
@@ -26488,15 +26486,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["posthtml", "npm:0.16.6"],\
             ["posthtml-parser", "npm:0.11.0"],\
             ["posthtml-render", "npm:3.0.0"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["posthtml-head-elements", [\
-        ["npm:0.5.1", {\
-          "packageLocation": "./.yarn/cache/posthtml-head-elements-npm-0.5.1-e14c5e7df5-4cea7c1f52.zip/node_modules/posthtml-head-elements/",\
-          "packageDependencies": [\
-            ["posthtml-head-elements", "npm:0.5.1"]\
           ],\
           "linkType": "HARD"\
         }]\
