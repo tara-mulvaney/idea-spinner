@@ -136,12 +136,14 @@ export class Spin {
         variance
       } = parameters.physics;
 
+      const HALF = 2;
+
       const physics = variance !== undefined ? {
         ...parameters.physics,
         endingFrameLength:
-          endingFrameLength * ((1 + Math.random() / 2) * variance),
+          endingFrameLength * ((1 + Math.random() / HALF) * variance),
         startingFrameLength:
-          startingFrameLength * ((1 + Math.random() / 2) * variance),
+          startingFrameLength * ((1 + Math.random() / HALF) * variance),
       } : parameters.physics;
 
       this.wheels.set(
@@ -263,7 +265,7 @@ export class Wheel {
       // interest formula
       do {
         this.previousCheckTime += this.previousFrameLength;
-        this.previousFrameLength *= (1 + this.physics.friction);
+        this.previousFrameLength *= 1 + this.physics.friction;
       } while (this.previousCheckTime < this.clock);
 
       this.previousItem = this.queue.randomItem;

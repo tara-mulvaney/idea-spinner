@@ -1,5 +1,5 @@
-import { Spin, Spinner, Wheel } from ".";
 import { expect, test } from "@jest/globals";
+import { Spin, Spinner, Wheel } from ".";
 
 
 test.concurrent("Spinner - constructor", async () => {
@@ -56,42 +56,44 @@ test.concurrent("Spinner - advanceSpin", async () => {
 
 test.concurrent("Spin - isSpinning", async () => {
   const spin = new Spin({
-    wheels: new Map([
-      ["wheel1", ["1", "2"]]
-    ]),
     physics: {
       endingFrameLength: 0,
       friction: 0,
       startingFrameLength: 1
-    }
+    },
+    wheels: new Map([
+      ["wheel1", ["1", "2"]]
+    ])
   });
 
   expect(spin.isSpinning).toBe(false);
 });
 
-test.concurrent("Wheel - short circuits advancement if not spinning", async () => {
-  const wheel = new Wheel({
-    items: ["item1", "item2"],
-    physics: {
-      endingFrameLength: 0,
-      friction: 0,
-      startingFrameLength: 1
-    }
-  });
+test.concurrent("Wheel - short circuits advancement if not spinning",
+  async () => {
+    const wheel = new Wheel({
+      items: ["item1", "item2"],
+      physics: {
+        endingFrameLength: 0,
+        friction: 0,
+        startingFrameLength: 1
+      }
+    });
 
-  const initialValue = wheel.value;
+    const initialValue = wheel.value;
 
-  expect(wheel.isSpinning).toBe(false);
+    expect(wheel.isSpinning).toBe(false);
 
-  wheel.advanceTime(100);
+    wheel.advanceTime(100);
 
-  expect(initialValue).toBe(wheel.value);
+    expect(initialValue).toBe(wheel.value);
 
-  wheel.advanceTime(1000);
+    wheel.advanceTime(1000);
 
-  expect(initialValue).toBe(wheel.value);
+    expect(initialValue).toBe(wheel.value);
 
-  wheel.advanceTime(10000);
+    wheel.advanceTime(10000);
 
-  expect(initialValue).toBe(wheel.value);
-});
+    expect(initialValue).toBe(wheel.value);
+  }
+);

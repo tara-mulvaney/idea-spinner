@@ -15,7 +15,8 @@ jobs:
         run: yarn test
       - uses: codecov/codecov-action@v2
         with:
-          files: ./**/coverage-final.json
+          fail_ci_if_error: true
+          files: apps/web/coverage/coverage-final.json,packages/spinner/coverage/coverage-final.json
           flags: unittests
     timeout-minutes: 5
 name: Codecov
