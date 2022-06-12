@@ -5,22 +5,25 @@ exports[` 1`] = `
   class="Spinner"
 >
   <ul
-    class="SpinnerWheels"
+    class="SpinnerWheels SpinnerWheels--waiting"
   >
     
     <spinner-wheel-stub
       isspinning="true"
       name="color"
+      tickduration="200ms"
       value="red"
     />
     <spinner-wheel-stub
       isspinning="true"
       name="shape"
+      tickduration="200ms"
       value="round"
     />
     <spinner-wheel-stub
       isspinning="false"
       name="feeling"
+      tickduration="200ms"
       value="sad"
     />
     
@@ -38,22 +41,25 @@ exports[` 2`] = `
   class="Spinner"
 >
   <ul
-    class="SpinnerWheels"
+    class="SpinnerWheels SpinnerWheels--waiting"
   >
     
     <spinner-wheel-stub
       isspinning="true"
       name="color"
+      tickduration="200ms"
       value="red"
     />
     <spinner-wheel-stub
       isspinning="true"
       name="shape"
+      tickduration="200ms"
       value="round"
     />
     <spinner-wheel-stub
       isspinning="false"
       name="feeling"
+      tickduration="200ms"
       value="sad"
     />
     

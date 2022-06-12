@@ -5,14 +5,14 @@ import { ref, watch } from "vue";
 interface SpinnerWheelProps {
   isSpinning: boolean;
   name: string;
-  value: string;
+  tickDuration: string;
+  value?: string;
 }
 
 const props = defineProps<SpinnerWheelProps>();
 
 const isAnimating = ref(false);
 
-// ISSUE #24: wheels in the spinner don't flash on each prop change
 watch(
   () => props.value,
   () => {
@@ -32,7 +32,7 @@ function clearChange() {
     'SpinnerWheel--tick': isAnimating && isSpinning,
   }" @animationend="clearChange">
     <h2 class="SpinnerWheel__name">{{ name }}</h2>
-    <div class="SpinnerWheel__value">{{ value }}</div>
+    <div class="SpinnerWheel__value">{{ value ?? "--" }}</div>
   </li>
 </template>
 
@@ -42,7 +42,7 @@ function clearChange() {
 }
 
 .SpinnerWheel {
-  animation-duration: var(--animation-timing);
+  animation-duration: v-bind(tickDuration);
   background: var(--color-primary);
   border-radius: var(--gutter-narrow);
   flex-direction: column;

@@ -1,9 +1,9 @@
 {
   "physics": {
-    "endingFrameLength": 850,
-    "friction": 0.35,
-    "startingFrameLength": 16,
-    "variance": 0.35
+    "endingFrameLength": 1000,
+    "friction": 0.1,
+    "startingFrameLength": 200,
+    "variance": 0.3
   },
   "wheels": {
     "game type": [

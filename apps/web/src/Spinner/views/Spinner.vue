@@ -4,6 +4,7 @@ import { SpinnerWheel, SpinnerWheelProps } from "./SpinnerWheel";
 
 // see: https://github.com/vuejs/core/issues/4294
 interface SpinnerProps {
+  hasSpun: boolean;
   isSpinning: boolean;
   maxColumns?: number;
   wheels: SpinnerWheelProps[];
@@ -18,7 +19,10 @@ defineEmits(["spin"]);
 
 <template>
   <article class="Spinner">
-    <ul class="SpinnerWheels">
+    <ul :class="{
+      'SpinnerWheels': true,
+      'SpinnerWheels--waiting': !hasSpun
+    }">
       <SpinnerWheel v-for="wheel in wheels" :key="wheel.name" v-bind="wheel" />
     </ul>
 
@@ -52,6 +56,12 @@ defineEmits(["spin"]);
   grid-gap: var(--gutter-standard);
   grid-template-rows: repeat(v-bind(rowCount), auto);
   width: 100%;
+  opacity: 1;
+  transition: opacity var(--animation-timing) ease-out;
+}
+
+.SpinnerWheels--waiting {
+  opacity: 0.5;
 }
 
 .SpinnerLever {

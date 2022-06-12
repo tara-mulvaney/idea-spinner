@@ -4,6 +4,9 @@ import spinnerDemo from "./demo.json";
 import { useStore } from "vuex";
 import { Spinner, SpinnerStoreMutations, SpinnerStoreState } from "./Spinner";
 
+const MS_IN_SECOND = 1000;
+const FRAMES_PER_SECOND = 30;
+
 const store = useStore<SpinnerStoreState>();
 
 store.commit(
@@ -13,13 +16,19 @@ store.commit(
 
 const wheels = computed(() => store.state.display);
 const isSpinning = computed(() => store.state.isSpinning);
+const hasSpun = computed(() => Boolean(store.state.currentSpinID));
 
 function spin() {
   store.commit(SpinnerStoreMutations.SPIN, spinnerDemo.physics);
 
   let lastFrameTS = Date.now();
 
-  const renderLoop = () => {
+  // Establish a render loop.
+  // Vue3 can't keep up when you furiously call
+  // `requestAnimationFrame` (this was the cause of #24)
+  // so we'll call `requestAnimationFrame` every other frame instead
+  // of recursively or super-iteratively
+  const intervalID = setInterval(() => {
     requestAnimationFrame(() => {
       const currentFrameTS = Date.now();
 
@@ -27,19 +36,18 @@ function spin() {
 
       lastFrameTS = currentFrameTS;
 
-      if (store.state.isSpinning) {
-        renderLoop();
+      if (!store.state.isSpinning) {
+        clearInterval(intervalID);
       }
     });
-  };
-
-  renderLoop();
+  }, MS_IN_SECOND / FRAMES_PER_SECOND);
 }
 </script>
 
 <template>
   <div class="SpinnerContainer">
-    <Spinner :is-spinning="isSpinning" :wheels="wheels" @spin="spin" />
+    <Spinner :is-spinning="isSpinning" :has-spun="hasSpun" :wheels="wheels"
+      @spin="spin" />
   </div>
 </template>
 

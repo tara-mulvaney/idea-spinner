@@ -37,7 +37,7 @@ const spin = new Spin({
 
 #### Defined in
 
-[Spinner/index.ts:128](https://github.com/daniellacosse/idea-spinner/blob/892807c/packages/spinner/Spinner/index.ts#L128)
+[Spinner/index.ts:128](https://github.com/daniellacosse/idea-spinner/blob/cd10be9/packages/spinner/Spinner/index.ts#L128)
 
 ## Properties
 
@@ -47,7 +47,7 @@ const spin = new Spin({
 
 #### Defined in
 
-[Spinner/index.ts:103](https://github.com/daniellacosse/idea-spinner/blob/892807c/packages/spinner/Spinner/index.ts#L103)
+[Spinner/index.ts:103](https://github.com/daniellacosse/idea-spinner/blob/cd10be9/packages/spinner/Spinner/index.ts#L103)
 
 ## Accessors
 
@@ -65,7 +65,7 @@ True or false.
 
 #### Defined in
 
-[Spinner/index.ts:159](https://github.com/daniellacosse/idea-spinner/blob/892807c/packages/spinner/Spinner/index.ts#L159)
+[Spinner/index.ts:159](https://github.com/daniellacosse/idea-spinner/blob/cd10be9/packages/spinner/Spinner/index.ts#L159)
 
 ## Methods
 
@@ -77,7 +77,7 @@ Advances the spin object.
 
 **`example`**
 ```js
-spin.getStatus(1000);
+spin.advanceTime(1000);
 ```
 
 #### Parameters
@@ -92,4 +92,4 @@ spin.getStatus(1000);
 
 #### Defined in
 
-[Spinner/index.ts:174](https://github.com/daniellacosse/idea-spinner/blob/892807c/packages/spinner/Spinner/index.ts#L174)
+[Spinner/index.ts:174](https://github.com/daniellacosse/idea-spinner/blob/cd10be9/packages/spinner/Spinner/index.ts#L174)

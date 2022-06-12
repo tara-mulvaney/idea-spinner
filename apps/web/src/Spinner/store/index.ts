@@ -26,7 +26,11 @@ export const SpinnerStore = {
         name => ({
           isSpinning: false,
           name,
-          value: "--",
+
+          // ISSUE #25:
+          // refactor spinner store so it doesn't need initialization step
+          // (this can be pulled from the spinner default physics)
+          tickDuration: "200ms"
         })
       );
     },
@@ -68,7 +72,12 @@ export const SpinnerStore = {
       state.spinner.advanceSpin(state.currentSpinID, time);
 
       state.display = [...spinObject.wheels.entries()].map(
-        ([name, { value, isSpinning }]) => ({ isSpinning, name, value })
+        ([name, { value, isSpinning, physics }]) => ({
+          isSpinning,
+          name,
+          tickDuration: `${Math.floor(physics.startingFrameLength)}ms`,
+          value
+        })
       );
       state.isSpinning = spinObject.isSpinning;
     }
@@ -81,5 +90,6 @@ export const SpinnerStore = {
   }
 };
 
+// ISSUE #25: refactor spinner store so it doesn't need initialization step
 export const createSpinnerStore =
   () => createStore<SpinnerStoreState>(SpinnerStore);
