@@ -46,9 +46,9 @@
   "source": "src/index.html",
   "name": "@idea-spinner/web",
   "scripts": {
-    "build": "parcel build",
+    "build": "parcel build --public-url /spinner/",
     "lint": "concurrently -n eslint,stylelint 'eslint **/*.{ts,vue}' 'stylelint **/*.vue'",
-    "start": "parcel --open --public-url /spinner",
+    "start": "parcel --open --public-url /spinner/",
     "test": "jest .",
     "watch": "concurrently -n built,lint,test 'start' 'nodemon --exec \"yarn lint\" -e \"ts,vue\"' 'jest --watch .'"
   }
