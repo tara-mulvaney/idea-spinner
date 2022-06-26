@@ -45,7 +45,6 @@ defineEmits(["spin"]);
   gap: var(--gutter-standard);
   height: 100%;
   max-width: var(--max-supported-width);
-  min-width: var(--min-supported-width);
   width: 100%;
 }
 
@@ -78,5 +77,11 @@ defineEmits(["spin"]);
 .SpinnerLever[disabled] {
   background: var(--color-primary-foreground);
   cursor: not-allowed;
+}
+
+@media screen and (max-width: 760px) {
+  .SpinnerWheels {
+    grid-auto-flow: row;
+  }
 }
 </style>

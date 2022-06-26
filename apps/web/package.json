@@ -50,6 +50,6 @@
     "lint": "concurrently -n eslint,stylelint 'eslint **/*.{ts,vue}' 'stylelint **/*.vue'",
     "start": "parcel --open --public-url /spinner/",
     "test": "jest .",
-    "watch": "concurrently -n built,lint,test 'start' 'nodemon --exec \"yarn lint\" -e \"ts,vue\"' 'jest --watch .'"
+    "watch": "concurrently -n build,lint,test 'yarn start' 'nodemon --exec \"yarn lint\" -e \"ts,vue\"' 'jest --watch .'"
   }
 }

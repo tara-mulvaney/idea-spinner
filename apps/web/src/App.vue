@@ -52,11 +52,10 @@ function spin() {
 </template>
 
 <style>
-html,
 main,
 .SpinnerContainer {
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 }
 
 main {
