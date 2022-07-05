@@ -3,6 +3,7 @@ import { ref, watch } from "vue";
 
 // see: https://github.com/vuejs/core/issues/4294
 interface SpinnerWheelProps {
+  description?: string;
   isSpinning: boolean;
   name: string;
   tickDuration: string;
@@ -32,7 +33,10 @@ function clearChange() {
     'SpinnerWheel--tick': isAnimating && isSpinning,
   }" @animationend="clearChange">
     <h2 class="SpinnerWheel__name">{{ name }}</h2>
-    <div class="SpinnerWheel__value">{{ value ?? "--" }}</div>
+    <div
+      :class="{ 'SpinnerWheel__value': true, 'SpinnerWheel__value--description': Boolean(description) }"
+      :title="description">{{ value ?? "--"
+      }}</div>
   </li>
 </template>
 
@@ -72,6 +76,15 @@ function clearChange() {
   text-align: center;
   font-size: var(--gutter-wide);
   transition: color var(--animation-timing) ease-out;
+  padding: var(--gutter-narrow);
+}
+
+.SpinnerWheel__value--description {
+  cursor: help;
+}
+
+.SpinnerWheel__value--description::before {
+  content: "ℹ️";
   padding: var(--gutter-narrow);
 }
 

@@ -10,7 +10,8 @@ exports[` 1`] = `
     Demo Wheel
   </h2>
   <div
-    class="SpinnerWheel__value"
+    class="SpinnerWheel__value SpinnerWheel__value--description"
+    title="Clowns are a curious breed who sustain themselves on the laugher of children."
   >
     Clowns
   </div>

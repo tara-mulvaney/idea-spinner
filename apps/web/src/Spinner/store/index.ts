@@ -72,12 +72,18 @@ export const SpinnerStore = {
       state.spinner.advanceSpin(state.currentSpinID, time);
 
       state.display = [...spinObject.wheels.entries()].map(
-        ([name, { value, isSpinning, physics }]) => ({
-          isSpinning,
-          name,
-          tickDuration: `${Math.floor(physics.startingFrameLength)}ms`,
-          value
-        })
+        ([name, { value: rawValue, isSpinning, physics }]) => {
+          // ISSUE #28: support arbitrary objects as wheel items in the Spinner package
+          const [value, description] = rawValue.split(/\s*[:-]\s*/);
+
+          return {
+            isSpinning,
+            name,
+            tickDuration: `${Math.floor(physics.startingFrameLength)}ms`,
+            value,
+            description
+          };
+        }
       );
       state.isSpinning = spinObject.isSpinning;
     }

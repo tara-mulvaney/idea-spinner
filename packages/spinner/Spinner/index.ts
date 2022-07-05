@@ -192,6 +192,7 @@ export class Wheel {
   private previousCheckTime: number;
   private previousItem: string;
 
+  // ISSUE #28: support arbitrary objects as wheel items in the Spinner package
   /**
    * The basic constructor.
    *
