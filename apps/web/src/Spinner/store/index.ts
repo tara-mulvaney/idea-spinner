@@ -73,7 +73,7 @@ export const SpinnerStore = {
 
       state.display = [...spinObject.wheels.entries()].map(
         ([name, { value: rawValue, isSpinning, physics }]) => {
-          // ISSUE #28: 
+          // ISSUE #28:
           // support arbitrary objects as wheel items in the Spinner package
           const [value, description] = rawValue.split(/\s*[:-]\s*/);
 
