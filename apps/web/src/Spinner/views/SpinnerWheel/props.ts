@@ -2,7 +2,6 @@ export interface SpinnerWheelProps {
   description?: string;
   isSpinning: boolean;
   name: string;
-  tickDuration: string;
   value?: string;
 }
 
@@ -12,6 +11,5 @@ export default {
     "on the laugher of children.",
   isSpinning: false,
   name: "Demo Wheel",
-  tickDuration: "200ms",
   value: "Clowns"
 } as SpinnerWheelProps;

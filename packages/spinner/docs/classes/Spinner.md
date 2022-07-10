@@ -1,13 +1,19 @@
-# Class: Spinner
+# Class: Spinner<T\>
 
 Simulates the spinning of a slot-machine-like object.
 It can manage multiple spins simultaneously.
+
+## Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | [`WheelItem`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/README.md#wheelitem) |
 
 ## Constructors
 
 ### constructor
 
-• **new Spinner**(`parameters`)
+• **new Spinner**<`T`\>(`parameters`)
 
 The basic constructor.
 
@@ -16,48 +22,47 @@ The basic constructor.
 const spinner = new Spinner({ wheels:
   new Map([
     ["emotion", ["sad", "happy"]],
-    ["color", ["red", "blue"]],
+    ["color", ["red", { value: "blue", description: "the sad color" }]],
     ["length", ["long", "short"]]
   ])
 });
 ```
 
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | [`WheelItem`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/README.md#wheelitem) |
+
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `parameters` | `Object` |  |
-| `parameters.wheels` | `Map`<`string`, `string`[]\> | The contents of each wheel in the spinner. |
+| Name | Type |
+| :------ | :------ |
+| `parameters` | [`SpinnerParameters`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/interfaces/SpinnerParameters.md)<`T`\> |
 
 #### Defined in
 
-[Spinner/index.ts:37](https://github.com/daniellacosse/idea-spinner/blob/d322b2a/packages/spinner/Spinner/index.ts#L37)
+[Spinner/index.ts:47](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L47)
 
 ## Properties
 
 ### parameters
 
-• **parameters**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `wheels` | `Map`<`string`, `string`[]\> |
+• **parameters**: [`SpinnerParameters`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/interfaces/SpinnerParameters.md)<`T`\>
 
 #### Defined in
 
-[Spinner/index.ts:17](https://github.com/daniellacosse/idea-spinner/blob/d322b2a/packages/spinner/Spinner/index.ts#L17)
+[Spinner/index.ts:25](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L25)
 
 ___
 
 ### spins
 
-• **spins**: `Map`<`string`, [`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)\>
+• **spins**: `Map`<`string`, [`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)<`T`\>\>
 
 #### Defined in
 
-[Spinner/index.ts:18](https://github.com/daniellacosse/idea-spinner/blob/d322b2a/packages/spinner/Spinner/index.ts#L18)
+[Spinner/index.ts:26](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L26)
 
 ## Methods
 
@@ -85,15 +90,17 @@ spinner.advanceSpin(spinID, 1000);
 
 #### Defined in
 
-[Spinner/index.ts:93](https://github.com/daniellacosse/idea-spinner/blob/d322b2a/packages/spinner/Spinner/index.ts#L93)
+[Spinner/index.ts:122](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L122)
 
 ___
 
 ### createSpin
 
-▸ **createSpin**(`physics`): `string`
+▸ **createSpin**(`physics?`): `string`
 
 Spins the spinner.
+
+**`throws`** {TypeError} Will throw if no physics object is found.
 
 **`example`**
 ```js
@@ -108,7 +115,7 @@ const spinID = spinner.createSpin({
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `physics` | [`SpinnerPhysics`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/interfaces/SpinnerPhysics.md) | The `physics` parameters allow you to customize  the spacing between changes on the spinner. Note that the  units you use in this object will carry through the spin instance. |
+| `physics?` | [`SpinnerPhysics`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/interfaces/SpinnerPhysics.md) | The `physics` parameters allow you to customize  the spacing between changes on the spinner. Note that the  units you use in this object will carry through the spin instance. |
 
 #### Returns
 
@@ -118,13 +125,13 @@ The ID of the spin you've just started.
 
 #### Defined in
 
-[Spinner/index.ts:58](https://github.com/daniellacosse/idea-spinner/blob/d322b2a/packages/spinner/Spinner/index.ts#L58)
+[Spinner/index.ts:71](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L71)
 
 ___
 
 ### getSpin
 
-▸ **getSpin**(`spinID`): `undefined` \| [`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)
+▸ **getSpin**(`spinID`): `undefined` \| [`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)<`T`\>
 
 Gets a previously started spin object.
 
@@ -141,10 +148,10 @@ const spinObject = spinner.getSpin(spinID);
 
 #### Returns
 
-`undefined` \| [`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)
+`undefined` \| [`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)<`T`\>
 
 The Spin object.
 
 #### Defined in
 
-[Spinner/index.ts:77](https://github.com/daniellacosse/idea-spinner/blob/d322b2a/packages/spinner/Spinner/index.ts#L77)
+[Spinner/index.ts:106](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L106)

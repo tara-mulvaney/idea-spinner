@@ -1,6 +1,11 @@
 import cuid from "cuid";
 import { ShuffleQueue } from "./ShuffleQueue";
 
+export interface SpinnerParameters<T = WheelItem> {
+  wheels: WheelSet<T>;
+  defaultPhysics?: SpinnerPhysics;
+}
+
 // ISSUE #1: validate physics object
 export interface SpinnerPhysics {
   startingFrameLength: number;
@@ -9,32 +14,37 @@ export interface SpinnerPhysics {
   variance?: number;
 }
 
+export type WheelSet<T> = Map<string, T[]>;
+export type WheelItem = string | { [property: string]: string; };
+
 /**
  * Simulates the spinning of a slot-machine-like object.
  * It can manage multiple spins simultaneously.
  */
-export class Spinner {
-  parameters: { wheels: Map<string, string[]>; };
-  spins: Map<string, Spin> = new Map();
+export class Spinner<T = WheelItem> {
+  parameters: SpinnerParameters<T>;
+  spins: Map<string, Spin<T>> = new Map();
 
   /**
    * The basic constructor.
    *
    * @param parameters
    * @param parameters.wheels The contents of each wheel in the spinner.
+   * @param parameters.defaultPhysics If no physics are provided for
+   * a given spin, this is the physics object that will be used.
    *
    * @example
    * ```js
    * const spinner = new Spinner({ wheels:
    *   new Map([
    *     ["emotion", ["sad", "happy"]],
-   *     ["color", ["red", "blue"]],
+   *     ["color", ["red", { value: "blue", description: "the sad color" }]],
    *     ["length", ["long", "short"]]
    *   ])
    * });
    * ```
    */
-  constructor(parameters: { wheels: Map<string, string[]>; }) {
+  constructor(parameters: SpinnerParameters<T>) {
     this.parameters = parameters;
   }
 
@@ -44,6 +54,9 @@ export class Spinner {
    * @param physics The `physics` parameters allow you to customize
    *  the spacing between changes on the spinner. Note that the
    *  units you use in this object will carry through the spin instance.
+   *
+   * @throws {TypeError} Will throw if no physics object is found.
+   *
    * @returns The ID of the spin you've just started.
    *
    * @example
@@ -55,10 +68,26 @@ export class Spinner {
    * });
    * ```
    */
-  createSpin(physics: SpinnerPhysics) {
+  createSpin(physics?: SpinnerPhysics) {
+    if (!(this.parameters.defaultPhysics || physics)) {
+      throw new TypeError(
+        "No physics provided for Spin - " +
+        "please provide a physics object to `createSpin`" +
+        " or initialize the Spinner with a default physics object."
+      );
+    }
+
     const spinID = cuid();
 
-    this.spins.set(spinID, new Spin({ ...this.parameters, physics }));
+    this.spins.set(
+      spinID,
+      new Spin<T>(
+        {
+          ...this.parameters,
+          physics: (physics ?? this.parameters.defaultPhysics) as SpinnerPhysics
+        }
+      )
+    );
 
     return spinID;
   }
@@ -95,12 +124,16 @@ export class Spinner {
   }
 }
 
+const HALF = 2;
+const randomlyOffsetValue = (value: number, variance: number) =>
+  value * ((1 + Math.random() / HALF) * variance);
+
 /**
  * An ongoing spin of a set of simulated wheels. Responsible
  * for handling the variance in physics across the wheels, if any.
  */
-export class Spin {
-  wheels: Map<string, Wheel> = new Map();
+export class Spin<T> {
+  wheels: Map<string, Wheel<T>> = new Map();
 
   /**
    * The basic constructor.
@@ -126,29 +159,30 @@ export class Spin {
    * ```
    */
   constructor(parameters: {
-    wheels: Map<string, string[]>,
+    wheels: WheelSet<T>,
     physics: SpinnerPhysics;
   }) {
-    for (const [wheelName, wheelItems] of parameters.wheels) {
+    for (const [wheelName, wheelItems] of parameters.wheels.entries()) {
       const {
         endingFrameLength,
         startingFrameLength,
         variance
       } = parameters.physics;
 
-      const HALF = 2;
-
-      const physics = variance !== undefined ? {
-        ...parameters.physics,
-        endingFrameLength:
-          endingFrameLength * ((1 + Math.random() / HALF) * variance),
-        startingFrameLength:
-          startingFrameLength * ((1 + Math.random() / HALF) * variance),
-      } : parameters.physics;
-
       this.wheels.set(
         wheelName,
-        new Wheel({ items: wheelItems, physics })
+        new Wheel<T>({
+          items: wheelItems,
+          physics: variance !== undefined
+            ? {
+              ...parameters.physics,
+              endingFrameLength:
+                randomlyOffsetValue(endingFrameLength, variance),
+              startingFrameLength:
+                randomlyOffsetValue(startingFrameLength, variance),
+            }
+            : parameters.physics
+        })
       );
     }
   }
@@ -183,14 +217,14 @@ export class Spin {
 /**
  * Represents a wheel in a spin simulation.
  */
-export class Wheel {
+export class Wheel<T> {
   physics: SpinnerPhysics;
-  queue: ShuffleQueue<string>;
+  queue: ShuffleQueue<T>;
 
   private clock: number;
   private previousFrameLength: number;
   private previousCheckTime: number;
-  private previousItem: string;
+  private previousItem: T;
 
   // ISSUE #28: support arbitrary objects as wheel items in the Spinner package
   /**
@@ -215,8 +249,8 @@ export class Wheel {
    * });
    * ```
    */
-  constructor(parameters: { items: string[], physics: SpinnerPhysics; }) {
-    this.queue = new ShuffleQueue<string>(parameters.items);
+  constructor(parameters: { items: T[], physics: SpinnerPhysics; }) {
+    this.queue = new ShuffleQueue<T>(parameters.items);
     this.physics = parameters.physics;
 
     this.clock = 0;
@@ -228,9 +262,9 @@ export class Wheel {
   /**
    * The currently selected value on the Wheel.
    *
-   * @returns The current message.
+   * @returns The current wheel value.
    */
-  get value() {
+  get value(): T {
     return this.previousItem;
   }
 

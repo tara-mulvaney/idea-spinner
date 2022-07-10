@@ -1,5 +1,5 @@
 {
-  "physics": {
+  "defaultPhysics": {
     "endingFrameLength": 1000,
     "friction": 0.1,
     "startingFrameLength": 200,
@@ -9,34 +9,67 @@
     "game type": [
       "augmented reality",
       "deckbuilding",
-      "dexterity: These games require players to perform real world physical feats to win.",
+      {
+        "description": "These games require players to perform real world physical feats to win.",
+        "value": "dexterity"
+      },
       "children's",
-      "roleplaying: These games require players to act out and develop live characters.",
+      {
+        "description": "These games require players to act out and develop live characters.",
+        "value": "roleplaying"
+      },
       "puzzle",
       "party",
       "roll and move",
-      "worker placement: These games require players to assign limited numbers of workers to an array tasks in the hopes of outperforming their opponents.",
+      {
+        "description": "These games require players to assign limited numbers of workers to an array tasks in the hopes of outperforming their opponents.",
+        "value": "worker placement"
+      },
       "cooperative",
-      "area control: These games require players to defend and ultimately grow their territory.",
+      {
+        "description": "These games require players to defend and ultimately grow their territory.",
+        "value": "area control"
+      },
       "social deception",
-      "legacy: These games evolve over a series of gaming sessions.",
+      {
+        "description": "These games evolve over a series of gaming sessions.",
+        "value": "legacy"
+      },
       "combat",
-      "tower defense: These games require players to build a series of defenses for staving off waves of oncoming enemies.",
+      {
+        "description": "These games require players to build a series of defenses for staving off waves of oncoming enemies.",
+        "value": "tower defense"
+      },
       "infinite",
       "escape the room"
     ],
     "key mechanic": [
-      "asymmetric characters: Players have different assigned roles each with their own strengths and weaknesses.",
+      {
+        "description": "Players have different assigned roles each with their own strengths and weaknesses.",
+        "value": "asymmetric characters"
+      },
       "auction house",
-      "battle royale: It's everyone for themselves and the last person standing wins.",
-      "blackbox: Key information is held in a sealed location, only to be revealed when the conditions are right.",
+      {
+        "description": "It's everyone for themselves and the last person standing wins.",
+        "value": "battle royale"
+      },
+      {
+        "description": "Key information is held in a sealed location, only to be revealed when the conditions are right.",
+        "value": "blackbox"
+      },
       "card drafting",
       "simultaneous turns",
-      "fog of war: Location information is hidden from view until said location is explored.",
+      {
+        "description": "Location information is hidden from view until said location is explored.",
+        "value": "fog of war"
+      },
       "memory",
       "multiple win conditions",
       "teams",
-      "perfect knowledge: All information about the game state is available at all times to all players.",
+      {
+        "description": "All information about the game state is available at all times to all players.",
+        "value": "perfect knowledge"
+      },
       "engine building",
       "rule changes",
       "overlapping cards",
@@ -46,7 +79,10 @@
       "tile placement",
       "time limits",
       "bartering",
-      "kingmaking: Players no longer able to win can still influence the game's outcome."
+      {
+        "description": "Players no longer able to win can still influence the game's outcome.",
+        "value": "kingmaking"
+      }
     ],
     "theme": [
       "agriculture",

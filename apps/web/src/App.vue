@@ -1,35 +1,31 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import spinnerDemo from "./demo.json";
 import { useStore } from "vuex";
-import { Spinner, SpinnerStoreMutations, SpinnerStoreState } from "./Spinner";
+import { computed, nextTick } from "vue";
+import {
+  Spinner,
+  SpinnerStoreGetters,
+  SpinnerStoreMutations,
+  SpinnerStoreState,
+} from "./Spinner";
 
 const MS_IN_SECOND = 1000;
-const FRAMES_PER_SECOND = 30;
+const FRAMES_PER_SECOND = 60;
 
 const store = useStore<SpinnerStoreState>();
 
-store.commit(
-  SpinnerStoreMutations.INITIALIZE,
-  new Map(Object.entries(spinnerDemo.wheels))
-);
-
-const wheels = computed(() => store.state.display);
 const isSpinning = computed(() => store.state.isSpinning);
 const hasSpun = computed(() => Boolean(store.state.currentSpinID));
+const wheels = computed(
+  () => (store.getters as SpinnerStoreGetters).spinnerDisplay
+);
 
 function spin() {
-  store.commit(SpinnerStoreMutations.SPIN, spinnerDemo.physics);
+  store.commit(SpinnerStoreMutations.SPIN);
 
   let lastFrameTS = Date.now();
 
-  // Establish a render loop.
-  // Vue3 can't keep up when you furiously call
-  // `requestAnimationFrame` (this was the cause of #24)
-  // so we'll call `requestAnimationFrame` every other frame instead
-  // of recursively or super-iteratively
   const intervalID = setInterval(() => {
-    requestAnimationFrame(() => {
+    void nextTick(() => {
       const currentFrameTS = Date.now();
 
       store.commit(SpinnerStoreMutations.ADVANCE, currentFrameTS - lastFrameTS);

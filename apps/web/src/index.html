@@ -21,7 +21,7 @@
     import {createSpinnerStore} from "./Spinner";
 
     const app=createApp(App);
-    app.use(createSpinnerStore());
+    app.use(createSpinnerStore(demoData));
     app.mount("#app");
   </script>
 </body>

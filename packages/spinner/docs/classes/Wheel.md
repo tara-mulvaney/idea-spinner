@@ -1,12 +1,18 @@
-# Class: Wheel
+# Class: Wheel<T\>
 
 Represents a wheel in a spin simulation.
+
+## Type parameters
+
+| Name |
+| :------ |
+| `T` |
 
 ## Constructors
 
 ### constructor
 
-• **new Wheel**(`parameters`)
+• **new Wheel**<`T`\>(`parameters`)
 
 The basic constructor.
 
@@ -25,17 +31,23 @@ const wheel = new Wheel({
 });
 ```
 
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `parameters` | `Object` |
-| `parameters.items` | `string`[] |
+| `parameters.items` | `T`[] |
 | `parameters.physics` | [`SpinnerPhysics`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/interfaces/SpinnerPhysics.md) |
 
 #### Defined in
 
-[Spinner/index.ts:218](https://github.com/daniellacosse/idea-spinner/blob/d322b2a/packages/spinner/Spinner/index.ts#L218)
+[Spinner/index.ts:252](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L252)
 
 ## Properties
 
@@ -45,17 +57,17 @@ const wheel = new Wheel({
 
 #### Defined in
 
-[Spinner/index.ts:187](https://github.com/daniellacosse/idea-spinner/blob/d322b2a/packages/spinner/Spinner/index.ts#L187)
+[Spinner/index.ts:221](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L221)
 
 ___
 
 ### queue
 
-• **queue**: [`ShuffleQueue`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/ShuffleQueue.md)<`string`\>
+• **queue**: [`ShuffleQueue`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/ShuffleQueue.md)<`T`\>
 
 #### Defined in
 
-[Spinner/index.ts:188](https://github.com/daniellacosse/idea-spinner/blob/d322b2a/packages/spinner/Spinner/index.ts#L188)
+[Spinner/index.ts:222](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L222)
 
 ## Accessors
 
@@ -73,25 +85,25 @@ True or false.
 
 #### Defined in
 
-[Spinner/index.ts:242](https://github.com/daniellacosse/idea-spinner/blob/d322b2a/packages/spinner/Spinner/index.ts#L242)
+[Spinner/index.ts:276](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L276)
 
 ___
 
 ### value
 
-• `get` **value**(): `string`
+• `get` **value**(): `T`
 
 The currently selected value on the Wheel.
 
 #### Returns
 
-`string`
+`T`
 
-The current message.
+The current wheel value.
 
 #### Defined in
 
-[Spinner/index.ts:233](https://github.com/daniellacosse/idea-spinner/blob/d322b2a/packages/spinner/Spinner/index.ts#L233)
+[Spinner/index.ts:267](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L267)
 
 ## Methods
 
@@ -118,4 +130,4 @@ wheel.advanceTime(1000);
 
 #### Defined in
 
-[Spinner/index.ts:257](https://github.com/daniellacosse/idea-spinner/blob/d322b2a/packages/spinner/Spinner/index.ts#L257)
+[Spinner/index.ts:291](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L291)

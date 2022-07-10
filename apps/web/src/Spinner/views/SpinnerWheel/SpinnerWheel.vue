@@ -6,7 +6,6 @@ interface SpinnerWheelProps {
   description?: string;
   isSpinning: boolean;
   name: string;
-  tickDuration: string;
   value?: string;
 }
 
@@ -34,7 +33,7 @@ function clearChange() {
   }" @animationend="clearChange">
     <h2 class="SpinnerWheel__name">{{ name }}</h2>
     <div
-      :class="{ 'SpinnerWheel__value': true, 'SpinnerWheel__value--description': Boolean(description) }"
+      :class="{ 'SpinnerWheel__value': true, 'SpinnerWheel__value--description': !isSpinning && Boolean(description) }"
       :title="description">{{ value ?? "--"
       }}</div>
   </li>
@@ -46,7 +45,7 @@ function clearChange() {
 }
 
 .SpinnerWheel {
-  animation-duration: v-bind(tickDuration);
+  animation-duration: var(--animation-timing);
   background: var(--color-primary);
   border-radius: var(--gutter-narrow);
   flex-direction: column;

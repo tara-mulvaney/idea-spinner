@@ -14,17 +14,14 @@ export default {
   wheels: [{
     isSpinning: true,
     name: "color",
-    tickDuration: "200ms",
     value: "red",
   }, {
     isSpinning: true,
     name: "shape",
-    tickDuration: "200ms",
     value: "round",
   }, {
     isSpinning: false,
     name: "feeling",
-    tickDuration: "200ms",
     value: "sad",
   }]
 } as SpinnerProps;

@@ -11,19 +11,16 @@ exports[` 1`] = `
     <spinner-wheel-stub
       isspinning="true"
       name="color"
-      tickduration="200ms"
       value="red"
     />
     <spinner-wheel-stub
       isspinning="true"
       name="shape"
-      tickduration="200ms"
       value="round"
     />
     <spinner-wheel-stub
       isspinning="false"
       name="feeling"
-      tickduration="200ms"
       value="sad"
     />
     
@@ -47,19 +44,16 @@ exports[` 2`] = `
     <spinner-wheel-stub
       isspinning="true"
       name="color"
-      tickduration="200ms"
       value="red"
     />
     <spinner-wheel-stub
       isspinning="true"
       name="shape"
-      tickduration="200ms"
       value="round"
     />
     <spinner-wheel-stub
       isspinning="false"
       name="feeling"
-      tickduration="200ms"
       value="sad"
     />
     

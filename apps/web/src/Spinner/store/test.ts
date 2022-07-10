@@ -1,101 +1,44 @@
-import { Spinner } from "@idea-spinner/spinner";
+import {
+  createSpinnerStore,
+  SpinnerStoreGetters,
+  SpinnerStoreMutations
+} from ".";
 import { expect, test } from "@jest/globals";
-import { SpinnerStore, SpinnerStoreMutations, SpinnerStoreState } from ".";
-
-test.concurrent(`SpinnerStoreMutations - ${SpinnerStoreMutations.INITIALIZE}`,
-  async () => {
-    const state: SpinnerStoreState = {
-      display: [],
-      isSpinning: false
-    };
-
-    SpinnerStore.mutations[SpinnerStoreMutations.INITIALIZE](state, new Map([[
-      "wheel1", ["a"]
-    ]]));
-
-    expect(state.spinner).toBeTruthy();
-  }
-);
 
 test.concurrent(`SpinnerStoreMutations - ${SpinnerStoreMutations.SPIN}`,
   async () => {
-    const state: SpinnerStoreState = {
-      display: [],
-      isSpinning: false,
-      spinner: new Spinner({
-        wheels: new Map()
-      })
-    };
+    const store = createSpinnerStore({
+      wheels: new Map()
+    });
 
-    SpinnerStore.mutations[SpinnerStoreMutations.SPIN](state, {
+    store.commit(SpinnerStoreMutations.SPIN, {
       endingFrameLength: 0,
       friction: 0,
       startingFrameLength: 0
     });
 
-    expect(state.spinner?.spins.size).toBe(1);
-    expect(state.isSpinning).toBeTruthy();
-  }
-);
-
-test.concurrent(
-  `SpinnerStoreMutations - ${SpinnerStoreMutations.SPIN
-  } requires ${SpinnerStoreMutations.INITIALIZE}`,
-  async () => {
-    const state: SpinnerStoreState = {
-      display: [],
-      isSpinning: false,
-    };
-
-    expect(() => SpinnerStore.mutations[SpinnerStoreMutations.SPIN](state, {
-      endingFrameLength: 0,
-      friction: 0,
-      startingFrameLength: 0
-    })).toThrow();
+    expect(store.state.spinner.spins.size).toBe(1);
+    expect(store.state.isSpinning).toBeTruthy();
   }
 );
 
 test.concurrent(`SpinnerStoreMutations - ${SpinnerStoreMutations.ADVANCE}`,
   async () => {
-    const spinner = new Spinner({
-      wheels: new Map([[
-        "wheel1", ["option1"]
-      ]])
+    const store = createSpinnerStore({
+      defaultPhysics: {
+        endingFrameLength: 1000,
+        friction: 1,
+        startingFrameLength: 100
+      },
+      wheels: new Map([["wheel1", ["option1"]]])
     });
 
-    const currentSpinID = spinner.createSpin({
-      endingFrameLength: 1000,
-      friction: 1,
-      startingFrameLength: 100
-    });
-
-    const state = {
-      currentSpinID,
-      display: [],
-      isSpinning: true,
-      spinner,
-    };
-
-    SpinnerStore.mutations[SpinnerStoreMutations.ADVANCE](state, 100);
-
-    expect(state.display).toHaveLength(1);
-  }
-);
-
-test.concurrent(
-  `SpinnerStoreMutations - ${SpinnerStoreMutations.ADVANCE
-  } requires ${SpinnerStoreMutations.INITIALIZE}`,
-  async () => {
-    const state: SpinnerStoreState = {
-      display: [],
-      isSpinning: false,
-    };
+    store.commit(SpinnerStoreMutations.SPIN);
+    store.commit(SpinnerStoreMutations.ADVANCE, 100);
 
     expect(
-      () => SpinnerStore.mutations[
-        SpinnerStoreMutations.ADVANCE
-      ](state, 100)
-    ).toThrow();
+      (store.getters as SpinnerStoreGetters).spinnerDisplay
+    ).toHaveLength(1);
   }
 );
 
@@ -103,39 +46,12 @@ test.concurrent(
   `SpinnerStoreMutations - ${SpinnerStoreMutations.ADVANCE
   } requires ${SpinnerStoreMutations.SPIN}`,
   async () => {
-    const state: SpinnerStoreState = {
-      display: [],
-      isSpinning: true,
-      spinner: new Spinner({
-        wheels: new Map()
-      })
-    };
+    const store = createSpinnerStore({
+      wheels: new Map([["wheel1", ["option1"]]])
+    });
 
     expect(
-      () => SpinnerStore.mutations[
-        SpinnerStoreMutations.ADVANCE
-      ](state, 100)
-    ).toThrow();
-  }
-);
-
-test.concurrent(
-  `SpinnerStoreMutations - ${SpinnerStoreMutations.ADVANCE
-  } requires valid currentSpinnerID`,
-  async () => {
-    const state: SpinnerStoreState = {
-      currentSpinID: "MISSING",
-      display: [],
-      isSpinning: true,
-      spinner: new Spinner({
-        wheels: new Map()
-      }),
-    };
-
-    expect(
-      () => SpinnerStore.mutations[
-        SpinnerStoreMutations.ADVANCE
-      ](state, 100)
+      () => store.commit(SpinnerStoreMutations.ADVANCE, 100)
     ).toThrow();
   }
 );
