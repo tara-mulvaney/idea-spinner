@@ -3,9 +3,7 @@ import { SpinnerWheelProps } from "../views/SpinnerWheel";
 import {
   Spinner,
   SpinnerParameters,
-  SpinnerPhysics,
-  WheelItem,
-  WheelSet
+  SpinnerPhysics
 } from "@idea-spinner/spinner";
 
 export interface SpinnerStoreState {
@@ -24,14 +22,9 @@ export enum SpinnerStoreMutations {
   ADVANCE = "spinner/advance"
 }
 
-// ISSUE #30: decouple JSON typings from native SpinnerParameter typings
 export const createSpinnerStore =
-  (parameterJSON: SpinnerParameters) => {
-    const spinner = new Spinner({
-      ...parameterJSON,
-      wheels:
-        new Map(Object.entries(parameterJSON.wheels)) as WheelSet<WheelItem>
-    });
+  (parameters: SpinnerParameters) => {
+    const spinner = new Spinner(parameters);
 
     return createStore<SpinnerStoreState>({
       getters: {
@@ -94,7 +87,7 @@ export const createSpinnerStore =
 
           state.spinner.advanceSpin(state.currentSpinID, time);
           state.isSpinning =
-            state.spinner.getSpin(state.currentSpinID)?.isSpinning ?? false;
+            Boolean(state.spinner.getSpin(state.currentSpinID)?.isSpinning);
         }
       },
       state() {

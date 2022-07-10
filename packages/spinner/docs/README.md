@@ -9,4 +9,31 @@
 
 ## Interfaces
 
+- [SpinnerParameters](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/interfaces/SpinnerParameters.md)
 - [SpinnerPhysics](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/interfaces/SpinnerPhysics.md)
+
+## Type aliases
+
+### WheelItem
+
+Ƭ **WheelItem**: `string` \| { `[property: string]`: `string`;  }
+
+#### Defined in
+
+[Spinner/index.ts:18](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L18)
+
+___
+
+### WheelSet
+
+Ƭ **WheelSet**<`T`\>: `Map`<`string`, `T`[]\>
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Defined in
+
+[Spinner/index.ts:17](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L17)

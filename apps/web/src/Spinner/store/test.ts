@@ -5,7 +5,7 @@ import {
 } from ".";
 import { expect, test } from "@jest/globals";
 
-test.concurrent(`SpinnerStoreMutations - ${SpinnerStoreMutations.SPIN}`,
+test.concurrent(`SpinnerStore - ${SpinnerStoreMutations.SPIN}`,
   async () => {
     const store = createSpinnerStore({
       wheels: new Map()
@@ -22,7 +22,7 @@ test.concurrent(`SpinnerStoreMutations - ${SpinnerStoreMutations.SPIN}`,
   }
 );
 
-test.concurrent(`SpinnerStoreMutations - ${SpinnerStoreMutations.ADVANCE}`,
+test.concurrent(`SpinnerStore - ${SpinnerStoreMutations.ADVANCE}`,
   async () => {
     const store = createSpinnerStore({
       defaultPhysics: {
@@ -43,7 +43,7 @@ test.concurrent(`SpinnerStoreMutations - ${SpinnerStoreMutations.ADVANCE}`,
 );
 
 test.concurrent(
-  `SpinnerStoreMutations - ${SpinnerStoreMutations.ADVANCE
+  `SpinnerStore - ${SpinnerStoreMutations.ADVANCE
   } requires ${SpinnerStoreMutations.SPIN}`,
   async () => {
     const store = createSpinnerStore({
@@ -53,5 +53,47 @@ test.concurrent(
     expect(
       () => store.commit(SpinnerStoreMutations.ADVANCE, 100)
     ).toThrow();
+  }
+);
+
+test.concurrent(
+  `SpinnerStore - spinnerDisplay before ${SpinnerStoreMutations.SPIN}`,
+  async () => {
+    const store = createSpinnerStore({
+      wheels: new Map([["wheel1", ["option1"]]])
+    });
+
+    expect(
+      (store.getters as SpinnerStoreGetters).spinnerDisplay
+    ).toEqual([{
+      isSpinning: false,
+      name: "wheel1",
+      value: undefined,
+    }]);
+  }
+);
+
+test.concurrent(
+  `SpinnerStore - spinnerDisplay if ${SpinnerStoreMutations.SPIN} deleted`,
+  async () => {
+    const store = createSpinnerStore({
+      wheels: new Map([["wheel1", ["option1"]]])
+    });
+
+    store.commit(SpinnerStoreMutations.SPIN, {
+      endingFrameLength: 0,
+      friction: 0,
+      startingFrameLength: 0
+    });
+
+    store.state.spinner.spins.clear();
+
+    expect(
+      (store.getters as SpinnerStoreGetters).spinnerDisplay
+    ).toEqual([{
+      isSpinning: false,
+      name: "wheel1",
+      value: undefined,
+    }]);
   }
 );

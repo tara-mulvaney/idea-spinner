@@ -30,6 +30,18 @@ test.concurrent("Spinner - createSpin", async () => {
   expect(item1).toBeTruthy();
 });
 
+test.concurrent("Spinner - fails createSpin if no physics provided",
+  async () => {
+    const spinner = new Spinner({
+      wheels: new Map([
+        ["wheel1", ["a", "b", "c"]]
+      ])
+    });
+
+    expect(() => spinner.createSpin()).toThrow();
+  }
+);
+
 test.concurrent("Spinner - advanceSpin", async () => {
   const spinner = new Spinner({
     wheels: new Map([

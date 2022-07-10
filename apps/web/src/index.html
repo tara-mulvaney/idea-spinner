@@ -21,7 +21,12 @@
     import {createSpinnerStore} from "./Spinner";
 
     const app=createApp(App);
-    app.use(createSpinnerStore(demoData));
+
+    // ISSUE #30: clarify separation between UI store and Spinner object with types and docs
+    app.use(createSpinnerStore({
+      ...demoData,
+      wheels: new Map(Object.entries(demoData.wheels))
+    }));
     app.mount("#app");
   </script>
 </body>

@@ -47,7 +47,7 @@ const wheel = new Wheel({
 
 #### Defined in
 
-[Spinner/index.ts:252](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L252)
+[Spinner/index.ts:252](https://github.com/daniellacosse/idea-spinner/blob/0e5819d/packages/spinner/Spinner/index.ts#L252)
 
 ## Properties
 
@@ -57,7 +57,7 @@ const wheel = new Wheel({
 
 #### Defined in
 
-[Spinner/index.ts:221](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L221)
+[Spinner/index.ts:221](https://github.com/daniellacosse/idea-spinner/blob/0e5819d/packages/spinner/Spinner/index.ts#L221)
 
 ___
 
@@ -67,7 +67,7 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:222](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L222)
+[Spinner/index.ts:222](https://github.com/daniellacosse/idea-spinner/blob/0e5819d/packages/spinner/Spinner/index.ts#L222)
 
 ## Accessors
 
@@ -85,7 +85,7 @@ True or false.
 
 #### Defined in
 
-[Spinner/index.ts:276](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L276)
+[Spinner/index.ts:276](https://github.com/daniellacosse/idea-spinner/blob/0e5819d/packages/spinner/Spinner/index.ts#L276)
 
 ___
 
@@ -103,7 +103,7 @@ The current wheel value.
 
 #### Defined in
 
-[Spinner/index.ts:267](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L267)
+[Spinner/index.ts:267](https://github.com/daniellacosse/idea-spinner/blob/0e5819d/packages/spinner/Spinner/index.ts#L267)
 
 ## Methods
 
@@ -130,4 +130,4 @@ wheel.advanceTime(1000);
 
 #### Defined in
 
-[Spinner/index.ts:291](https://github.com/daniellacosse/idea-spinner/blob/af30666/packages/spinner/Spinner/index.ts#L291)
+[Spinner/index.ts:291](https://github.com/daniellacosse/idea-spinner/blob/0e5819d/packages/spinner/Spinner/index.ts#L291)
