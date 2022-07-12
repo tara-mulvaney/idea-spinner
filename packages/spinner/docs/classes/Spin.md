@@ -5,9 +5,9 @@ for handling the variance in physics across the wheels, if any.
 
 ## Type parameters
 
-| Name |
-| :------ |
-| `T` |
+| Name | Type |
+| :------ | :------ |
+| `T` | [`WheelItem`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/README.md#wheelitem) |
 
 ## Constructors
 
@@ -20,6 +20,7 @@ The basic constructor.
 **`example`**
 ```js
 const spin = new Spin({
+  id: "myID",
   wheels: new Map([
     ["emotion", ["sad", "happy"]],
     ["color", ["red", "blue"]],
@@ -35,23 +36,34 @@ const spin = new Spin({
 
 #### Type parameters
 
-| Name |
-| :------ |
-| `T` |
+| Name | Type |
+| :------ | :------ |
+| `T` | [`WheelItem`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/README.md#wheelitem) |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `parameters` | `Object` |
+| `parameters.id` | `string` |
 | `parameters.physics` | [`SpinnerPhysics`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/interfaces/SpinnerPhysics.md) |
 | `parameters.wheels` | [`WheelSet`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/README.md#wheelset)<`T`\> |
 
 #### Defined in
 
-[Spinner/index.ts:161](https://github.com/daniellacosse/idea-spinner/blob/f12fe4a/packages/spinner/Spinner/index.ts#L161)
+[Spinner/index.ts:164](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L164)
 
 ## Properties
+
+### id
+
+• **id**: `string`
+
+#### Defined in
+
+[Spinner/index.ts:136](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L136)
+
+___
 
 ### wheels
 
@@ -59,7 +71,7 @@ const spin = new Spin({
 
 #### Defined in
 
-[Spinner/index.ts:136](https://github.com/daniellacosse/idea-spinner/blob/f12fe4a/packages/spinner/Spinner/index.ts#L136)
+[Spinner/index.ts:137](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L137)
 
 ## Accessors
 
@@ -77,13 +89,13 @@ True or false.
 
 #### Defined in
 
-[Spinner/index.ts:195](https://github.com/daniellacosse/idea-spinner/blob/f12fe4a/packages/spinner/Spinner/index.ts#L195)
+[Spinner/index.ts:202](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L202)
 
 ## Methods
 
 ### advanceTime
 
-▸ **advanceTime**(`time`): `void`
+▸ **advanceTime**(`time`): [`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)<`T`\>
 
 Advances the spin object.
 
@@ -100,8 +112,10 @@ spin.advanceTime(1000);
 
 #### Returns
 
-`void`
+[`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)<`T`\>
+
+The current spin object, for utility
 
 #### Defined in
 
-[Spinner/index.ts:210](https://github.com/daniellacosse/idea-spinner/blob/f12fe4a/packages/spinner/Spinner/index.ts#L210)
+[Spinner/index.ts:219](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L219)

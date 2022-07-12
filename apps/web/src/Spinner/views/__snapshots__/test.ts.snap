@@ -9,16 +9,19 @@ exports[` 1`] = `
   >
     
     <spinner-wheel-stub
+      islocked="false"
       isspinning="true"
       name="color"
       value="red"
     />
     <spinner-wheel-stub
+      islocked="false"
       isspinning="true"
       name="shape"
       value="round"
     />
     <spinner-wheel-stub
+      islocked="false"
       isspinning="false"
       name="feeling"
       value="sad"
@@ -42,16 +45,19 @@ exports[` 2`] = `
   >
     
     <spinner-wheel-stub
+      islocked="false"
       isspinning="true"
       name="color"
       value="red"
     />
     <spinner-wheel-stub
+      islocked="false"
       isspinning="true"
       name="shape"
       value="round"
     />
     <spinner-wheel-stub
+      islocked="false"
       isspinning="false"
       name="feeling"
       value="sad"

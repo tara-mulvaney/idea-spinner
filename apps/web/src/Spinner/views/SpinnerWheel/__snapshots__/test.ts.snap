@@ -4,11 +4,21 @@ exports[` 1`] = `
 <li
   class="SpinnerWheel SpinnerWheel--stopped"
 >
-  <h2
-    class="SpinnerWheel__name"
+  <header
+    class="SpinnerWheel__header"
   >
-    Demo Wheel
-  </h2>
+    <h2
+      class="SpinnerWheel__name"
+    >
+      Demo Wheel
+    </h2>
+    <i
+      class="SpinnerWheel__lock"
+      role="button"
+    >
+      🔓
+    </i>
+  </header>
   <div
     class="SpinnerWheel__value SpinnerWheel__value--description"
     title="Clowns are a curious breed who sustain themselves on the laugher of children."

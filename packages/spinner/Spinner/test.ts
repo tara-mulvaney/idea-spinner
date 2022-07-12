@@ -23,7 +23,7 @@ test.concurrent("Spinner - createSpin", async () => {
     friction: 0.5,
     startingFrameLength,
     variance: 1
-  });
+  }).id;
 
   const item1 = spinner.getSpin(spinID)?.wheels.get("wheel1")?.value;
 
@@ -55,7 +55,7 @@ test.concurrent("Spinner - advanceSpin", async () => {
     friction: 0.5,
     startingFrameLength,
     variance: 1
-  });
+  }).id;
 
   const item1 = spinner.getSpin(spinID)?.wheels.get("wheel1")?.value;
 
@@ -68,6 +68,7 @@ test.concurrent("Spinner - advanceSpin", async () => {
 
 test.concurrent("Spin - isSpinning", async () => {
   const spin = new Spin({
+    id: "spin1",
     physics: {
       endingFrameLength: 0,
       friction: 0,
@@ -85,6 +86,7 @@ test.concurrent("Wheel - short circuits advancement if not spinning",
   async () => {
     const wheel = new Wheel({
       items: ["item1", "item2"],
+      name: "wheel1",
       physics: {
         endingFrameLength: 0,
         friction: 0,

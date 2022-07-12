@@ -5,6 +5,7 @@ import { SpinnerWheel, SpinnerWheelProps } from "./SpinnerWheel";
 // see: https://github.com/vuejs/core/issues/4294
 interface SpinnerProps {
   hasSpun: boolean;
+  isLocked: boolean;
   isSpinning: boolean;
   maxColumns?: number;
   wheels: SpinnerWheelProps[];
@@ -14,7 +15,7 @@ const props = withDefaults(defineProps<SpinnerProps>(), { maxColumns: 4 });
 
 const rowCount = ref(Math.ceil(props.wheels.length / props.maxColumns));
 
-defineEmits(["spin"]);
+defineEmits(["spin", "lock-wheel", "unlock-wheel"]);
 </script>
 
 <template>
@@ -23,12 +24,14 @@ defineEmits(["spin"]);
       'SpinnerWheels': true,
       'SpinnerWheels--waiting': !hasSpun
     }">
-      <SpinnerWheel v-for="wheel in wheels" :key="wheel.name" v-bind="wheel" />
+      <SpinnerWheel v-for="wheel in wheels" :key="wheel.name" v-bind="wheel"
+        @lock="hasSpun && $emit('lock-wheel', wheel.name)"
+        @unlock="hasSpun && $emit('unlock-wheel', wheel.name)" />
     </ul>
 
     <button class="SpinnerLever" @click.prevent="$emit('spin', true)"
-      :disabled="isSpinning">
-      {{ isSpinning ? "Spinning..." : "Click to Spin!" }}
+      :disabled="isSpinning || isLocked">
+      {{ isSpinning ? "Spinning..." : isLocked ? "Locked." : "Click to Spin!" }}
     </button>
   </article>
 </template>

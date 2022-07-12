@@ -42,7 +42,7 @@ const spinner = new Spinner({ wheels:
 
 #### Defined in
 
-[Spinner/index.ts:47](https://github.com/daniellacosse/idea-spinner/blob/f12fe4a/packages/spinner/Spinner/index.ts#L47)
+[Spinner/index.ts:47](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L47)
 
 ## Properties
 
@@ -52,7 +52,7 @@ const spinner = new Spinner({ wheels:
 
 #### Defined in
 
-[Spinner/index.ts:25](https://github.com/daniellacosse/idea-spinner/blob/f12fe4a/packages/spinner/Spinner/index.ts#L25)
+[Spinner/index.ts:25](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L25)
 
 ___
 
@@ -62,13 +62,13 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:26](https://github.com/daniellacosse/idea-spinner/blob/f12fe4a/packages/spinner/Spinner/index.ts#L26)
+[Spinner/index.ts:26](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L26)
 
 ## Methods
 
 ### advanceSpin
 
-▸ **advanceSpin**(`spinID`, `time`): `void`
+▸ **advanceSpin**(`spinID`, `time`): `undefined` \| [`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)<`T`\>
 
 Advances a previously started spin.
 
@@ -86,17 +86,19 @@ spinner.advanceSpin(spinID, 1000);
 
 #### Returns
 
-`void`
+`undefined` \| [`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)<`T`\>
+
+The advanced spin object, for utility.
 
 #### Defined in
 
-[Spinner/index.ts:122](https://github.com/daniellacosse/idea-spinner/blob/f12fe4a/packages/spinner/Spinner/index.ts#L122)
+[Spinner/index.ts:121](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L121)
 
 ___
 
 ### createSpin
 
-▸ **createSpin**(`physics?`): `string`
+▸ **createSpin**(`physics?`): [`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)<`T`\>
 
 Spins the spinner.
 
@@ -119,13 +121,13 @@ const spinID = spinner.createSpin({
 
 #### Returns
 
-`string`
+[`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)<`T`\>
 
-The ID of the spin you've just started.
+The spin you've just started.
 
 #### Defined in
 
-[Spinner/index.ts:71](https://github.com/daniellacosse/idea-spinner/blob/f12fe4a/packages/spinner/Spinner/index.ts#L71)
+[Spinner/index.ts:71](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L71)
 
 ___
 
@@ -154,4 +156,4 @@ The Spin object.
 
 #### Defined in
 
-[Spinner/index.ts:106](https://github.com/daniellacosse/idea-spinner/blob/f12fe4a/packages/spinner/Spinner/index.ts#L106)
+[Spinner/index.ts:103](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L103)

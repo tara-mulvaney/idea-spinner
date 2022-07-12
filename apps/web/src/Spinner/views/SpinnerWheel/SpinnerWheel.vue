@@ -4,6 +4,7 @@ import { ref, watch } from "vue";
 // see: https://github.com/vuejs/core/issues/4294
 interface SpinnerWheelProps {
   description?: string;
+  isLocked: boolean;
   isSpinning: boolean;
   name: string;
   value?: string;
@@ -20,6 +21,8 @@ watch(
   }
 );
 
+defineEmits(["lock", "unlock"]);
+
 function clearChange() {
   isAnimating.value = false;
 }
@@ -28,14 +31,28 @@ function clearChange() {
 <template>
   <li :class="{
     'SpinnerWheel': true,
-    'SpinnerWheel--stopped': !isSpinning,
-    'SpinnerWheel--tick': isAnimating && isSpinning,
+    'SpinnerWheel--stopped': isLocked || !isSpinning,
+    'SpinnerWheel--tick': !isLocked && isAnimating && isSpinning,
   }" @animationend="clearChange">
-    <h2 class="SpinnerWheel__name">{{ name }}</h2>
-    <div
-      :class="{ 'SpinnerWheel__value': true, 'SpinnerWheel__value--description': !isSpinning && Boolean(description) }"
-      :title="description">{{ value ?? "--"
-      }}</div>
+    <header class="SpinnerWheel__header">
+      <h2 class="SpinnerWheel__name">{{ name }}</h2>
+      <i :class="{
+        'SpinnerWheel__lock': true,
+        'SpinnerWheel__lock--locked': isLocked
+      }" role="button"
+        @click.prevent="!isSpinning && $emit(isLocked ? 'unlock' : 'lock', name)">
+        {{ isLocked
+            ? "🔒"
+            : "🔓"
+        }}
+      </i>
+    </header>
+    <div :class="{
+      'SpinnerWheel__value': true,
+      'SpinnerWheel__value--description': Boolean(description) && (isLocked || !isSpinning)
+    }" :title="description">
+      {{ value ?? "--" }}
+    </div>
   </li>
 </template>
 
@@ -55,17 +72,37 @@ function clearChange() {
   transition: background var(--animation-timing) ease-out;
 }
 
-.SpinnerWheel__name {
+.SpinnerWheel__header {
   background: var(--color-primary-variant);
-  border-bottom: var(--hairline) solid var(--color-primary-variant);
+  border-bottom: var(--hairline) solid var(--color-primary);
+  height: var(--gutter-wide);
+  line-height: var(--gutter-wide);
+  width: 100%;
+}
+
+.SpinnerWheel__header * {
+  user-select: none;
+}
+
+.SpinnerWheel__name {
   color: var(--color-primary-variant-foreground);
   font-family: var(--font-primary);
   font-size: var(--gutter-narrow);
   font-weight: bold;
-  height: var(--gutter-wide);
-  line-height: var(--gutter-wide);
   text-transform: uppercase;
-  width: 100%;
+}
+
+.SpinnerWheel__lock {
+  cursor: pointer;
+  float: right;
+  line-height: var(--gutter-wide);
+  opacity: 0.5;
+  position: absolute;
+  right: var(--gutter-narrow);
+}
+
+.SpinnerWheel__lock.SpinnerWheel__lock--locked {
+  opacity: 1;
 }
 
 .SpinnerWheel__value {
@@ -88,7 +125,7 @@ function clearChange() {
 }
 
 .SpinnerWheel,
-.SpinnerWheel__name,
+.SpinnerWheel__header,
 .SpinnerWheel__value {
   align-items: center;
   display: flex;

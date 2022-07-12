@@ -176,6 +176,7 @@
     "no-await-in-loop": "warn", // consider Promise.all instead so async calls are fired at once
     "no-console": "error", // we shouldn't be logging from stateless components
     "no-eval": "error", // this is an attack vector
+    "no-extra-boolean-cast": "off",
     "no-extra-parens": "off",
     "no-implicit-coercion": "error", // be kind, use `Boolean()` - not `!!`
     "no-magic-numbers": "off",

@@ -1,70 +1,109 @@
-import { createStore } from "vuex";
 import { SpinnerWheelProps } from "../views/SpinnerWheel";
+import { createStore, Store } from "vuex";
 import {
+  Spin,
   Spinner,
   SpinnerParameters,
-  SpinnerPhysics
+  SpinnerPhysics,
+  Wheel,
+  WheelItem
 } from "@idea-spinner/spinner";
 
 export interface SpinnerStoreState {
   currentSpinID?: string;
+  lockedWheelValues: { [wheelName: string]: WheelItem; };
   isSpinning: boolean;
   spinner: Spinner;
 }
 
-// ISSUE #31: create utility for unified store typings
-export interface SpinnerStoreGetters {
-  spinnerDisplay: SpinnerWheelProps[];
-}
-
 export enum SpinnerStoreMutations {
   SPIN = "spinner/spin",
-  ADVANCE = "spinner/advance"
+  ADVANCE = "spinner/advance",
+  LOCK = "spinner/lock",
+  UNLOCK = "spinner/unlock"
 }
 
+export interface SpinnerStoreStateWithGetters extends Store<SpinnerStoreState> {
+  getters: {
+    currentSpin: Spin | undefined;
+    lockedWheelCount: number;
+    spinnerWheelProps: SpinnerWheelProps[];
+    wheelCount: number;
+  };
+}
+
+const getNoSpinWheelProps = ({
+  spinner: { parameters: { wheels } }
+}: SpinnerStoreState): SpinnerWheelProps[] => {
+  const result = [];
+
+  for (const [name] of wheels.entries()) {
+    result.push({
+      isLocked: false,
+      isSpinning: false,
+      name
+    });
+  }
+
+  return result;
+};
+
+const getLiveSpinWheelProps = (
+  spin: Spin,
+  lockedWheelValues: { [wheelName: string]: WheelItem; }
+): SpinnerWheelProps[] => {
+  const result = [];
+
+  for (const [name, { value: rawValue, isSpinning }] of spin.wheels.entries()) {
+    let [value, isLocked] = [rawValue, false];
+
+    if (Boolean(lockedWheelValues[name])) {
+      isLocked = true;
+      value = lockedWheelValues[name];
+    }
+
+    if (typeof value === "string") {
+      value = { value };
+    }
+
+    result.push({
+      ...value,
+      isLocked,
+      isSpinning,
+      name
+    });
+  }
+
+  return result;
+};
+
 export const createSpinnerStore =
-  (parameters: SpinnerParameters) => {
+  (parameters: SpinnerParameters): SpinnerStoreStateWithGetters => {
     const spinner = new Spinner(parameters);
 
     return createStore<SpinnerStoreState>({
       getters: {
-        spinnerDisplay(state): SpinnerWheelProps[] {
-          const transformEntries = (
-            entries: IterableIterator<[
-              string,
-              { value?: string | object; isSpinning?: boolean; }
-            ]>
-          ) =>
-            Array.from(entries).map(([name, { value, isSpinning }]) => {
-              if (value === undefined || typeof value === "string") {
-                value = { value };
-              }
-
-              return {
-                ...value,
-                isSpinning: Boolean(isSpinning),
-                name
-              };
-            });
-
+        currentSpin(state): Spin | undefined {
+          return state.spinner.getSpin(state.currentSpinID ?? "");
+        },
+        lockedWheelCount(state): number {
+          return Object.keys(state.lockedWheelValues).length;
+        },
+        spinnerWheelProps(state): SpinnerWheelProps[] {
           if (state.currentSpinID === undefined) {
-            return transformEntries(
-              state.spinner.parameters.wheels.entries() as IterableIterator<[
-                string, object]>
-            );
+            return getNoSpinWheelProps(state);
           }
 
-          const currentSpinWheelEntries =
-            state.spinner.getSpin(state.currentSpinID)?.wheels.entries();
+          const currentSpin = state.spinner.getSpin(state.currentSpinID);
 
-          if (!currentSpinWheelEntries) {
-            return transformEntries(
-              state.spinner.parameters.wheels.entries() as IterableIterator<[
-                string, object]>
-            );
+          if (!currentSpin) {
+            return getNoSpinWheelProps(state);
           }
 
-          return transformEntries(currentSpinWheelEntries);
+          return getLiveSpinWheelProps(currentSpin, state.lockedWheelValues);
+        },
+        wheelCount(state): number {
+          return state.spinner.parameters.wheels.size;
         }
       },
       mutations: {
@@ -72,7 +111,7 @@ export const createSpinnerStore =
           state: SpinnerStoreState,
           physics?: SpinnerPhysics
         ) {
-          state.currentSpinID = state.spinner.createSpin(physics);
+          state.currentSpinID = state.spinner.createSpin(physics).id;
           state.isSpinning = true;
         },
         [SpinnerStoreMutations.ADVANCE](
@@ -85,14 +124,26 @@ export const createSpinnerStore =
             );
           }
 
-          state.spinner.advanceSpin(state.currentSpinID, time);
-          state.isSpinning =
-            Boolean(state.spinner.getSpin(state.currentSpinID)?.isSpinning);
+          state.isSpinning = Boolean(
+            state.spinner.advanceSpin(state.currentSpinID, time)?.isSpinning
+          );
+        },
+        [SpinnerStoreMutations.LOCK](state: SpinnerStoreState, wheel: Wheel) {
+          state.lockedWheelValues[wheel.name] = wheel.value;
+        },
+        [SpinnerStoreMutations.UNLOCK](
+          state: SpinnerStoreState,
+          wheel: Wheel
+        ) {
+          wheel.unsafeForceValue(state.lockedWheelValues[wheel.name]);
+
+          delete state.lockedWheelValues[wheel.name];
         }
       },
       state() {
         return {
           isSpinning: false,
+          lockedWheelValues: {},
           spinner
         };
       }

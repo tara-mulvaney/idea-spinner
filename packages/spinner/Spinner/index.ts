@@ -57,7 +57,7 @@ export class Spinner<T = WheelItem> {
    *
    * @throws {TypeError} Will throw if no physics object is found.
    *
-   * @returns The ID of the spin you've just started.
+   * @returns The spin you've just started.
    *
    * @example
    * ```js
@@ -78,18 +78,15 @@ export class Spinner<T = WheelItem> {
     }
 
     const spinID = cuid();
+    const spin = new Spin<T>({
+      ...this.parameters,
+      id: spinID,
+      physics: (physics ?? this.parameters.defaultPhysics) as SpinnerPhysics
+    });
 
-    this.spins.set(
-      spinID,
-      new Spin<T>(
-        {
-          ...this.parameters,
-          physics: (physics ?? this.parameters.defaultPhysics) as SpinnerPhysics
-        }
-      )
-    );
+    this.spins.set(spinID, spin);
 
-    return spinID;
+    return spin;
   }
 
   /**
@@ -114,13 +111,16 @@ export class Spinner<T = WheelItem> {
    * @param time How much further you're advancing the spinner.
    * The units should be the same as those in the physics object.
    *
+   * @returns The advanced spin object, for utility.
+   *
    * @example
    * ```js
    * spinner.advanceSpin(spinID, 1000);
    * ```
    */
   advanceSpin(spinID: string, time: number) {
-    this.spins.get(spinID)?.advanceTime(time);
+    const spin = this.spins.get(spinID);
+    return spin?.advanceTime(time);
   }
 }
 
@@ -132,19 +132,22 @@ const randomlyOffsetValue = (value: number, variance: number) =>
  * An ongoing spin of a set of simulated wheels. Responsible
  * for handling the variance in physics across the wheels, if any.
  */
-export class Spin<T> {
+export class Spin<T = WheelItem> {
+  id: string;
   wheels: Map<string, Wheel<T>> = new Map();
 
   /**
    * The basic constructor.
    *
    * @param parameters
+   * @param parameters.id
    * @param parameters.wheels
    * @param parameters.physics
    *
    * @example
    * ```js
    * const spin = new Spin({
+   *   id: "myID",
    *   wheels: new Map([
    *     ["emotion", ["sad", "happy"]],
    *     ["color", ["red", "blue"]],
@@ -159,9 +162,12 @@ export class Spin<T> {
    * ```
    */
   constructor(parameters: {
-    wheels: WheelSet<T>,
+    id: string;
+    wheels: WheelSet<T>;
     physics: SpinnerPhysics;
   }) {
+    this.id = parameters.id;
+
     for (const [wheelName, wheelItems] of parameters.wheels.entries()) {
       const {
         endingFrameLength,
@@ -173,6 +179,7 @@ export class Spin<T> {
         wheelName,
         new Wheel<T>({
           items: wheelItems,
+          name: wheelName,
           physics: variance !== undefined
             ? {
               ...parameters.physics,
@@ -202,6 +209,8 @@ export class Spin<T> {
    * @param time How much further you're advancing the spinner.
    * The units should be the same as those in the physics object.
    *
+   * @returns The current spin object, for utility
+   *
    * @example
    * ```js
    * spin.advanceTime(1000);
@@ -211,13 +220,16 @@ export class Spin<T> {
     for (const [, wheel] of this.wheels) {
       wheel.advanceTime(time);
     }
+
+    return this;
   }
 }
 
 /**
  * Represents a wheel in a spin simulation.
  */
-export class Wheel<T> {
+export class Wheel<T = WheelItem> {
+  name: string;
   physics: SpinnerPhysics;
   queue: ShuffleQueue<T>;
 
@@ -226,17 +238,18 @@ export class Wheel<T> {
   private previousCheckTime: number;
   private previousItem: T;
 
-  // ISSUE #28: support arbitrary objects as wheel items in the Spinner package
   /**
    * The basic constructor.
    *
    * @param parameters
+   * @param parameters.name
    * @param parameters.items
    * @param parameters.physics
    *
    * @example
    * ```js
    * const wheel = new Wheel({
+   *   name: "my wheel",
    *   items: [
    *     "happy",
    *     "sad"
@@ -249,7 +262,14 @@ export class Wheel<T> {
    * });
    * ```
    */
-  constructor(parameters: { items: T[], physics: SpinnerPhysics; }) {
+  constructor(
+    parameters: {
+      name: string,
+      items: T[],
+      physics: SpinnerPhysics;
+    }
+  ) {
+    this.name = parameters.name;
     this.queue = new ShuffleQueue<T>(parameters.items);
     this.physics = parameters.physics;
 
@@ -283,6 +303,8 @@ export class Wheel<T> {
    * @param time How much further the wheel is being advanced.
    * The units should be the same as those in the physics object.
    *
+   * @returns This wheel, for utility.
+   *
    * @example
    * ```js
    * wheel.advanceTime(1000);
@@ -305,5 +327,23 @@ export class Wheel<T> {
 
       this.previousItem = this.queue.randomItem;
     }
+
+    return this;
+  }
+
+  /**
+   * THIS IS NOT RECOMMENDED - forcing the wheel value can cause issues,
+   * namely the shuffle queue will not know of this. Make sure you know
+   * what you're doing.
+   *
+   * @param value The value to set the wheel to.
+   *
+   * @example
+   * ```js
+   * wheel.unsafeForceValue("something dumb");
+   * ```
+   */
+  unsafeForceValue(value: T) {
+    this.previousItem = value;
   }
 }

@@ -4,9 +4,9 @@ Represents a wheel in a spin simulation.
 
 ## Type parameters
 
-| Name |
-| :------ |
-| `T` |
+| Name | Type |
+| :------ | :------ |
+| `T` | [`WheelItem`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/README.md#wheelitem) |
 
 ## Constructors
 
@@ -19,6 +19,7 @@ The basic constructor.
 **`example`**
 ```js
 const wheel = new Wheel({
+  name: "my wheel",
   items: [
     "happy",
     "sad"
@@ -33,9 +34,9 @@ const wheel = new Wheel({
 
 #### Type parameters
 
-| Name |
-| :------ |
-| `T` |
+| Name | Type |
+| :------ | :------ |
+| `T` | [`WheelItem`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/README.md#wheelitem) |
 
 #### Parameters
 
@@ -43,13 +44,24 @@ const wheel = new Wheel({
 | :------ | :------ |
 | `parameters` | `Object` |
 | `parameters.items` | `T`[] |
+| `parameters.name` | `string` |
 | `parameters.physics` | [`SpinnerPhysics`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/interfaces/SpinnerPhysics.md) |
 
 #### Defined in
 
-[Spinner/index.ts:252](https://github.com/daniellacosse/idea-spinner/blob/f12fe4a/packages/spinner/Spinner/index.ts#L252)
+[Spinner/index.ts:265](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L265)
 
 ## Properties
+
+### name
+
+• **name**: `string`
+
+#### Defined in
+
+[Spinner/index.ts:232](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L232)
+
+___
 
 ### physics
 
@@ -57,7 +69,7 @@ const wheel = new Wheel({
 
 #### Defined in
 
-[Spinner/index.ts:221](https://github.com/daniellacosse/idea-spinner/blob/f12fe4a/packages/spinner/Spinner/index.ts#L221)
+[Spinner/index.ts:233](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L233)
 
 ___
 
@@ -67,7 +79,7 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:222](https://github.com/daniellacosse/idea-spinner/blob/f12fe4a/packages/spinner/Spinner/index.ts#L222)
+[Spinner/index.ts:234](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L234)
 
 ## Accessors
 
@@ -85,7 +97,7 @@ True or false.
 
 #### Defined in
 
-[Spinner/index.ts:276](https://github.com/daniellacosse/idea-spinner/blob/f12fe4a/packages/spinner/Spinner/index.ts#L276)
+[Spinner/index.ts:296](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L296)
 
 ___
 
@@ -103,13 +115,13 @@ The current wheel value.
 
 #### Defined in
 
-[Spinner/index.ts:267](https://github.com/daniellacosse/idea-spinner/blob/f12fe4a/packages/spinner/Spinner/index.ts#L267)
+[Spinner/index.ts:287](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L287)
 
 ## Methods
 
 ### advanceTime
 
-▸ **advanceTime**(`time`): `void`
+▸ **advanceTime**(`time`): `undefined` \| [`Wheel`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Wheel.md)<`T`\>
 
 Advances the wheel forward in the simulation.
 
@@ -126,8 +138,39 @@ wheel.advanceTime(1000);
 
 #### Returns
 
+`undefined` \| [`Wheel`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Wheel.md)<`T`\>
+
+This wheel, for utility.
+
+#### Defined in
+
+[Spinner/index.ts:313](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L313)
+
+___
+
+### unsafeForceValue
+
+▸ **unsafeForceValue**(`value`): `void`
+
+THIS IS NOT RECOMMENDED - forcing the wheel value can cause issues,
+namely the shuffle queue will not know of this. Make sure you know
+what you're doing.
+
+**`example`**
+```js
+wheel.unsafeForceValue("something dumb");
+```
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `T` | The value to set the wheel to. |
+
+#### Returns
+
 `void`
 
 #### Defined in
 
-[Spinner/index.ts:291](https://github.com/daniellacosse/idea-spinner/blob/f12fe4a/packages/spinner/Spinner/index.ts#L291)
+[Spinner/index.ts:346](https://github.com/daniellacosse/idea-spinner/blob/a31e91a/packages/spinner/Spinner/index.ts#L346)

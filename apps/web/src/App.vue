@@ -3,20 +3,21 @@ import { useStore } from "vuex";
 import { computed, nextTick } from "vue";
 import {
   Spinner,
-  SpinnerStoreGetters,
   SpinnerStoreMutations,
   SpinnerStoreState,
+  SpinnerStoreStateWithGetters
 } from "./Spinner";
 
 const MS_IN_SECOND = 1000;
 const FRAMES_PER_SECOND = 60;
 
-const store = useStore<SpinnerStoreState>();
+const store = useStore<SpinnerStoreState>() as SpinnerStoreStateWithGetters;
 
 const isSpinning = computed(() => store.state.isSpinning);
 const hasSpun = computed(() => Boolean(store.state.currentSpinID));
-const wheels = computed(
-  () => (store.getters as SpinnerStoreGetters).spinnerDisplay
+const wheels = computed(() => store.getters.spinnerWheelProps);
+const isLocked = computed(
+  () => store.getters.wheelCount === store.getters.lockedWheelCount
 );
 
 function spin() {
@@ -38,12 +39,30 @@ function spin() {
     });
   }, MS_IN_SECOND / FRAMES_PER_SECOND);
 }
+
+function wheelOperation(
+  operation: SpinnerStoreMutations.LOCK | SpinnerStoreMutations.UNLOCK
+) {
+  return (wheelName: string) => {
+    const { currentSpin } = store.getters;
+
+    if (!currentSpin) {
+      return;
+    }
+
+    store.commit(operation, currentSpin.wheels.get(wheelName));
+  };
+}
+
+const lockWheel = wheelOperation(SpinnerStoreMutations.LOCK);
+const unlockWheel = wheelOperation(SpinnerStoreMutations.UNLOCK);
 </script>
 
 <template>
   <div class="SpinnerContainer">
-    <Spinner :is-spinning="isSpinning" :has-spun="hasSpun" :wheels="wheels"
-      @spin="spin" />
+    <Spinner :is-spinning="isSpinning" :has-spun="hasSpun" :is-locked="isLocked"
+      :wheels="wheels" @spin="spin" @lock-wheel="lockWheel"
+      @unlock-wheel="unlockWheel" />
   </div>
 </template>
 
