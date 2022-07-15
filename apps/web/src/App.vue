@@ -56,13 +56,21 @@ function wheelOperation(
 
 const lockWheel = wheelOperation(SpinnerStoreMutations.LOCK);
 const unlockWheel = wheelOperation(SpinnerStoreMutations.UNLOCK);
+
+function editWheel(
+  { value, wheelName }: { value: string; wheelName: string; }
+) {
+  store.getters.currentSpin?.wheels.get(wheelName)?.unsafeForceValue({ value });
+
+  lockWheel(wheelName);
+}
 </script>
 
 <template>
   <div class="SpinnerContainer">
     <Spinner :is-spinning="isSpinning" :has-spun="hasSpun" :is-locked="isLocked"
       :wheels="wheels" @spin="spin" @lock-wheel="lockWheel"
-      @unlock-wheel="unlockWheel" />
+      @unlock-wheel="unlockWheel" @edit-wheel="editWheel" />
   </div>
 </template>
 

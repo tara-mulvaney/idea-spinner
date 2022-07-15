@@ -19,11 +19,21 @@ exports[` 1`] = `
       🔓
     </i>
   </header>
-  <div
+  <button
     class="SpinnerWheel__value SpinnerWheel__value--description"
     title="Clowns are a curious breed who sustain themselves on the laugher of children."
   >
-    Clowns
-  </div>
+    <!--
+        ISSUE #32: somehow get contenteditable to work
+
+        For the life of me I could not get contenteditable to work in Vue3 - so, 
+        my clever workaround was to bind the size attribute to the current
+        input value's length.
+      -->
+    <input
+      class="SpinnerWheel__valueInput"
+      size="6"
+    />
+  </button>
 </li>
 `;

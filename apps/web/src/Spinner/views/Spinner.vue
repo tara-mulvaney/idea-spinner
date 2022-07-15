@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<SpinnerProps>(), { maxColumns: 4 });
 
 const rowCount = ref(Math.ceil(props.wheels.length / props.maxColumns));
 
-defineEmits(["spin", "lock-wheel", "unlock-wheel"]);
+defineEmits(["spin", "edit-wheel", "lock-wheel", "unlock-wheel"]);
 </script>
 
 <template>
@@ -26,7 +26,8 @@ defineEmits(["spin", "lock-wheel", "unlock-wheel"]);
     }">
       <SpinnerWheel v-for="wheel in wheels" :key="wheel.name" v-bind="wheel"
         @lock="hasSpun && $emit('lock-wheel', wheel.name)"
-        @unlock="hasSpun && $emit('unlock-wheel', wheel.name)" />
+        @unlock="hasSpun && $emit('unlock-wheel', wheel.name)"
+        @edit="hasSpun && $emit('edit-wheel', { ...$event, wheelName: wheel.name })" />
     </ul>
 
     <button class="SpinnerLever" @click.prevent="$emit('spin', true)"

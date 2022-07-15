@@ -13,6 +13,8 @@ interface SpinnerWheelProps {
 const props = defineProps<SpinnerWheelProps>();
 
 const isAnimating = ref(false);
+const input = ref<HTMLInputElement | null>(null);
+const displayEmptyValue = "--";
 
 watch(
   () => props.value,
@@ -21,7 +23,7 @@ watch(
   }
 );
 
-defineEmits(["lock", "unlock"]);
+defineEmits(["edit", "lock", "unlock"]);
 
 function clearChange() {
   isAnimating.value = false;
@@ -47,12 +49,23 @@ function clearChange() {
         }}
       </i>
     </header>
-    <div :class="{
+    <button :class="{
       'SpinnerWheel__value': true,
       'SpinnerWheel__value--description': Boolean(description) && (isLocked || !isSpinning)
-    }" :title="description">
-      {{ value ?? "--" }}
-    </div>
+    }" :title="description" @click.stop.prevent="input?.focus()">
+      <!--
+        ISSUE #32: somehow get contenteditable to work
+
+        For the life of me I could not get contenteditable to work in Vue3 - so, 
+        my clever workaround was to bind the size attribute to the current
+        input value's length.
+      -->
+      <input class="SpinnerWheel__valueInput"
+        :size="value?.length ?? displayEmptyValue.length"
+        :value="value ?? displayEmptyValue"
+        :disabled="value === undefined || isSpinning"
+        @input="$emit('edit', { value: $event.target?.value })" ref="input" />
+    </button>
   </li>
 </template>
 
@@ -106,13 +119,20 @@ function clearChange() {
 }
 
 .SpinnerWheel__value {
-  color: var(--color-primary-foreground);
+  box-sizing: border-box;
   flex-grow: 1;
-  font-family: var(--font-secondary);
-  text-align: center;
-  font-size: var(--gutter-wide);
-  transition: color var(--animation-timing) ease-out;
   padding: var(--gutter-narrow);
+  width: 100%;
+}
+
+.SpinnerWheel__valueInput {
+  color: var(--color-primary-foreground);
+  font-family: var(--font-secondary);
+  font-size: var(--gutter-wide);
+  max-width: 100%;
+  text-align: center;
+  text-overflow: ellipsis;
+  transition: color var(--animation-timing) ease-out;
 }
 
 .SpinnerWheel__value--description {
@@ -154,7 +174,7 @@ function clearChange() {
   background: var(--color-primary-variant);
 }
 
-.SpinnerWheel--stopped>.SpinnerWheel__value {
+.SpinnerWheel--stopped .SpinnerWheel__valueInput {
   color: var(--color-primary-variant-foreground);
 }
 
