@@ -7,8 +7,6 @@
   "devDependencies": {
     "@babel/core": "^7.17.10",
     "@jest/globals": "^28.1.0",
-    "@parcel/package-manager": "2.6.0",
-    "@parcel/transformer-vue": "2.6.0",
     "@types/babel__core": "^7",
     "@types/eslint": "^8",
     "@types/jest": "^27.5.1",
@@ -16,6 +14,7 @@
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
     "@typescript-eslint/utils": "^5.22.0",
+    "@vitejs/plugin-vue": "^3.0.1",
     "@vue/runtime-dom": "^3.2.33",
     "@vue/test-utils": "^2.0.0-rc.21",
     "@vue/vue3-jest": "^28",
@@ -32,7 +31,6 @@
     "jest-environment-jsdom": "^28.1.0",
     "jest-serializer-vue": "^2.0.2",
     "nodemon": "^2.0.19",
-    "parcel": "^2.6.0",
     "prettier": "^2.7.1",
     "stylelint": "^14.8.2",
     "stylelint-config-recommended": "^7.0.0",
@@ -44,14 +42,15 @@
     "ts-jest": "^28",
     "tslib": "^2.4.0",
     "typescript": "^4.6.4",
+    "vite": "^3.0.2",
     "vue-eslint-parser": "^9.0.2"
   },
   "source": "src/index.html",
   "name": "@idea-spinner/web",
   "scripts": {
-    "build": "parcel build --public-url /spinner/",
+    "build": "vite build",
     "lint": "concurrently -n eslint,stylelint 'eslint src --ext ts,vue' 'stylelint \"**/*.vue\"'",
-    "start": "parcel --open --public-url /spinner/",
+    "start": "vite",
     "test": "jest .",
     "watch": "concurrently -n build,lint,test 'yarn start' 'nodemon --exec \"yarn lint\" -e \"ts,vue\"' 'jest --watch .'"
   }

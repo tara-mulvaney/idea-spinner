@@ -1,10 +1,9 @@
 export { ShuffleQueue } from "./Spinner/ShuffleQueue";
-export {
-  Spin,
-  Spinner,
+export { Spin, Spinner, Wheel } from "./Spinner";
+
+export type {
   SpinnerParameters,
   SpinnerPhysics,
-  Wheel,
   WheelSet,
   WheelItem,
 } from "./Spinner";
