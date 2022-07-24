@@ -26,9 +26,9 @@ exports[` 1`] = `
     <!--
         ISSUE #32: somehow get contenteditable to work
 
-        For the life of me I could not get contenteditable to work in Vue3 - so, 
-        my clever workaround was to bind the size attribute to the current
-        input value's length.
+        For the life of me I could not get contenteditable 
+        to work in Vue3 - so, my clever workaround was to bind the 
+        size attribute to the current input value's length.
       -->
     <input
       class="SpinnerWheel__valueInput"
