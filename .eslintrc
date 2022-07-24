@@ -27,11 +27,13 @@
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": [
+    "prettier",
     "@typescript-eslint",
     "compat",
     "jest",
     "jsdoc"
   ],
+  "root": true,
   "rules": {
     "@typescript-eslint/array-type": [
       "error",
@@ -39,10 +41,6 @@
         "default": "array-simple"
       }
     ],
-    "@typescript-eslint/brace-style": [
-      "error"
-    ],
-    "@typescript-eslint/comma-spacing": "error",
     "@typescript-eslint/consistent-type-definitions": [
       "error",
       "interface"
@@ -53,14 +51,8 @@
         "accessibility": "no-public"
       }
     ],
-    "@typescript-eslint/func-call-spacing": "error",
-    "@typescript-eslint/indent": [
-      "error",
-      2
-    ],
-    "@typescript-eslint/keyword-spacing": "error",
+    "@typescript-eslint/indent": "off",
     "@typescript-eslint/member-ordering": "error",
-    "@typescript-eslint/no-extra-parens": "error",
     "@typescript-eslint/no-extraneous-class": "error",
     "@typescript-eslint/no-floating-promises": [
       "error",
@@ -97,36 +89,15 @@
     "@typescript-eslint/no-unnecessary-qualifier": "error",
     "@typescript-eslint/no-unnecessary-type-arguments": "error",
     "@typescript-eslint/no-useless-constructor": "error",
-    // Require 1 or more newlines after blocks of code for legibility
-    "@typescript-eslint/padding-line-between-statements": [
-      "error",
-      {
-        "blankLine": "always",
-        "next": "*",
-        "prev": "block-like"
-      }
-    ],
     "@typescript-eslint/prefer-for-of": "error",
     "@typescript-eslint/prefer-function-type": "error",
     "@typescript-eslint/prefer-readonly": "error",
     "@typescript-eslint/promise-function-async": "error",
-    "@typescript-eslint/quotes": "error",
     "@typescript-eslint/restrict-plus-operands": "error",
-    "@typescript-eslint/semi": "error",
     "@typescript-eslint/strict-boolean-expressions": "error",
+    "arrow-body-style": "off",
     "brace-style": "off",
     "camelcase": "error",
-    "curly": [
-      "error",
-      "multi-line"
-    ],
-    "dot-notation": [
-      "error",
-      {
-        "allowPattern": "^[a-z]+([-_][a-z]+)+$"
-      }
-    ], // `css-case` and `python_case` allowed
-    "eol-last": "error", // end files w/ newline - this is git-friendly
     "eqeqeq": "error", // please check for type
     "indent": "off",
     "jsdoc/check-alignment": "error",
@@ -174,7 +145,6 @@
     ],
     "max-len": "error",
     "no-await-in-loop": "warn", // consider Promise.all instead so async calls are fired at once
-    "no-console": "error", // we shouldn't be logging from stateless components
     "no-eval": "error", // this is an attack vector
     "no-extra-boolean-cast": "off",
     "no-extra-parens": "off",
@@ -183,7 +153,6 @@
     "no-return-assign": "error",
     "no-shadow": "off",
     "no-template-curly-in-string": "error", // backticks are required
-    "no-trailing-spaces": "error",
     "no-unneeded-ternary": "error", // forbids `thing ? true : false;`
     "no-useless-constructor": "off",
     // enforce es6 features
@@ -204,12 +173,21 @@
       "always"
     ],
     "padding-line-between-statements": "off",
+    "prefer-arrow-callback": "off",
     "prefer-const": "error", // use `const` when the variable doesn't change
     "prefer-destructuring": "error",
     "prefer-object-spread": "error",
     "prefer-rest-params": "error",
     "prefer-spread": "error",
     "prefer-template": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "arrowParens": "avoid",
+        "singleAttributePerLine": true,
+        "vueIndentScriptAndStyle": true
+      }
+    ],
     "quotes": "off",
     "semi": "off",
     // sort identifiers so it's easier to find things

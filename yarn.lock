@@ -2346,6 +2346,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@csstools/selector-specificity@npm:^2.0.1":
+  version: 2.0.2
+  resolution: "@csstools/selector-specificity@npm:2.0.2"
+  peerDependencies:
+    postcss: ^8.2
+    postcss-selector-parser: ^6.0.10
+  checksum: a2045a27276a6cfe645b6e212afc217d9a43174ea7a1fa1ab8918d5a0ace72380fbd9837fe1920c547985c11a9070dc48c5c80d483d3f581ddf7aa688204d44f
+  languageName: node
+  linkType: hard
+
 "@discoveryjs/json-ext@npm:^0.5.3":
   version: 0.5.7
   resolution: "@discoveryjs/json-ext@npm:0.5.7"
@@ -2519,6 +2529,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eslint/eslintrc@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "@eslint/eslintrc@npm:1.3.0"
+  dependencies:
+    ajv: ^6.12.4
+    debug: ^4.3.2
+    espree: ^9.3.2
+    globals: ^13.15.0
+    ignore: ^5.2.0
+    import-fresh: ^3.2.1
+    js-yaml: ^4.1.0
+    minimatch: ^3.1.2
+    strip-json-comments: ^3.1.1
+  checksum: a1e734ad31a8b5328dce9f479f185fd4fc83dd7f06c538e1fa457fd8226b89602a55cc6458cd52b29573b01cdfaf42331be8cfc1fec732570086b591f4ed6515
+  languageName: node
+  linkType: hard
+
 "@gar/promisify@npm:^1.0.1, @gar/promisify@npm:^1.1.3":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
@@ -2554,6 +2581,7 @@ __metadata:
     "@types/cuid": ^2
     "@types/eslint": ^8
     "@types/jest": ^27.5.1
+    "@types/prettier": ^2
     "@typescript-eslint/eslint-plugin": ^5.22.0
     "@typescript-eslint/parser": ^5.22.0
     "@typescript-eslint/utils": ^5.22.0
@@ -2564,8 +2592,10 @@ __metadata:
     eslint-plugin-compat: ^4.0.2
     eslint-plugin-jest: ^26.1.5
     eslint-plugin-jsdoc: ^39.3.0
+    eslint-plugin-prettier: ^4.2.1
     jest: ^28
     nodemon: ^2.0.19
+    prettier: ^2.7.1
     ts-jest: ^28
     tslib: ^2.4.0
     typedoc: ^0.22.15
@@ -2636,6 +2666,7 @@ __metadata:
     "@types/babel__core": ^7
     "@types/eslint": ^8
     "@types/jest": ^27.5.1
+    "@types/prettier": ^2
     "@typescript-eslint/eslint-plugin": ^5.22.0
     "@typescript-eslint/parser": ^5.22.0
     "@typescript-eslint/utils": ^5.22.0
@@ -2649,12 +2680,14 @@ __metadata:
     eslint-plugin-compat: ^4.0.2
     eslint-plugin-jest: ^26.1.5
     eslint-plugin-jsdoc: ^39.3.0
+    eslint-plugin-prettier: ^4.2.1
     eslint-plugin-vue: ^8.7.1
     jest: 28
     jest-environment-jsdom: ^28.1.0
     jest-serializer-vue: ^2.0.2
     nodemon: ^2.0.19
     parcel: ^2.6.0
+    prettier: ^2.7.1
     stylelint: ^14.8.2
     stylelint-config-recommended: ^7.0.0
     stylelint-declaration-strict-value: ^1.8.0
@@ -6331,6 +6364,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/prettier@npm:^2":
+  version: 2.6.3
+  resolution: "@types/prettier@npm:2.6.3"
+  checksum: e1836699ca189fff6d2a73dc22e028b6a6f693ed1180d5998ac29fa197caf8f85aa92cb38db642e4a370e616b451cb5722ad2395dab11c78e025a1455f37d1f0
+  languageName: node
+  linkType: hard
+
 "@types/prettier@npm:^2.1.5":
   version: 2.6.0
   resolution: "@types/prettier@npm:2.6.0"
@@ -9639,6 +9679,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"css-functions-list@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "css-functions-list@npm:3.1.0"
+  checksum: 8a7c9d4ae57cb2f01500263e65a21372048d359ca7aa6430a32a736fe2a421decfebe45e579124b9a158ec68aba2eadcd733e568495a7698240d9607d31f681b
+  languageName: node
+  linkType: hard
+
 "css-loader@npm:^3.6.0":
   version: 3.6.0
   resolution: "css-loader@npm:3.6.0"
@@ -10764,6 +10811,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-plugin-prettier@npm:^4.2.1":
+  version: 4.2.1
+  resolution: "eslint-plugin-prettier@npm:4.2.1"
+  dependencies:
+    prettier-linter-helpers: ^1.0.0
+  peerDependencies:
+    eslint: ">=7.28.0"
+    prettier: ">=2.0.0"
+  peerDependenciesMeta:
+    eslint-config-prettier:
+      optional: true
+  checksum: b9e839d2334ad8ec7a5589c5cb0f219bded260839a857d7a486997f9870e95106aa59b8756ff3f37202085ebab658de382b0267cae44c3a7f0eb0bcc03a4f6d6
+  languageName: node
+  linkType: hard
+
 "eslint-plugin-vue@npm:^8.7.1":
   version: 8.7.1
   resolution: "eslint-plugin-vue@npm:8.7.1"
@@ -10899,6 +10961,51 @@ __metadata:
   bin:
     eslint: bin/eslint.js
   checksum: d8896393832e154e1381a21041cfe4d12a73a76fac26ea27cabbc0e5fdac87918ad651f07f804ef6faacd3868572de3c1ec5d96edf5502bc999eff0c423638f7
+  languageName: node
+  linkType: hard
+
+"eslint@npm:^8.20.0":
+  version: 8.20.0
+  resolution: "eslint@npm:8.20.0"
+  dependencies:
+    "@eslint/eslintrc": ^1.3.0
+    "@humanwhocodes/config-array": ^0.9.2
+    ajv: ^6.10.0
+    chalk: ^4.0.0
+    cross-spawn: ^7.0.2
+    debug: ^4.3.2
+    doctrine: ^3.0.0
+    escape-string-regexp: ^4.0.0
+    eslint-scope: ^7.1.1
+    eslint-utils: ^3.0.0
+    eslint-visitor-keys: ^3.3.0
+    espree: ^9.3.2
+    esquery: ^1.4.0
+    esutils: ^2.0.2
+    fast-deep-equal: ^3.1.3
+    file-entry-cache: ^6.0.1
+    functional-red-black-tree: ^1.0.1
+    glob-parent: ^6.0.1
+    globals: ^13.15.0
+    ignore: ^5.2.0
+    import-fresh: ^3.0.0
+    imurmurhash: ^0.1.4
+    is-glob: ^4.0.0
+    js-yaml: ^4.1.0
+    json-stable-stringify-without-jsonify: ^1.0.1
+    levn: ^0.4.1
+    lodash.merge: ^4.6.2
+    minimatch: ^3.1.2
+    natural-compare: ^1.4.0
+    optionator: ^0.9.1
+    regexpp: ^3.2.0
+    strip-ansi: ^6.0.1
+    strip-json-comments: ^3.1.0
+    text-table: ^0.2.0
+    v8-compile-cache: ^2.0.3
+  bin:
+    eslint: bin/eslint.js
+  checksum: a31adf390d71d916925586bc8467b48f620e93dd0416bc1e897d99265af88b48d4eba3985b5ff4653ae5cc46311a360d373574002277e159bb38a4363abf9228
   languageName: node
   linkType: hard
 
@@ -11193,6 +11300,13 @@ __metadata:
   version: 3.1.3
   resolution: "fast-deep-equal@npm:3.1.3"
   checksum: e21a9d8d84f53493b6aa15efc9cfd53dd5b714a1f23f67fb5dc8f574af80df889b3bce25dc081887c6d25457cce704e636395333abad896ccdec03abaf1f3f9d
+  languageName: node
+  linkType: hard
+
+"fast-diff@npm:^1.1.2":
+  version: 1.2.0
+  resolution: "fast-diff@npm:1.2.0"
+  checksum: 1b5306eaa9e826564d9e5ffcd6ebd881eb5f770b3f977fcbf38f05c824e42172b53c79920e8429c54eb742ce15a0caf268b0fdd5b38f6de52234c4a8368131ae
   languageName: node
   linkType: hard
 
@@ -12031,6 +12145,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"globals@npm:^13.15.0":
+  version: 13.16.0
+  resolution: "globals@npm:13.16.0"
+  dependencies:
+    type-fest: ^0.20.2
+  checksum: e571b28462b8922a29ac78c8df89848cfd5dc9bdd5d8077440c022864f512a4aae82e7561a2f366337daa86fd4b366aec16fd3f08686de387e4089b01be6cb14
+  languageName: node
+  linkType: hard
+
 "globals@npm:^13.2.0":
   version: 13.15.0
   resolution: "globals@npm:13.15.0"
@@ -12721,17 +12844,21 @@ __metadata:
     "@ryansonshine/commitizen": ^4.2.8
     "@ryansonshine/cz-conventional-changelog": ^3.3.4
     "@types/node": ^17.0.32
+    "@types/prettier": ^2
     "@typescript-eslint/eslint-plugin": ^5.22.0
     "@typescript-eslint/parser": ^5.22.0
     "@typescript-eslint/utils": ^5.22.0
-    eslint: ^8.15.0
+    eslint: ^8.20.0
     eslint-plugin-compat: ^4.0.2
     eslint-plugin-jest: ^26.1.5
     eslint-plugin-jsdoc: ^39.3.0
+    eslint-plugin-prettier: ^4.2.1
     eslint-plugin-vue: ^8.7.1
     eslint-watch: ^8.0.0
     husky: ^8.0.0
     pinst: ^3.0.0
+    prettier: ^2.7.1
+    stylelint: ^14.9.1
     ts-node: ^10.7.0
     tslib: ^2.4.0
     typescript: ^4.6.4
@@ -17540,7 +17667,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.0":
+"postcss@npm:^8.4.0, postcss@npm:^8.4.14":
   version: 8.4.14
   resolution: "postcss@npm:8.4.14"
   dependencies:
@@ -17602,12 +17729,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prettier-linter-helpers@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "prettier-linter-helpers@npm:1.0.0"
+  dependencies:
+    fast-diff: ^1.1.2
+  checksum: 00ce8011cf6430158d27f9c92cfea0a7699405633f7f1d4a45f07e21bf78e99895911cbcdc3853db3a824201a7c745bd49bfea8abd5fb9883e765a90f74f8392
+  languageName: node
+  linkType: hard
+
 "prettier@npm:>=2.2.1 <=2.3.0":
   version: 2.3.0
   resolution: "prettier@npm:2.3.0"
   bin:
     prettier: bin-prettier.js
   checksum: e8851a45f60f2994775f96e07964646c299b8a8f9c64da4fbd8efafc20db3458bdcedac79aed34e1d5477540b3aa04f6499adc4979cb7937f8ebd058a767d8ff
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^2.7.1":
+  version: 2.7.1
+  resolution: "prettier@npm:2.7.1"
+  bin:
+    prettier: bin-prettier.js
+  checksum: 55a4409182260866ab31284d929b3cb961e5fdb91fe0d2e099dac92eaecec890f36e524b4c19e6ceae839c99c6d7195817579cdffc8e2c80da0cb794463a748b
   languageName: node
   linkType: hard
 
@@ -20244,6 +20389,56 @@ __metadata:
   bin:
     stylelint: bin/stylelint.js
   checksum: befe14048b9b442f58a5233a0d1ad1d0ec28ec95bbe940f9394fc43cc90b19546fe06a762790a1dc8066177d33eb57a3a2ca482f848e46f880afadeb46bd536c
+  languageName: node
+  linkType: hard
+
+"stylelint@npm:^14.9.1":
+  version: 14.9.1
+  resolution: "stylelint@npm:14.9.1"
+  dependencies:
+    "@csstools/selector-specificity": ^2.0.1
+    balanced-match: ^2.0.0
+    colord: ^2.9.2
+    cosmiconfig: ^7.0.1
+    css-functions-list: ^3.1.0
+    debug: ^4.3.4
+    execall: ^2.0.0
+    fast-glob: ^3.2.11
+    fastest-levenshtein: ^1.0.12
+    file-entry-cache: ^6.0.1
+    get-stdin: ^8.0.0
+    global-modules: ^2.0.0
+    globby: ^11.1.0
+    globjoin: ^0.1.4
+    html-tags: ^3.2.0
+    ignore: ^5.2.0
+    import-lazy: ^4.0.0
+    imurmurhash: ^0.1.4
+    is-plain-object: ^5.0.0
+    known-css-properties: ^0.25.0
+    mathml-tag-names: ^2.1.3
+    meow: ^9.0.0
+    micromatch: ^4.0.5
+    normalize-path: ^3.0.0
+    picocolors: ^1.0.0
+    postcss: ^8.4.14
+    postcss-media-query-parser: ^0.2.3
+    postcss-resolve-nested-selector: ^0.1.1
+    postcss-safe-parser: ^6.0.0
+    postcss-selector-parser: ^6.0.10
+    postcss-value-parser: ^4.2.0
+    resolve-from: ^5.0.0
+    string-width: ^4.2.3
+    strip-ansi: ^6.0.1
+    style-search: ^0.1.0
+    supports-hyperlinks: ^2.2.0
+    svg-tags: ^1.0.0
+    table: ^6.8.0
+    v8-compile-cache: ^2.3.0
+    write-file-atomic: ^4.0.1
+  bin:
+    stylelint: bin/stylelint.js
+  checksum: 53c65c9a1d0009ba15847905afc34efc2f4820edc989f8c2aeecf6b7873b2de3040a1969761ef0983caca2e773947482962df5c25216cb9e3f21af241675bb50
   languageName: node
   linkType: hard
 

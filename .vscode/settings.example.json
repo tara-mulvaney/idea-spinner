@@ -1,0 +1,31 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "editor.formatOnSave": false,
+  "eslint.nodePath": ".yarn/sdks",
+  "eslint.packageManager": "yarn",
+  "eslint.run": "onSave",
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "vue"
+  ],
+  "files.autoSave": "onFocusChange",
+  "files.refactoring.autoSave": true,
+  "search.exclude": {
+    "**/.pnp.*": true,
+    "**/.yarn": true
+  },
+  "stylelint.customSyntax": "postcss-html",
+  "stylelint.enable": true,
+  "stylelint.packageManager": "yarn",
+  "stylelint.validate": ["vue"],
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "versionlens.npm.dependencyProperties": [
+    "dependencies"
+  ],
+  "versionlens.suggestions.showOnStartup": true
+}

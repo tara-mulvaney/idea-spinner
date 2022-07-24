@@ -1,20 +1,18 @@
 import { expect, test } from "@jest/globals";
 import { Spin, Spinner, Wheel } from ".";
 
-
 test.concurrent("Spinner - constructor", async () => {
-  expect(() => new Spinner({
-    wheels: new Map([
-      ["wheel1", ["a", "b", "c"]]
-    ])
-  })).not.toThrow();
+  expect(
+    () =>
+      new Spinner({
+        wheels: new Map([["wheel1", ["a", "b", "c"]]]),
+      })
+  ).not.toThrow();
 });
 
 test.concurrent("Spinner - createSpin", async () => {
   const spinner = new Spinner({
-    wheels: new Map([
-      ["wheel1", ["a", "b", "c"]]
-    ])
+    wheels: new Map([["wheel1", ["a", "b", "c"]]]),
   });
 
   const startingFrameLength = 100;
@@ -22,7 +20,7 @@ test.concurrent("Spinner - createSpin", async () => {
     endingFrameLength: 300,
     friction: 0.5,
     startingFrameLength,
-    variance: 1
+    variance: 1,
   }).id;
 
   const item1 = spinner.getSpin(spinID)?.wheels.get("wheel1")?.value;
@@ -30,12 +28,11 @@ test.concurrent("Spinner - createSpin", async () => {
   expect(item1).toBeTruthy();
 });
 
-test.concurrent("Spinner - fails createSpin if no physics provided",
+test.concurrent(
+  "Spinner - fails createSpin if no physics provided",
   async () => {
     const spinner = new Spinner({
-      wheels: new Map([
-        ["wheel1", ["a", "b", "c"]]
-      ])
+      wheels: new Map([["wheel1", ["a", "b", "c"]]]),
     });
 
     expect(() => spinner.createSpin()).toThrow();
@@ -44,9 +41,7 @@ test.concurrent("Spinner - fails createSpin if no physics provided",
 
 test.concurrent("Spinner - advanceSpin", async () => {
   const spinner = new Spinner({
-    wheels: new Map([
-      ["wheel1", ["a", "b", "c"]]
-    ])
+    wheels: new Map([["wheel1", ["a", "b", "c"]]]),
   });
 
   const startingFrameLength = 100;
@@ -54,7 +49,7 @@ test.concurrent("Spinner - advanceSpin", async () => {
     endingFrameLength: 300,
     friction: 0.5,
     startingFrameLength,
-    variance: 1
+    variance: 1,
   }).id;
 
   const item1 = spinner.getSpin(spinID)?.wheels.get("wheel1")?.value;
@@ -72,17 +67,16 @@ test.concurrent("Spin - isSpinning", async () => {
     physics: {
       endingFrameLength: 0,
       friction: 0,
-      startingFrameLength: 1
+      startingFrameLength: 1,
     },
-    wheels: new Map([
-      ["wheel1", ["1", "2"]]
-    ])
+    wheels: new Map([["wheel1", ["1", "2"]]]),
   });
 
   expect(spin.isSpinning).toBe(false);
 });
 
-test.concurrent("Wheel - short circuits advancement if not spinning",
+test.concurrent(
+  "Wheel - short circuits advancement if not spinning",
   async () => {
     const wheel = new Wheel({
       items: ["item1", "item2"],
@@ -90,8 +84,8 @@ test.concurrent("Wheel - short circuits advancement if not spinning",
       physics: {
         endingFrameLength: 0,
         friction: 0,
-        startingFrameLength: 1
-      }
+        startingFrameLength: 1,
+      },
     });
 
     const initialValue = wheel.value;

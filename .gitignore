@@ -8,6 +8,7 @@
 
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.example.json
 
 .parcel-cache
 coverage

@@ -6,5 +6,5 @@ export {
   SpinnerPhysics,
   Wheel,
   WheelSet,
-  WheelItem
+  WheelItem,
 } from "./Spinner";

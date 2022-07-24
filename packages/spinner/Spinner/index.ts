@@ -15,7 +15,7 @@ export interface SpinnerPhysics {
 }
 
 export type WheelSet<T> = Map<string, T[]>;
-export type WheelItem = string | { [property: string]: string; };
+export type WheelItem = string | { [property: string]: string };
 
 /**
  * Simulates the spinning of a slot-machine-like object.
@@ -72,8 +72,8 @@ export class Spinner<T = WheelItem> {
     if (!(this.parameters.defaultPhysics || physics)) {
       throw new TypeError(
         "No physics provided for Spin - " +
-        "please provide a physics object to `createSpin`" +
-        " or initialize the Spinner with a default physics object."
+          "please provide a physics object to `createSpin` " +
+          "or initialize the Spinner with a default physics object."
       );
     }
 
@@ -81,7 +81,7 @@ export class Spinner<T = WheelItem> {
     const spin = new Spin<T>({
       ...this.parameters,
       id: spinID,
-      physics: (physics ?? this.parameters.defaultPhysics) as SpinnerPhysics
+      physics: (physics ?? this.parameters.defaultPhysics) as SpinnerPhysics,
     });
 
     this.spins.set(spinID, spin);
@@ -169,26 +169,28 @@ export class Spin<T = WheelItem> {
     this.id = parameters.id;
 
     for (const [wheelName, wheelItems] of parameters.wheels.entries()) {
-      const {
-        endingFrameLength,
-        startingFrameLength,
-        variance
-      } = parameters.physics;
+      const { endingFrameLength, startingFrameLength, variance } =
+        parameters.physics;
 
       this.wheels.set(
         wheelName,
         new Wheel<T>({
           items: wheelItems,
           name: wheelName,
-          physics: variance !== undefined
-            ? {
-              ...parameters.physics,
-              endingFrameLength:
-                randomlyOffsetValue(endingFrameLength, variance),
-              startingFrameLength:
-                randomlyOffsetValue(startingFrameLength, variance),
-            }
-            : parameters.physics
+          physics:
+            variance !== undefined
+              ? {
+                  ...parameters.physics,
+                  endingFrameLength: randomlyOffsetValue(
+                    endingFrameLength,
+                    variance
+                  ),
+                  startingFrameLength: randomlyOffsetValue(
+                    startingFrameLength,
+                    variance
+                  ),
+                }
+              : parameters.physics,
         })
       );
     }
@@ -262,13 +264,11 @@ export class Wheel<T = WheelItem> {
    * });
    * ```
    */
-  constructor(
-    parameters: {
-      name: string,
-      items: T[],
-      physics: SpinnerPhysics;
-    }
-  ) {
+  constructor(parameters: {
+    name: string;
+    items: T[];
+    physics: SpinnerPhysics;
+  }) {
     this.name = parameters.name;
     this.queue = new ShuffleQueue<T>(parameters.items);
     this.physics = parameters.physics;

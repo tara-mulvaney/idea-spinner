@@ -14,7 +14,7 @@
 
 #### Defined in
 
-[Spinner/index.ts:6](https://github.com/daniellacosse/idea-spinner/blob/6d3c5c3/packages/spinner/Spinner/index.ts#L6)
+[Spinner/index.ts:6](https://github.com/daniellacosse/idea-spinner/blob/190fb85/packages/spinner/Spinner/index.ts#L6)
 
 ___
 
@@ -24,4 +24,4 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:5](https://github.com/daniellacosse/idea-spinner/blob/6d3c5c3/packages/spinner/Spinner/index.ts#L5)
+[Spinner/index.ts:5](https://github.com/daniellacosse/idea-spinner/blob/190fb85/packages/spinner/Spinner/index.ts#L5)

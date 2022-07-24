@@ -13,5 +13,5 @@ export default {
   isLocked: false,
   isSpinning: false,
   name: "Demo Wheel",
-  value: "Clowns"
+  value: "Clowns",
 } as SpinnerWheelProps;

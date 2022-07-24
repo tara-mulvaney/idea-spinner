@@ -8,5 +8,5 @@ export default {
   transform: {
     ...config.transform,
     "^.+\\.vue$": "@vue/vue3-jest",
-  }
+  },
 };

@@ -1,6 +1,11 @@
 {
   "recommendations": [
+    "arcanis.vscode-zipfs",
+    "dbaeumer.vscode-eslint",
     "dt.ghlink",
+    "pflannery.vscode-versionlens",
+    "ryanluker.vscode-coverage-gutters",
+    "stylelint.vscode-stylelint",
     "Vue.volar",
     "Vue.vscode-typescript-vue-plugin"
   ]

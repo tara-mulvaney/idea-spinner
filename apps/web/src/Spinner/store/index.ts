@@ -6,12 +6,12 @@ import {
   SpinnerParameters,
   SpinnerPhysics,
   Wheel,
-  WheelItem
+  WheelItem,
 } from "@idea-spinner/spinner";
 
 export interface SpinnerStoreState {
   currentSpinID?: string;
-  lockedWheelValues: { [wheelName: string]: WheelItem; };
+  lockedWheelValues: { [wheelName: string]: WheelItem };
   isSpinning: boolean;
   spinner: Spinner;
 }
@@ -20,12 +20,12 @@ export enum SpinnerStoreMutations {
   SPIN = "spinner/spin",
   ADVANCE = "spinner/advance",
   LOCK = "spinner/lock",
-  UNLOCK = "spinner/unlock"
+  UNLOCK = "spinner/unlock",
 }
 
 export interface SpinnerStoreStateWithGetters extends Store<SpinnerStoreState> {
   getters: {
-    currentSpin: Spin | undefined;
+    currentSpin?: Spin;
     lockedWheelCount: number;
     spinnerWheelProps: SpinnerWheelProps[];
     wheelCount: number;
@@ -33,7 +33,9 @@ export interface SpinnerStoreStateWithGetters extends Store<SpinnerStoreState> {
 }
 
 const getNoSpinWheelProps = ({
-  spinner: { parameters: { wheels } }
+  spinner: {
+    parameters: { wheels },
+  },
 }: SpinnerStoreState): SpinnerWheelProps[] => {
   const result = [];
 
@@ -41,7 +43,7 @@ const getNoSpinWheelProps = ({
     result.push({
       isLocked: false,
       isSpinning: false,
-      name
+      name,
     });
   }
 
@@ -50,7 +52,7 @@ const getNoSpinWheelProps = ({
 
 const getLiveSpinWheelProps = (
   spin: Spin,
-  lockedWheelValues: { [wheelName: string]: WheelItem; }
+  lockedWheelValues: { [wheelName: string]: WheelItem }
 ): SpinnerWheelProps[] => {
   const result = [];
 
@@ -70,82 +72,77 @@ const getLiveSpinWheelProps = (
       ...value,
       isLocked,
       isSpinning,
-      name
+      name,
     });
   }
 
   return result;
 };
 
-export const createSpinnerStore =
-  (parameters: SpinnerParameters): SpinnerStoreStateWithGetters => {
-    const spinner = new Spinner(parameters);
+export const createSpinnerStore = (
+  parameters: SpinnerParameters
+): SpinnerStoreStateWithGetters => {
+  const spinner = new Spinner(parameters);
 
-    return createStore<SpinnerStoreState>({
-      getters: {
-        currentSpin(state): Spin | undefined {
-          return state.spinner.getSpin(state.currentSpinID ?? "");
-        },
-        lockedWheelCount(state): number {
-          return Object.keys(state.lockedWheelValues).length;
-        },
-        spinnerWheelProps(state): SpinnerWheelProps[] {
-          if (state.currentSpinID === undefined) {
-            return getNoSpinWheelProps(state);
-          }
-
-          const currentSpin = state.spinner.getSpin(state.currentSpinID);
-
-          if (!currentSpin) {
-            return getNoSpinWheelProps(state);
-          }
-
-          return getLiveSpinWheelProps(currentSpin, state.lockedWheelValues);
-        },
-        wheelCount(state): number {
-          return state.spinner.parameters.wheels.size;
-        }
+  return createStore<SpinnerStoreState>({
+    getters: {
+      currentSpin(state): Spin | undefined {
+        return state.spinner.getSpin(state.currentSpinID ?? "");
       },
-      mutations: {
-        [SpinnerStoreMutations.SPIN](
-          state: SpinnerStoreState,
-          physics?: SpinnerPhysics
-        ) {
-          state.currentSpinID = state.spinner.createSpin(physics).id;
-          state.isSpinning = true;
-        },
-        [SpinnerStoreMutations.ADVANCE](
-          state: SpinnerStoreState,
-          time: number
-        ) {
-          if (state.currentSpinID === undefined) {
-            throw new TypeError(
-              "You must SPIN the spinner store before ADVANCEing the spin!"
-            );
-          }
+      lockedWheelCount(state): number {
+        return Object.keys(state.lockedWheelValues).length;
+      },
+      spinnerWheelProps(state): SpinnerWheelProps[] {
+        if (state.currentSpinID === undefined) {
+          return getNoSpinWheelProps(state);
+        }
 
-          state.isSpinning = Boolean(
-            state.spinner.advanceSpin(state.currentSpinID, time)?.isSpinning
+        const currentSpin = state.spinner.getSpin(state.currentSpinID);
+
+        if (!currentSpin) {
+          return getNoSpinWheelProps(state);
+        }
+
+        return getLiveSpinWheelProps(currentSpin, state.lockedWheelValues);
+      },
+      wheelCount(state): number {
+        return state.spinner.parameters.wheels.size;
+      },
+    },
+    mutations: {
+      [SpinnerStoreMutations.SPIN](
+        state: SpinnerStoreState,
+        physics?: SpinnerPhysics
+      ) {
+        state.currentSpinID = state.spinner.createSpin(physics).id;
+        state.isSpinning = true;
+      },
+      [SpinnerStoreMutations.ADVANCE](state: SpinnerStoreState, time: number) {
+        if (state.currentSpinID === undefined) {
+          throw new TypeError(
+            "You must SPIN the spinner store before ADVANCEing the spin!"
           );
-        },
-        [SpinnerStoreMutations.LOCK](state: SpinnerStoreState, wheel: Wheel) {
-          state.lockedWheelValues[wheel.name] = wheel.value;
-        },
-        [SpinnerStoreMutations.UNLOCK](
-          state: SpinnerStoreState,
-          wheel: Wheel
-        ) {
-          wheel.unsafeForceValue(state.lockedWheelValues[wheel.name]);
-
-          delete state.lockedWheelValues[wheel.name];
         }
+
+        state.isSpinning = Boolean(
+          state.spinner.advanceSpin(state.currentSpinID, time)?.isSpinning
+        );
       },
-      state() {
-        return {
-          isSpinning: false,
-          lockedWheelValues: {},
-          spinner
-        };
-      }
-    });
-  };
+      [SpinnerStoreMutations.LOCK](state: SpinnerStoreState, wheel: Wheel) {
+        state.lockedWheelValues[wheel.name] = wheel.value;
+      },
+      [SpinnerStoreMutations.UNLOCK](state: SpinnerStoreState, wheel: Wheel) {
+        wheel.unsafeForceValue(state.lockedWheelValues[wheel.name]);
+
+        delete state.lockedWheelValues[wheel.name];
+      },
+    },
+    state() {
+      return {
+        isSpinning: false,
+        lockedWheelValues: {},
+        spinner,
+      };
+    },
+  });
+};

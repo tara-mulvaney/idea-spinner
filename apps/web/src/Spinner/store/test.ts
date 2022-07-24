@@ -1,173 +1,150 @@
-import {
-  createSpinnerStore,
-  SpinnerStoreMutations
-} from ".";
+import { createSpinnerStore, SpinnerStoreMutations } from ".";
 import { expect, test } from "@jest/globals";
 
-test.concurrent(`SpinnerStore - ${SpinnerStoreMutations.SPIN}`,
-  async () => {
-    const store = createSpinnerStore({
-      wheels: new Map()
-    });
+const { SPIN, ADVANCE, LOCK, UNLOCK } = SpinnerStoreMutations;
 
-    store.commit(SpinnerStoreMutations.SPIN, {
-      endingFrameLength: 0,
-      friction: 0,
-      startingFrameLength: 0
-    });
+test.concurrent(`SpinnerStore - ${SPIN}`, async () => {
+  const store = createSpinnerStore({
+    wheels: new Map(),
+  });
 
-    expect(store.state.spinner.spins.size).toBe(1);
-    expect(store.state.isSpinning).toBeTruthy();
-    expect(store.getters.wheelCount).toBe(0);
-  }
-);
+  store.commit(SPIN, {
+    endingFrameLength: 0,
+    friction: 0,
+    startingFrameLength: 0,
+  });
 
-test.concurrent(`SpinnerStore - ${SpinnerStoreMutations.ADVANCE}`,
-  async () => {
-    const store = createSpinnerStore({
-      defaultPhysics: {
-        endingFrameLength: 1000,
-        friction: 1,
-        startingFrameLength: 100
-      },
-      wheels: new Map([["wheel1", ["option1"]]])
-    });
+  expect(store.state.spinner.spins.size).toBe(1);
+  expect(store.state.isSpinning).toBeTruthy();
+  expect(store.getters.wheelCount).toBe(0);
+});
 
-    store.commit(SpinnerStoreMutations.SPIN);
-    store.commit(SpinnerStoreMutations.ADVANCE, 100);
+test.concurrent(`SpinnerStore - ${ADVANCE}`, async () => {
+  const store = createSpinnerStore({
+    defaultPhysics: {
+      endingFrameLength: 1000,
+      friction: 1,
+      startingFrameLength: 100,
+    },
+    wheels: new Map([["wheel1", ["option1"]]]),
+  });
 
-    expect(
-      store.getters.spinnerWheelProps
-    ).toHaveLength(1);
-  }
-);
+  store.commit(SPIN);
+  store.commit(ADVANCE, 100);
 
-test.concurrent(
-  `SpinnerStore - ${SpinnerStoreMutations.ADVANCE
-  } requires ${SpinnerStoreMutations.SPIN}`,
-  async () => {
-    const store = createSpinnerStore({
-      wheels: new Map([["wheel1", ["option1"]]])
-    });
+  expect(store.getters.spinnerWheelProps).toHaveLength(1);
+});
 
-    expect(
-      () => store.commit(SpinnerStoreMutations.ADVANCE, 100)
-    ).toThrow();
-  }
-);
+test.concurrent(`SpinnerStore - ${ADVANCE} requires ${SPIN}`, async () => {
+  const store = createSpinnerStore({
+    wheels: new Map([["wheel1", ["option1"]]]),
+  });
 
-test.concurrent(
-  `SpinnerStore - spinnerWheelProps before ${SpinnerStoreMutations.SPIN}`,
-  async () => {
-    const store = createSpinnerStore({
-      wheels: new Map([["wheel1", ["option1"]]])
-    });
+  expect(() => store.commit(ADVANCE, 100)).toThrow();
+});
 
-    expect(
-      store.getters.spinnerWheelProps
-    ).toEqual([{
+test.concurrent(`SpinnerStore - spinnerWheelProps before ${SPIN}`, async () => {
+  const store = createSpinnerStore({
+    wheels: new Map([["wheel1", ["option1"]]]),
+  });
+
+  expect(store.getters.spinnerWheelProps).toEqual([
+    {
       isLocked: false,
       isSpinning: false,
-      name: "wheel1"
-    }]);
-  }
-);
+      name: "wheel1",
+    },
+  ]);
+});
 
 test.concurrent(
-  `SpinnerStore - spinnerWheelProps if ${SpinnerStoreMutations.SPIN} deleted`,
+  `SpinnerStore - spinnerWheelProps if ${SPIN} deleted`,
   async () => {
     const store = createSpinnerStore({
-      wheels: new Map([["wheel1", ["option1"]]])
+      wheels: new Map([["wheel1", ["option1"]]]),
     });
 
-    store.commit(SpinnerStoreMutations.SPIN, {
+    store.commit(SPIN, {
       endingFrameLength: 0,
       friction: 0,
-      startingFrameLength: 0
+      startingFrameLength: 0,
     });
 
     store.state.spinner.spins.clear();
 
-    expect(
-      store.getters.spinnerWheelProps
-    ).toEqual([{
-      isLocked: false,
-      isSpinning: false,
-      name: "wheel1"
-    }]);
+    expect(store.getters.spinnerWheelProps).toEqual([
+      {
+        isLocked: false,
+        isSpinning: false,
+        name: "wheel1",
+      },
+    ]);
   }
 );
 
 test.concurrent(
-  `SpinnerStore - getter.currentSpin empty before ${SpinnerStoreMutations.SPIN
-  }`,
+  `SpinnerStore - getter.currentSpin empty before ${SPIN}`,
   async () => {
     const store = createSpinnerStore({
-      wheels: new Map([["wheel1", ["option1"]]])
+      wheels: new Map([["wheel1", ["option1"]]]),
     });
 
     expect(store.getters.currentSpin).toBeUndefined();
   }
 );
 
-test.concurrent(
-  `SpinnerStore - ${SpinnerStoreMutations.LOCK}`,
-  async () => {
-    const store = createSpinnerStore({
-      defaultPhysics: {
-        endingFrameLength: 1000,
-        friction: 1,
-        startingFrameLength: 100
-      },
-      wheels: new Map([["wheel1", ["option1", "option2"]]])
-    });
+test.concurrent(`SpinnerStore - ${LOCK}`, async () => {
+  const store = createSpinnerStore({
+    defaultPhysics: {
+      endingFrameLength: 1000,
+      friction: 1,
+      startingFrameLength: 100,
+    },
+    wheels: new Map([["wheel1", ["option1", "option2"]]]),
+  });
 
-    store.commit(SpinnerStoreMutations.SPIN);
+  store.commit(SPIN);
 
-    const wheel = store.getters.currentSpin?.wheels.get("wheel1");
-    const wheelValue = wheel?.value;
+  const wheel = store.getters.currentSpin?.wheels.get("wheel1");
+  const wheelValue = wheel?.value;
 
-    store.commit(SpinnerStoreMutations.LOCK, wheel);
-    store.commit(SpinnerStoreMutations.ADVANCE, 100);
+  store.commit(LOCK, wheel);
+  store.commit(ADVANCE, 100);
 
-    expect(store.getters.lockedWheelCount).toBe(1);
-    expect(store.state.lockedWheelValues.wheel1).toBe(wheelValue);
+  expect(store.getters.lockedWheelCount).toBe(1);
+  expect(store.state.lockedWheelValues.wheel1).toBe(wheelValue);
 
-    expect(
-      store.getters.spinnerWheelProps
-    ).toEqual([{
+  expect(store.getters.spinnerWheelProps).toEqual([
+    {
       isLocked: true,
       isSpinning: true,
       name: "wheel1",
-      value: wheelValue
-    }]);
-  }
-);
+      value: wheelValue,
+    },
+  ]);
+});
 
-test.concurrent(
-  `SpinnerStore - ${SpinnerStoreMutations.UNLOCK}`,
-  async () => {
-    const store = createSpinnerStore({
-      defaultPhysics: {
-        endingFrameLength: 1000,
-        friction: 1,
-        startingFrameLength: 100
-      },
-      wheels: new Map([["wheel1", ["option1", "option2"]]])
-    });
+test.concurrent(`SpinnerStore - ${UNLOCK}`, async () => {
+  const store = createSpinnerStore({
+    defaultPhysics: {
+      endingFrameLength: 1000,
+      friction: 1,
+      startingFrameLength: 100,
+    },
+    wheels: new Map([["wheel1", ["option1", "option2"]]]),
+  });
 
-    store.commit(SpinnerStoreMutations.SPIN);
+  store.commit(SPIN);
 
-    const wheel = store.getters.currentSpin?.wheels.get("wheel1");
-    const wheelValue = wheel?.value;
+  const wheel = store.getters.currentSpin?.wheels.get("wheel1");
+  const wheelValue = wheel?.value;
 
-    store.commit(SpinnerStoreMutations.LOCK, wheel);
-    store.commit(SpinnerStoreMutations.ADVANCE, 100);
+  store.commit(LOCK, wheel);
+  store.commit(ADVANCE, 100);
 
-    store.commit(SpinnerStoreMutations.UNLOCK, wheel);
-    store.commit(SpinnerStoreMutations.ADVANCE, 200);
+  store.commit(UNLOCK, wheel);
+  store.commit(ADVANCE, 200);
 
-    expect(store.getters.lockedWheelCount).toBe(0);
-    expect(store.state.lockedWheelValues.wheel1).not.toBe(wheelValue);
-  }
-);
+  expect(store.getters.lockedWheelCount).toBe(0);
+  expect(store.state.lockedWheelValues.wheel1).not.toBe(wheelValue);
+});

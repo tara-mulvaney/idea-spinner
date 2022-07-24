@@ -40,25 +40,19 @@ The source code is organized into two top level directories:
 
 Generally you should use folders to co-locate and nest dependencies. For example:
 
-```js
+```sh
 /packages
   /spinner
     /Spinner
-      index.ts // business logic and module definition
-      test.ts // unit tests
-      /ShuffleQueue // submodule Spinner depends on
+      index.ts # business logic and module definition
+      test.ts # unit tests
+      /ShuffleQueue #  submodule Spinner depends on
 ```
 
 ## setting up VSCode
-Given the nascency of the vue3 and yarn3 ecosystems, many of our preferred VSCode extensions haven't settled yet. We won't be supporting VSCode directly until this happens. For now:
+Given the nascency of the vue3 and yarn3 ecosystems, VSCode support is currently in flux and not fully complete. For now:
 
 1. Install the recommended plugins by clicking on the `Extensions` icon, typing `@recommended`, and then clicking the `Install` button on those that are still available.
-2. Create your `.vscode/settings.json`:
-
-```
-{
-  "typescript.tsdk": ".yarn/sdks/typescript/lib"
-}
-```
-3. Confirm that TS in the bottom-bar is set to our SDK. You can click on it to change.
+2. Review the `.vscode/settings.example.json`. If this looks good to you, you can activate it by running `cp .vscode/settings.example.json .vscode/settings.json`
+3. Confirm that TS in the bottom-bar is set to our SDK. You can click on it to change.\eua
   

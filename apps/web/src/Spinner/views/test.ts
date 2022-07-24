@@ -11,7 +11,7 @@ test.concurrent("spinner - snapshot", async () => {
 
 test.concurrent("spinner - spinning", async () => {
   const { element } = shallowMount(Spinner, {
-    props: { ...props, isSpinning: true }
+    props: { ...props, isSpinning: true },
   });
 
   expect(element).toMatchSnapshot();
