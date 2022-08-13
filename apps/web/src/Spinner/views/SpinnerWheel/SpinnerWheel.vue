@@ -12,8 +12,11 @@
 
   const props = defineProps<SpinnerWheelProps>();
 
-  const isAnimating = ref(false);
   const input = ref<HTMLInputElement | null>(null);
+
+  const isAnimating = ref(false);
+  const hasInnerFocus = ref(false);
+
   const displayEmptyValue = "--";
 
   watch(
@@ -23,10 +26,36 @@
     }
   );
 
-  defineEmits(["edit", "lock", "unlock"]);
+  const emit = defineEmits(["edit", "lock", "unlock"]);
 
-  function clearChange() {
+  function toggleLock() {
+    if (props.isSpinning) {
+      return;
+    }
+
+    emit(props.isLocked ? "unlock" : "lock", props.name);
+  }
+
+  function updateValue({ target }: Event) {
+    const { value } = target as HTMLInputElement;
+
+    emit("edit", { value });
+  }
+
+  function _resetAnimation() {
     isAnimating.value = false;
+  }
+
+  function _delegateKeystroke(event: KeyboardEvent) {
+    switch (event.key) {
+      case "Enter":
+        event.preventDefault();
+        return toggleLock();
+      case "Tab":
+        return;
+      default:
+        input.value?.focus();
+    }
   }
 </script>
 
@@ -36,20 +65,28 @@
       SpinnerWheel: true,
       'SpinnerWheel--stopped': isLocked || !isSpinning,
       'SpinnerWheel--tick': !isLocked && isAnimating && isSpinning,
+      'SpinnerWheel--innerFocus': hasInnerFocus,
     }"
-    @animationend="clearChange"
+    :tabindex="value === undefined ? -1 : 1"
+    @animationend="_resetAnimation"
+    @keydown="_delegateKeystroke"
   >
     <header class="SpinnerWheel__header">
-      <h2 class="SpinnerWheel__name">{{ name }}</h2>
+      <label
+        class="SpinnerWheel__name"
+        :for="name"
+      >
+        {{ name }}
+      </label>
       <i
         :class="{
           SpinnerWheel__lock: true,
           'SpinnerWheel__lock--locked': isLocked,
         }"
         role="button"
-        @click.prevent="
-          !isSpinning && $emit(isLocked ? 'unlock' : 'lock', name)
-        "
+        tabindex="-1"
+        @click.prevent="toggleLock"
+        @keydown.enter="toggleLock"
       >
         {{ isLocked ? "🔒" : "🔓" }}
       </i>
@@ -60,8 +97,10 @@
         'SpinnerWheel__value--description':
           Boolean(description) && (isLocked || !isSpinning),
       }"
+      tabindex="-1"
       :title="description"
       @click.stop.prevent="input?.focus()"
+      @keydown="input?.focus()"
     >
       <!--
         ISSUE #32: somehow get contenteditable to work
@@ -71,12 +110,16 @@
         size attribute to the current input value's length.
       -->
       <input
-        class="SpinnerWheel__valueInput"
-        :size="value?.length ?? displayEmptyValue.length"
-        :value="value ?? displayEmptyValue"
-        :disabled="value === undefined || isSpinning"
-        @input="$emit('edit', { value: $event.target?.value })"
+        :id="name"
         ref="input"
+        class="SpinnerWheel__valueInput"
+        :disabled="value === undefined || isSpinning"
+        :size="value?.length ?? displayEmptyValue.length"
+        tabindex="-1"
+        :value="value ?? displayEmptyValue"
+        @blur="hasInnerFocus = false"
+        @focus="hasInnerFocus = true"
+        @input="updateValue"
       />
     </button>
   </li>
@@ -98,6 +141,20 @@
     transition: background var(--animation-timing) ease-out;
   }
 
+  .SpinnerWheel,
+  .SpinnerWheel__header,
+  .SpinnerWheel__value {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .SpinnerWheel:focus,
+  .SpinnerWheel--innerFocus {
+    outline: 3px solid var(--color-primary-variant);
+    outline-offset: 2px;
+  }
+
   .SpinnerWheel__header {
     background: var(--color-primary-variant);
     border-bottom: var(--hairline) solid var(--color-primary);
@@ -113,7 +170,7 @@
   .SpinnerWheel__name {
     color: var(--color-primary-variant-foreground);
     font-family: var(--font-primary);
-    font-size: var(--gutter-narrow);
+    font-size: var(--gutter-standard);
     font-weight: bold;
     text-transform: uppercase;
   }
@@ -124,7 +181,7 @@
     line-height: var(--gutter-wide);
     opacity: 0.5;
     position: absolute;
-    right: var(--gutter-narrow);
+    right: var(--gutter-standard);
   }
 
   .SpinnerWheel__lock.SpinnerWheel__lock--locked {
@@ -141,7 +198,7 @@
   .SpinnerWheel__valueInput {
     color: var(--color-primary-foreground);
     font-family: var(--font-secondary);
-    font-size: var(--gutter-wide);
+    font-size: var(--gutter-large);
     max-width: 100%;
     text-align: center;
     text-overflow: ellipsis;
@@ -155,14 +212,6 @@
   .SpinnerWheel__value--description::before {
     content: "ℹ️";
     padding: var(--gutter-narrow);
-  }
-
-  .SpinnerWheel,
-  .SpinnerWheel__header,
-  .SpinnerWheel__value {
-    align-items: center;
-    display: flex;
-    justify-content: center;
   }
 
   .SpinnerWheel--tick {

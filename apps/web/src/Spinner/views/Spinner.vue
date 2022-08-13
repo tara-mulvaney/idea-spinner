@@ -30,18 +30,19 @@
         v-for="wheel in wheels"
         :key="wheel.name"
         v-bind="wheel"
-        @lock="hasSpun && $emit('lock-wheel', wheel.name)"
-        @unlock="hasSpun && $emit('unlock-wheel', wheel.name)"
         @edit="
           hasSpun && $emit('edit-wheel', { ...$event, wheelName: wheel.name })
         "
+        @lock="hasSpun && $emit('lock-wheel', wheel.name)"
+        @unlock="hasSpun && $emit('unlock-wheel', wheel.name)"
       />
     </ul>
 
     <button
       class="SpinnerLever"
-      @click.prevent="$emit('spin', true)"
       :disabled="isSpinning || isLocked"
+      @click.prevent="$emit('spin', true)"
+      @keydown.enter="$emit('spin', true)"
     >
       {{ isSpinning ? "Spinning..." : isLocked ? "Locked." : "Click to Spin!" }}
     </button>
@@ -84,7 +85,7 @@
     color: var(--color-primary-variant-foreground);
     cursor: pointer;
     font-family: var(--font-primary);
-    font-size: var(--gutter-wide);
+    font-size: var(--gutter-large);
     padding: var(--gutter-narrow) var(--gutter-wide);
     text-align: center;
   }
@@ -92,6 +93,11 @@
   .SpinnerLever[disabled] {
     background: var(--color-primary-foreground);
     cursor: not-allowed;
+  }
+
+  .SpinnerLever:focus {
+    outline: 3px solid var(--color-primary-variant);
+    outline-offset: 2px;
   }
 
   @media screen and (max-width: 760px) {

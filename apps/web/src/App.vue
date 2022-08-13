@@ -78,14 +78,14 @@
 <template>
   <div class="SpinnerContainer">
     <Spinner
-      :is-spinning="isSpinning"
       :has-spun="hasSpun"
       :is-locked="isLocked"
+      :is-spinning="isSpinning"
       :wheels="wheels"
-      @spin="spin"
-      @lock-wheel="lockWheel"
-      @unlock-wheel="unlockWheel"
       @edit-wheel="editWheel"
+      @lock-wheel="lockWheel"
+      @spin="spin"
+      @unlock-wheel="unlockWheel"
     />
   </div>
 </template>
@@ -119,7 +119,8 @@
     --hairline: 1px;
     --gutter-narrow: 0.75rem;
     --gutter-standard: 1rem;
-    --gutter-wide: 1.5rem;
+    --gutter-large: 1.5rem;
+    --gutter-wide: 3rem;
 
     --color-primary: hsl(204, 64%, 90%);
     --color-primary-foreground: hsl(0, 0%, 0%);

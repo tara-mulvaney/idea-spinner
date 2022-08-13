@@ -43,6 +43,7 @@
     "react-markdown": "^8.0.3",
     "react-syntax-highlighter": "^15.5.0",
     "remark-gfm": "^3.0.1",
+    "storybook-addon-pseudo-states": "^1.15.1",
     "vue-loader": "^16.8.3",
     "webpack": "^5.72.1"
   },
