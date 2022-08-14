@@ -68,8 +68,8 @@
       'SpinnerWheel--innerFocus': hasInnerFocus,
     }"
     :tabindex="value === undefined ? -1 : 1"
-    @animationend="_resetAnimation"
-    @keydown="_delegateKeystroke"
+    @animationend="_resetAnimation()"
+    @keydown="_delegateKeystroke($event)"
   >
     <header class="SpinnerWheel__header">
       <label
@@ -85,8 +85,8 @@
         }"
         role="button"
         tabindex="-1"
-        @click.prevent="toggleLock"
-        @keydown.enter="toggleLock"
+        @click.prevent="toggleLock()"
+        @keydown.enter="toggleLock()"
       >
         {{ isLocked ? "🔒" : "🔓" }}
       </i>
@@ -119,7 +119,7 @@
         :value="value ?? displayEmptyValue"
         @blur="hasInnerFocus = false"
         @focus="hasInnerFocus = true"
-        @input="updateValue"
+        @input="updateValue($event)"
       />
     </button>
   </li>

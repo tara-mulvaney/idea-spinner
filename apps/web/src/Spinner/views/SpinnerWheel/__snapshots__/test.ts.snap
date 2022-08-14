@@ -3,24 +3,28 @@
 exports[` 1`] = `
 <li
   class="SpinnerWheel SpinnerWheel--stopped"
+  tabindex="1"
 >
   <header
     class="SpinnerWheel__header"
   >
-    <h2
+    <label
       class="SpinnerWheel__name"
+      for="Demo Wheel"
     >
       Demo Wheel
-    </h2>
+    </label>
     <i
       class="SpinnerWheel__lock"
       role="button"
+      tabindex="-1"
     >
       🔓
     </i>
   </header>
   <button
     class="SpinnerWheel__value SpinnerWheel__value--description"
+    tabindex="-1"
     title="Clowns are a curious breed who sustain themselves on the laugher of children."
   >
     <!--
@@ -32,7 +36,9 @@ exports[` 1`] = `
       -->
     <input
       class="SpinnerWheel__valueInput"
+      id="Demo Wheel"
       size="6"
+      tabindex="-1"
     />
   </button>
 </li>
