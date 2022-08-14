@@ -16,7 +16,7 @@
     "@typescript-eslint/utils": "^5.22.0",
     "@vitejs/plugin-vue": "^3.0.1",
     "@vue/runtime-dom": "^3.2.33",
-    "@vue/test-utils": "^2.0.0-rc.21",
+    "@vue/test-utils": "^2.0.2",
     "@vue/vue3-jest": "^28",
     "babel-jest": "^28",
     "browserslist": "^4.20.3",

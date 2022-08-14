@@ -3612,7 +3612,7 @@ __metadata:
     "@typescript-eslint/utils": ^5.22.0
     "@vitejs/plugin-vue": ^3.0.1
     "@vue/runtime-dom": ^3.2.33
-    "@vue/test-utils": ^2.0.0-rc.21
+    "@vue/test-utils": 2.0.2
     "@vue/vue3-jest": ^28
     babel-jest: ^28
     browserslist: ^4.20.3
@@ -7001,12 +7001,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/test-utils@npm:^2.0.0-rc.21":
-  version: 2.0.0-rc.21
-  resolution: "@vue/test-utils@npm:2.0.0-rc.21"
+"@vue/test-utils@npm:2.0.2":
+  version: 2.0.2
+  resolution: "@vue/test-utils@npm:2.0.2"
   peerDependencies:
     vue: ^3.0.1
-  checksum: 4c7998281f45557a7df7193f07a8cafdfa209ad724910d8556b71dbeecbdb8f52186f0e38b89dd8d60f15d22c3b150da948f5afc32b7b2a40ef52026ae7a77c9
+  checksum: 384bdd4231d3f3eaa02e2ffaef2e2c90934cd9f44ab53fdfe1e9603fbe9a0e702c4a15e8bdc0fc907af210f23abe35fc43a4814598ed0a297af4fa144161f87f
   languageName: node
   linkType: hard
 

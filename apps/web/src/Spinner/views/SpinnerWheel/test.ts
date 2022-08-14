@@ -22,6 +22,15 @@ test.concurrent(`spinner wheel - ${LOCK}`, async () => {
   expect(wrapper.emitted()).not.toHaveProperty("unlock");
 });
 
+test.concurrent(`spinner wheel - ${LOCK}, unlock`, async () => {
+  const wrapper = mount(SpinnerWheel, { props: { ...props, isLocked: true } });
+
+  await wrapper.find(LOCK).trigger("click");
+
+  expect(wrapper.emitted()).not.toHaveProperty("lock");
+  expect(wrapper.emitted()).toHaveProperty("unlock");
+});
+
 test.concurrent(`spinner wheel - ${TOP} Enter`, async () => {
   const wrapper = mount(SpinnerWheel, { props });
 
@@ -41,15 +50,17 @@ test.concurrent(
     await wrapper.find(LOCK).trigger("click");
 
     expect(wrapper.emitted()).not.toHaveProperty("lock");
+    expect(wrapper.emitted()).not.toHaveProperty("unlock");
   }
 );
 
 test.concurrent(
-  `spinner wheel - tabbing from ${TOP} shouldn't change state`,
+  `spinner wheel - tabbing/editing from ${TOP} shouldn't change state directly`,
   async () => {
     const wrapper = mount(SpinnerWheel, { props });
 
     await wrapper.find(TOP).trigger("keydown", { key: "Tab" });
+    await wrapper.find(TOP).trigger("keydown", { keyCode: 65 });
 
     expect(wrapper.emitted()).not.toHaveProperty("lock");
     expect(wrapper.emitted()).not.toHaveProperty("edit");
@@ -63,14 +74,3 @@ test.concurrent(`spinner wheel - change ${VALUE_INPUT}`, async () => {
 
   expect(wrapper.emitted()).toHaveProperty("edit");
 });
-
-test.concurrent(
-  `spinner wheel - change ${VALUE_INPUT} from top-level ${TOP}`,
-  async () => {
-    const wrapper = mount(SpinnerWheel, { props });
-
-    await wrapper.find(TOP).trigger("keydown", { keyCode: 65 });
-
-    expect(wrapper.emitted()).toHaveProperty("edit");
-  }
-);
