@@ -1,9 +1,10 @@
 import { AppState } from "./types";
+import { createSpinnerModule } from "./spinner";
 import demoData from "./demo.json";
 import getters from "./getters";
 import persist from "./persist";
+import { SpinnerWheelProps } from "../views/Spinner";
 import { createLogger, createStore } from "vuex";
-import { createSpinnerModule, SpinnerWheelProps } from "../modules/Spinner";
 
 const hashPersistancePlugin = persist<AppState>({
   load: state => {

@@ -1,6 +1,7 @@
 import { AppState } from "./types";
+import { SpinnerState } from "./spinner";
+import { SpinnerWheelProps } from "../views/Spinner";
 import { Spin, WheelItem } from "@idea-spinner/spinner";
-import { SpinnerState, SpinnerWheelProps } from "../modules/Spinner";
 
 const getNoSpinWheelProps = ({
   spinner: {

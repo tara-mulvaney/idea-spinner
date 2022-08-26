@@ -1,8 +1,9 @@
 <script setup lang="ts">
+  import { Spinner } from "./Spinner";
+  import { SpinnerMutations } from "../store/spinner";
   import { AppGetters, AppState } from "../store/types";
   import { CommitOptions, useStore } from "vuex";
   import { computed, nextTick } from "vue";
-  import { Spinner, SpinnerMutations } from "../modules/Spinner";
 
   const MS_IN_SECOND = 1000;
   const FRAMES_PER_SECOND = 60;

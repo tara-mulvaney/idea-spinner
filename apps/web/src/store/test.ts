@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 import { SpinnerParameters } from "@idea-spinner/spinner";
-import { createSpinnerModule, SpinnerMutations } from ".";
+import { createSpinnerModule, SpinnerMutations } from "./spinner";
 import { expect, test } from "@jest/globals";
 
 const { SPIN, ADVANCE } = SpinnerMutations;
