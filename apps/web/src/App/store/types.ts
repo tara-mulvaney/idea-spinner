@@ -1,8 +1,8 @@
 import { Spin } from "@idea-spinner/spinner";
-import { SpinnerStoreState, SpinnerWheelProps } from "../modules/Spinner";
+import { SpinnerState, SpinnerWheelProps } from "../modules/Spinner";
 
 export interface AppState {
-  spinner: SpinnerStoreState;
+  spinner: SpinnerState;
 }
 
 export interface AppGetters {

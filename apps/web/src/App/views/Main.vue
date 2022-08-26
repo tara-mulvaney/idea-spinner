@@ -1,29 +1,32 @@
 <script setup lang="ts">
-  import { useStore } from "vuex";
   import { AppGetters, AppState } from "../store/types";
+  import { CommitOptions, useStore } from "vuex";
   import { computed, nextTick } from "vue";
-  import { Spinner, SpinnerStoreMutations } from "../modules/Spinner";
+  import { Spinner, SpinnerMutations } from "../modules/Spinner";
 
   const MS_IN_SECOND = 1000;
   const FRAMES_PER_SECOND = 60;
 
-  // TODO: spinner store that auto-handles mutation key nesting
   const store = useStore<AppState>();
-
-  // ISSUE #38: don't split off getters to type it independently
-  const storeGetters = store.getters as AppGetters;
-
-  const isSpinning = computed(() => store.state.spinner.isSpinning);
-  const hasSpun = computed(() => Boolean(store.state.spinner.currentSpinID));
-  const wheels = computed(() => storeGetters.spinnerWheelProps);
+  const appGetters = store.getters as AppGetters;
+  const wheels = computed(() => appGetters.spinnerWheelProps);
   const isLocked = computed(
-    () => storeGetters.wheelCount === storeGetters.lockedWheelCount
+    () => appGetters.wheelCount === appGetters.lockedWheelCount
   );
 
-  console.log(hasSpun);
+  // spinner state helpers
+  const spinnerState = store.state.spinner;
+  const spinnerCommit = (
+    mutation: SpinnerMutations,
+    payload?: any,
+    options?: CommitOptions
+  ) => store.commit(`spinner/${mutation}`, payload, options);
+
+  const isSpinning = computed(() => spinnerState.isSpinning);
+  const hasSpun = computed(() => Boolean(spinnerState.currentSpinID));
 
   function spin() {
-    store.commit(`spinner/${SpinnerStoreMutations.SPIN}`);
+    spinnerCommit(SpinnerMutations.SPIN);
 
     let lastFrameTS = Date.now();
 
@@ -31,14 +34,11 @@
       void nextTick(() => {
         const currentFrameTS = Date.now();
 
-        store.commit(
-          `spinner/${SpinnerStoreMutations.ADVANCE}`,
-          currentFrameTS - lastFrameTS
-        );
+        spinnerCommit(SpinnerMutations.ADVANCE, currentFrameTS - lastFrameTS);
 
         lastFrameTS = currentFrameTS;
 
-        if (!store.state.spinner.isSpinning) {
+        if (!spinnerState.isSpinning) {
           clearInterval(intervalID);
         }
       });
@@ -46,21 +46,21 @@
   }
 
   function wheelOperation(
-    operation: SpinnerStoreMutations.LOCK | SpinnerStoreMutations.UNLOCK
+    operation: SpinnerMutations.LOCK | SpinnerMutations.UNLOCK
   ) {
     return (wheelName: string) => {
-      const { currentSpin } = storeGetters;
+      const { currentSpin } = appGetters;
 
       if (!currentSpin) {
         return;
       }
 
-      store.commit(`spinner/${operation}`, currentSpin.wheels.get(wheelName));
+      spinnerCommit(operation, currentSpin.wheels.get(wheelName));
     };
   }
 
-  const lockWheel = wheelOperation(SpinnerStoreMutations.LOCK);
-  const unlockWheel = wheelOperation(SpinnerStoreMutations.UNLOCK);
+  const lockWheel = wheelOperation(SpinnerMutations.LOCK);
+  const unlockWheel = wheelOperation(SpinnerMutations.UNLOCK);
 
   function editWheel({
     value,
@@ -69,16 +69,14 @@
     value: string;
     wheelName: string;
   }) {
-    storeGetters.currentSpin?.wheels
-      .get(wheelName)
-      ?.unsafeForceValue({ value });
+    // ISSUE #39: remove unsafeForceValue and the "persist force spin stop"
+    appGetters.currentSpin?.wheels.get(wheelName)?.unsafeForceValue({ value });
 
     lockWheel(wheelName);
   }
 </script>
 
 <template>
-  <!-- TODO: weird first load glitch -->
   <div class="SpinnerContainer">
     <Spinner
       :has-spun="hasSpun"

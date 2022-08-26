@@ -12,11 +12,10 @@ const hashPersistancePlugin = persist<AppState>({
     try {
       const _spinner = state.spinner;
 
-      const spin = _spinner.spinner.createSpin({
-        endingFrameLength: 0,
-        friction: 1,
-        startingFrameLength: 0,
-      });
+      const spin = _spinner.spinner
+        .createSpin()
+        // ISSUE #39: remove unsafeForceValue and the "persist force spin stop"
+        .advanceTime(Number.MAX_SAFE_INTEGER);
 
       _spinner.currentSpinID = spin.id;
 
@@ -29,6 +28,7 @@ const hashPersistancePlugin = persist<AppState>({
           _spinner.lockedWheelValues[name] = value;
         }
 
+        // ISSUE #39: remove unsafeForceValue and the "persist force spin stop"
         spin.wheels.get(name)?.unsafeForceValue({
           description: description ?? "",
           value: value ?? "",

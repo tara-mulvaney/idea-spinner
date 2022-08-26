@@ -53,6 +53,7 @@
     ],
     "@typescript-eslint/indent": "off",
     "@typescript-eslint/member-ordering": "error",
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-extraneous-class": "error",
     "@typescript-eslint/no-floating-promises": [
       "error",

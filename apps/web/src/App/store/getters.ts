@@ -1,12 +1,12 @@
 import { AppState } from "./types";
 import { Spin, WheelItem } from "@idea-spinner/spinner";
-import { SpinnerStoreState, SpinnerWheelProps } from "../modules/Spinner";
+import { SpinnerState, SpinnerWheelProps } from "../modules/Spinner";
 
 const getNoSpinWheelProps = ({
   spinner: {
     parameters: { wheels },
   },
-}: SpinnerStoreState): SpinnerWheelProps[] => {
+}: SpinnerState): SpinnerWheelProps[] => {
   const result = [];
 
   for (const [name] of wheels.entries()) {
