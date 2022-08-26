@@ -1,5 +1,5 @@
 import Spinner from "../../web/src/Spinner/views/Spinner.vue";
-import args, { SpinnerProps } from "../../web/src/Spinner/views/props";
+import args, { SpinnerProps } from "../../web/src/App/modules/Spinner/views/props";
 import parameters from "../hideDocsTab";
 
 export default {

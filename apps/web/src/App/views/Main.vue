@@ -1,27 +1,29 @@
 <script setup lang="ts">
   import { useStore } from "vuex";
+  import { AppGetters, AppState } from "../store/types";
   import { computed, nextTick } from "vue";
-  import {
-    Spinner,
-    SpinnerStoreMutations,
-    SpinnerStoreState,
-    SpinnerStoreStateWithGetters,
-  } from "./Spinner";
+  import { Spinner, SpinnerStoreMutations } from "../modules/Spinner";
 
   const MS_IN_SECOND = 1000;
   const FRAMES_PER_SECOND = 60;
 
-  const store = useStore<SpinnerStoreState>() as SpinnerStoreStateWithGetters;
+  // TODO: spinner store that auto-handles mutation key nesting
+  const store = useStore<AppState>();
 
-  const isSpinning = computed(() => store.state.isSpinning);
-  const hasSpun = computed(() => Boolean(store.state.currentSpinID));
-  const wheels = computed(() => store.getters.spinnerWheelProps);
+  // ISSUE #38: don't split off getters to type it independently
+  const storeGetters = store.getters as AppGetters;
+
+  const isSpinning = computed(() => store.state.spinner.isSpinning);
+  const hasSpun = computed(() => Boolean(store.state.spinner.currentSpinID));
+  const wheels = computed(() => storeGetters.spinnerWheelProps);
   const isLocked = computed(
-    () => store.getters.wheelCount === store.getters.lockedWheelCount
+    () => storeGetters.wheelCount === storeGetters.lockedWheelCount
   );
 
+  console.log(hasSpun);
+
   function spin() {
-    store.commit(SpinnerStoreMutations.SPIN);
+    store.commit(`spinner/${SpinnerStoreMutations.SPIN}`);
 
     let lastFrameTS = Date.now();
 
@@ -30,13 +32,13 @@
         const currentFrameTS = Date.now();
 
         store.commit(
-          SpinnerStoreMutations.ADVANCE,
+          `spinner/${SpinnerStoreMutations.ADVANCE}`,
           currentFrameTS - lastFrameTS
         );
 
         lastFrameTS = currentFrameTS;
 
-        if (!store.state.isSpinning) {
+        if (!store.state.spinner.isSpinning) {
           clearInterval(intervalID);
         }
       });
@@ -47,13 +49,13 @@
     operation: SpinnerStoreMutations.LOCK | SpinnerStoreMutations.UNLOCK
   ) {
     return (wheelName: string) => {
-      const { currentSpin } = store.getters;
+      const { currentSpin } = storeGetters;
 
       if (!currentSpin) {
         return;
       }
 
-      store.commit(operation, currentSpin.wheels.get(wheelName));
+      store.commit(`spinner/${operation}`, currentSpin.wheels.get(wheelName));
     };
   }
 
@@ -67,7 +69,7 @@
     value: string;
     wheelName: string;
   }) {
-    store.getters.currentSpin?.wheels
+    storeGetters.currentSpin?.wheels
       .get(wheelName)
       ?.unsafeForceValue({ value });
 
@@ -76,6 +78,7 @@
 </script>
 
 <template>
+  <!-- TODO: weird first load glitch -->
   <div class="SpinnerContainer">
     <Spinner
       :has-spun="hasSpun"
