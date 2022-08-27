@@ -9,7 +9,7 @@ import { createLogger, createStore } from "vuex";
 
 const hashPersistancePlugin = persist<AppState>({
   load: state => {
-    if (!document.location.hash) return state;
+    if (!window.location.hash) return state;
 
     try {
       const _spinner = state.spinner;
@@ -22,7 +22,7 @@ const hashPersistancePlugin = persist<AppState>({
       _spinner.currentSpinID = spin.id;
 
       const wheels = JSON.parse(
-        window.atob(document.location.hash.slice(1))
+        window.atob(window.location.hash.slice(1))
       ) as SpinnerWheelProps[];
 
       for (const { name, value, description, isLocked } of wheels) {
@@ -46,7 +46,7 @@ const hashPersistancePlugin = persist<AppState>({
   },
   save: (_, state) => {
     if (!state.spinner.isSpinning) {
-      document.location.hash = window.btoa(
+      window.location.hash = window.btoa(
         JSON.stringify(getters.spinnerWheelProps(state))
       );
     }

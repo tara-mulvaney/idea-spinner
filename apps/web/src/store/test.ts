@@ -5,6 +5,46 @@ import { expect, test } from "@jest/globals";
 
 const { SPIN, ADVANCE, LOCK, UNLOCK } = SpinnerMutations;
 
+test.concurrent.skip(`hashPersistancePlugin - load`, async () => {
+  const targetObject = [{ name: "wheel1", value: "option1" }];
+
+  window.location.hash = window.btoa(JSON.stringify(targetObject));
+
+  const store = createStore({
+    spinner: {
+      defaultPhysics: {
+        endingFrameLength: 0,
+        friction: 0,
+        startingFrameLength: 0,
+      },
+      wheels: new Map([["wheel1", ["option1"]]]),
+    },
+  });
+  const storeGetters = store.getters as AppGetters;
+
+  expect(storeGetters.spinnerWheelProps).toEqual(targetObject);
+});
+
+test.concurrent.skip(`hashPersistancePlugin - save`, async () => {
+  const store = createStore({
+    spinner: {
+      defaultPhysics: {
+        endingFrameLength: 0,
+        friction: 0,
+        startingFrameLength: 0,
+      },
+      wheels: new Map([["wheel1", ["option1"]]]),
+    },
+  });
+
+  store.commit(`spinner/${SPIN}`);
+  store.commit(`spinner/${ADVANCE}`, Number.MAX_SAFE_INTEGER);
+
+  expect(window.location.hash).toBe(
+    `#${window.btoa(JSON.stringify([{ name: "wheel1", value: "option1" }]))}`
+  );
+});
+
 test.concurrent(`SpinnerMutations - spinner/${SPIN}`, async () => {
   const store = createStore({
     spinner: {

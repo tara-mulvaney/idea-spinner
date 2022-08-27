@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import createStore from "./store";
-import Main from "./views";
+import Main from "./pages/Main.vue";
 
 // ISSUE #36: eslint not picking up vue type shim
 /* eslint-disable @typescript-eslint/no-unsafe-argument */

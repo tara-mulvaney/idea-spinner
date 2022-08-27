@@ -6,7 +6,7 @@
 
 The Idea Spinner is an application design to help you quickly generate prompts for any defined creative activity or endeavor.
 
-*Currently it's set to only demo board game prompts - feel free to fork and modify the [demo.json](./apps/web/src/demo.json).*
+*Currently it's set to only demo board game prompts - feel free to fork and modify the [demo.json](./apps/web/src/store/demo.json).*
 
 ## quick start
 
@@ -54,5 +54,5 @@ Given the nascency of the vue3 and yarn3 ecosystems, VSCode support is currently
 
 1. Install the recommended plugins by clicking on the `Extensions` icon, typing `@recommended`, and then clicking the `Install` button on those that are still available.
 2. Review the `.vscode/settings.example.json`. If this looks good to you, you can activate it by running `cp .vscode/settings.example.json .vscode/settings.json`
-3. Confirm that TS in the bottom-bar is set to our SDK. You can click on it to change.\eua
+3. Confirm that TS in the bottom-bar is set to our SDK. You can click on it to change.
   
