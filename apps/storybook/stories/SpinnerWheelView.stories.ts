@@ -1,5 +1,5 @@
-import SpinnerWheel from "../../web/src/Spinner/views/SpinnerWheel/SpinnerWheel.vue";
-import args, { SpinnerWheelProps } from "../../web/src/Spinner/views/SpinnerWheel/props";
+import args from "../../web/src/views/Spinner/SpinnerWheel/props";
+import { SpinnerWheel, SpinnerWheelProps } from "../../web/src/views/Spinner/SpinnerWheel";
 import parameters from "../hideDocsTab";
 
 export default {

@@ -313,7 +313,7 @@ export class Wheel<T = WheelItem> {
   advanceTime(time: number) {
     this.clock += time;
 
-    if (!this.isSpinning) {
+    if (!this.isSpinning || time === 0) {
       return;
     }
 

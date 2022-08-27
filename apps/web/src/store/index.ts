@@ -3,6 +3,7 @@ import { createSpinnerModule } from "./spinner";
 import demoData from "./demo.json";
 import getters from "./getters";
 import persist from "./persist";
+import { SpinnerParameters } from "@idea-spinner/spinner";
 import { SpinnerWheelProps } from "../views/Spinner";
 import { createLogger, createStore } from "vuex";
 
@@ -52,14 +53,18 @@ const hashPersistancePlugin = persist<AppState>({
   },
 });
 
-export default () =>
+export default (
+  parameters: { spinner: SpinnerParameters } = {
+    spinner: {
+      ...demoData,
+      wheels: new Map(Object.entries(demoData.wheels)),
+    },
+  }
+) =>
   createStore<AppState>({
     getters,
     modules: {
-      spinner: createSpinnerModule({
-        ...demoData,
-        wheels: new Map(Object.entries(demoData.wheels)),
-      }),
+      spinner: createSpinnerModule(parameters.spinner),
     },
     plugins: [createLogger(), hashPersistancePlugin],
   });
