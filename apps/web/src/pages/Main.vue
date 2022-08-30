@@ -1,9 +1,9 @@
 <script setup lang="ts">
-  import { Spinner } from "./Spinner";
-  import { SpinnerMutations } from "../store/spinner";
+  import { Spinner } from "../components";
   import { AppGetters, AppState } from "../store/types";
   import { CommitOptions, useStore } from "vuex";
   import { computed, nextTick } from "vue";
+  import { SpinnerMutations, WheelOverride } from "../store/spinner";
 
   const MS_IN_SECOND = 1000;
   const FRAMES_PER_SECOND = 60;
@@ -26,7 +26,7 @@
   const isSpinning = computed(() => spinnerState.isSpinning);
   const hasSpun = computed(() => Boolean(spinnerState.currentSpinID));
 
-  function spin() {
+  function startSpin() {
     spinnerCommit(SpinnerMutations.SPIN);
 
     let lastFrameTS = Date.now();
@@ -46,22 +46,13 @@
     }, MS_IN_SECOND / FRAMES_PER_SECOND);
   }
 
-  function wheelOperation(
-    operation: SpinnerMutations.LOCK | SpinnerMutations.UNLOCK
-  ) {
-    return (wheelName: string) => {
-      const { currentSpin } = appGetters;
-
-      if (!currentSpin) {
-        return;
-      }
-
-      spinnerCommit(operation, currentSpin.wheels.get(wheelName));
-    };
+  function lockWheel(wheelName: string) {
+    _overrideWheel(wheelName, { isLocked: true });
   }
 
-  const lockWheel = wheelOperation(SpinnerMutations.LOCK);
-  const unlockWheel = wheelOperation(SpinnerMutations.UNLOCK);
+  function unlockWheel(wheelName: string) {
+    _overrideWheel(wheelName, { isLocked: false });
+  }
 
   function editWheel({
     value,
@@ -70,10 +61,22 @@
     value: string;
     wheelName: string;
   }) {
-    // ISSUE #39: remove unsafeForceValue and the "persist force spin stop"
-    appGetters.currentSpin?.wheels.get(wheelName)?.unsafeForceValue({ value });
+    _overrideWheel(wheelName, { isLocked: true, value });
+  }
 
-    lockWheel(wheelName);
+  function _overrideWheel(wheelName: string, override: Partial<WheelOverride>) {
+    const { currentSpin } = appGetters;
+
+    if (!currentSpin) {
+      return;
+    }
+
+    const wheel = currentSpin.wheels.get(wheelName);
+
+    spinnerCommit(SpinnerMutations.OVERRIDE, {
+      override: { value: wheel?.value, ...override },
+      wheel,
+    });
   }
 </script>
 
@@ -86,7 +89,7 @@
       :wheels="wheels"
       @edit-wheel="editWheel"
       @lock-wheel="lockWheel"
-      @spin="spin"
+      @start-spin="startSpin"
       @unlock-wheel="unlockWheel"
     />
   </div>

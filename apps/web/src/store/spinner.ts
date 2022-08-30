@@ -6,9 +6,14 @@ import {
   WheelItem,
 } from "@idea-spinner/spinner";
 
+export interface WheelOverride<T = WheelItem> {
+  isLocked: boolean;
+  value: T;
+}
+
 export interface SpinnerState {
   currentSpinID?: string;
-  lockedWheelValues: { [wheelName: string]: WheelItem };
+  wheelOverrides: { [wheelName: string]: WheelOverride };
   isSpinning: boolean;
   spinner: Spinner;
 }
@@ -16,8 +21,8 @@ export interface SpinnerState {
 export enum SpinnerMutations {
   SPIN = "spin",
   ADVANCE = "advance",
-  LOCK = "lock",
-  UNLOCK = "unlock",
+  OVERRIDE = "override",
+  STOP = "stop",
 }
 
 export const createSpinnerModule = (parameters: SpinnerParameters) => {
@@ -40,22 +45,32 @@ export const createSpinnerModule = (parameters: SpinnerParameters) => {
           state.spinner.advanceSpin(state.currentSpinID, time)?.isSpinning
         );
       },
-      [SpinnerMutations.LOCK](state: SpinnerState, wheel: Wheel) {
-        state.lockedWheelValues[wheel.name] = wheel.value;
+      [SpinnerMutations.OVERRIDE](
+        state: SpinnerState,
+        mutationParameters: {
+          wheel: Wheel;
+          override: WheelOverride;
+        }
+      ) {
+        state.wheelOverrides[mutationParameters.wheel.name] =
+          mutationParameters.override;
       },
-      [SpinnerMutations.UNLOCK](state: SpinnerState, wheel: Wheel) {
-        // ISSUE #39: remove unsafeForceValue and the "persist force spin stop"
-        wheel.unsafeForceValue(state.lockedWheelValues[wheel.name]);
+      [SpinnerMutations.STOP](state: SpinnerState) {
+        if (state.currentSpinID === undefined) {
+          throw new TypeError(
+            "You must SPIN the spinner store before you can STOP it!"
+          );
+        }
 
-        delete state.lockedWheelValues[wheel.name];
+        state.spinner.stopSpin(state.currentSpinID);
       },
     },
     namespaced: true,
     state() {
       return {
         isSpinning: false,
-        lockedWheelValues: {},
         spinner,
+        wheelOverrides: {},
       };
     },
   };

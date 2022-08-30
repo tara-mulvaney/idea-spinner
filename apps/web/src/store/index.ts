@@ -4,7 +4,7 @@ import demoData from "./demo.json";
 import getters from "./getters";
 import persist from "./persist";
 import { SpinnerParameters } from "@idea-spinner/spinner";
-import { SpinnerWheelProps } from "../views/Spinner";
+import { SpinnerWheelProps } from "../components";
 import { createLogger, createStore } from "vuex";
 
 const hashPersistancePlugin = persist<AppState>({
@@ -12,32 +12,24 @@ const hashPersistancePlugin = persist<AppState>({
     if (!window.location.hash) return state;
 
     try {
-      const _spinner = state.spinner;
+      const spinnerState = state.spinner;
 
-      const spin = _spinner.spinner
-        .createSpin()
-        // ISSUE #39: remove unsafeForceValue and the "persist force spin stop"
-        .advanceTime(Number.MAX_SAFE_INTEGER);
+      const spin = spinnerState.spinner.createSpin().stop();
 
-      _spinner.currentSpinID = spin.id;
+      spinnerState.currentSpinID = spin.id;
 
       const wheels = JSON.parse(
         window.atob(window.location.hash.slice(1))
       ) as SpinnerWheelProps[];
 
       for (const { name, value, description, isLocked } of wheels) {
-        if (isLocked && typeof value === "string") {
-          _spinner.lockedWheelValues[name] = value;
-        }
-
-        // ISSUE #39: remove unsafeForceValue and the "persist force spin stop"
-        spin.wheels.get(name)?.unsafeForceValue({
-          description: description ?? "",
-          value: value ?? "",
-        });
+        spinnerState.wheelOverrides[name] = {
+          isLocked,
+          value: { description: description ?? "", value: value ?? "" },
+        };
       }
 
-      state.spinner = _spinner;
+      state.spinner = spinnerState;
     } catch (e) {
       console.error(e);
     }

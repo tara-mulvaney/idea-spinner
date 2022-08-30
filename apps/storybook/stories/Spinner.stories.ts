@@ -1,7 +1,7 @@
-import args from "../../web/src/views/Spinner/props";
-import { Spinner, SpinnerProps } from "../../web/src/views/Spinner";
+import args from "../../web/src/components/Spinner/props";
+import { Spinner, SpinnerProps } from "../../web/src/components/Spinner";
 
-import parameters from "../hideDocsTab";
+import parameters from "@idea-spinner/storybook/hideDocsTab";
 
 export default {
   args,
@@ -11,7 +11,7 @@ export default {
     }
   },
   component: Spinner,
-  title: "Views/Spinner",
+  title: "Components/Spinner",
   parameters
 };
 

@@ -1,11 +1,11 @@
-import args from "../../web/src/views/Spinner/SpinnerWheel/props";
-import { SpinnerWheel, SpinnerWheelProps } from "../../web/src/views/Spinner/SpinnerWheel";
+import args from "../../web/src/components/SpinnerWheel/props";
+import { SpinnerWheel, SpinnerWheelProps } from "../../web/src/components/SpinnerWheel";
 import parameters from "../hideDocsTab";
 
 export default {
   args,
   component: SpinnerWheel,
-  title: "Views/Spinner/Spinner Wheel",
+  title: "Components/Spinner Wheel",
   parameters
 };
 

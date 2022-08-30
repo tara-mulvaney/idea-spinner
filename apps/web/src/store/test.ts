@@ -3,9 +3,9 @@ import createStore from ".";
 import { SpinnerMutations } from "./spinner";
 import { expect, test } from "@jest/globals";
 
-const { SPIN, ADVANCE, LOCK, UNLOCK } = SpinnerMutations;
+const { SPIN, ADVANCE } = SpinnerMutations;
 
-test.concurrent.skip(`hashPersistancePlugin - load`, async () => {
+test.concurrent(`hashPersistancePlugin - load`, async () => {
   const targetObject = [{ name: "wheel1", value: "option1" }];
 
   window.location.hash = window.btoa(JSON.stringify(targetObject));
@@ -25,7 +25,7 @@ test.concurrent.skip(`hashPersistancePlugin - load`, async () => {
   expect(storeGetters.spinnerWheelProps).toEqual(targetObject);
 });
 
-test.concurrent.skip(`hashPersistancePlugin - save`, async () => {
+test.concurrent(`hashPersistancePlugin - save`, async () => {
   const store = createStore({
     spinner: {
       defaultPhysics: {
@@ -159,67 +159,3 @@ test.concurrent(
     expect(storeGetters.currentSpin).toBeUndefined();
   }
 );
-
-test.concurrent(`SpinnerMutations - spinner/${LOCK}`, async () => {
-  const store = createStore({
-    spinner: {
-      defaultPhysics: {
-        endingFrameLength: 1000,
-        friction: 1,
-        startingFrameLength: 100,
-      },
-      wheels: new Map([["wheel1", ["option1", "option2"]]]),
-    },
-  });
-  const storeGetters = store.getters as AppGetters;
-  const spinnerState = store.state.spinner;
-
-  store.commit(`spinner/${SPIN}`);
-
-  const wheel = storeGetters.currentSpin?.wheels.get("wheel1");
-  const wheelValue = wheel?.value;
-
-  store.commit(`spinner/${LOCK}`, wheel);
-  store.commit(`spinner/${ADVANCE}`, 100);
-
-  expect(storeGetters.lockedWheelCount).toBe(1);
-  expect(spinnerState.lockedWheelValues.wheel1).toBe(wheelValue);
-
-  expect(storeGetters.spinnerWheelProps).toEqual([
-    {
-      isLocked: true,
-      isSpinning: true,
-      name: "wheel1",
-      value: wheelValue,
-    },
-  ]);
-});
-
-test.concurrent(`SpinnerMutations - spinner/${UNLOCK}`, async () => {
-  const store = createStore({
-    spinner: {
-      defaultPhysics: {
-        endingFrameLength: 1000,
-        friction: 1,
-        startingFrameLength: 100,
-      },
-      wheels: new Map([["wheel1", ["option1", "option2"]]]),
-    },
-  });
-  const storeGetters = store.getters as AppGetters;
-  const spinnerState = store.state.spinner;
-
-  store.commit(`spinner/${SPIN}`);
-
-  const wheel = storeGetters.currentSpin?.wheels.get("wheel1");
-  const wheelValue = wheel?.value;
-
-  store.commit(`spinner/${LOCK}`, wheel);
-  store.commit(`spinner/${ADVANCE}`, 100);
-
-  store.commit(`spinner/${UNLOCK}`, wheel);
-  store.commit(`spinner/${ADVANCE}`, 200);
-
-  expect(storeGetters.lockedWheelCount).toBe(0);
-  expect(spinnerState.lockedWheelValues.wheel1).not.toBe(wheelValue);
-});

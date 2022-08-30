@@ -1,7 +1,7 @@
 import { AppState } from "./types";
-import { SpinnerState } from "./spinner";
-import { SpinnerWheelProps } from "../views/Spinner";
-import { Spin, WheelItem } from "@idea-spinner/spinner";
+import { Spin } from "@idea-spinner/spinner";
+import { SpinnerWheelProps } from "../components";
+import { SpinnerState, WheelOverride } from "./spinner";
 
 const getNoSpinWheelProps = ({
   spinner: {
@@ -23,17 +23,17 @@ const getNoSpinWheelProps = ({
 
 const getLiveSpinWheelProps = (
   spin: Spin,
-  lockedWheelValues: { [wheelName: string]: WheelItem }
+  wheelOverrides: { [wheelName: string]: WheelOverride | undefined }
 ): SpinnerWheelProps[] => {
   const result = [];
 
   for (const [name, { value: rawValue, isSpinning }] of spin.wheels.entries()) {
-    let [value, isLocked] = [rawValue, false];
+    const override = wheelOverrides[name] ?? {
+      isLocked: false,
+      value: rawValue,
+    };
 
-    if (Boolean(lockedWheelValues[name])) {
-      isLocked = true;
-      value = lockedWheelValues[name];
-    }
+    let { value } = override;
 
     if (typeof value === "string") {
       value = { value };
@@ -41,7 +41,7 @@ const getLiveSpinWheelProps = (
 
     result.push({
       ...value,
-      isLocked,
+      isLocked: override.isLocked,
       isSpinning,
       name,
     });
@@ -55,7 +55,9 @@ export default {
     return state.spinner.getSpin(state.currentSpinID ?? "");
   },
   lockedWheelCount({ spinner: state }: AppState): number {
-    return Object.keys(state.lockedWheelValues).length;
+    return Object.values(state.wheelOverrides).filter(
+      ({ isLocked }) => isLocked
+    ).length;
   },
   spinnerWheelProps({ spinner: state }: AppState): SpinnerWheelProps[] {
     if (state.currentSpinID === undefined) {
@@ -68,7 +70,7 @@ export default {
       return getNoSpinWheelProps(state);
     }
 
-    return getLiveSpinWheelProps(currentSpin, state.lockedWheelValues);
+    return getLiveSpinWheelProps(currentSpin, state.wheelOverrides);
   },
   wheelCount({ spinner: state }: AppState): number {
     return state.spinner.parameters.wheels.size;

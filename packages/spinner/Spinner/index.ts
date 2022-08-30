@@ -122,6 +122,22 @@ export class Spinner<T = WheelItem> {
     const spin = this.spins.get(spinID);
     return spin?.advanceTime(time);
   }
+
+  /**
+   * Immediately stops a previously started spin.
+   *
+   * @param spinID The ID of the spin you're stopping.
+   * @returns The spin, for utility.
+   *
+   * @example
+   * ```js
+   * spin.stop(spinID);
+   * ```
+   */
+  stopSpin(spinID: string) {
+    const spin = this.spins.get(spinID);
+    return spin?.stop();
+  }
 }
 
 const HALF = 2;
@@ -221,6 +237,24 @@ export class Spin<T = WheelItem> {
   advanceTime(time: number) {
     for (const [, wheel] of this.wheels) {
       wheel.advanceTime(time);
+    }
+
+    return this;
+  }
+
+  /**
+   * Immediately stops the spin.
+   *
+   * @returns This spin, for utility.
+   *
+   * @example
+   * ```js
+   * spin.stop();
+   * ```
+   */
+  stop() {
+    for (const [, wheel] of this.wheels) {
+      wheel.stop();
     }
 
     return this;
@@ -332,18 +366,18 @@ export class Wheel<T = WheelItem> {
   }
 
   /**
-   * THIS IS NOT RECOMMENDED - forcing the wheel value can cause issues,
-   * namely the shuffle queue will not know of this. Make sure you know
-   * what you're doing.
+   * Immediately stops the wheel from spinning.
    *
-   * @param value The value to set the wheel to.
+   * @returns This wheel, for utility.
    *
    * @example
    * ```js
-   * wheel.unsafeForceValue("something dumb");
+   * wheel.stop();
    * ```
    */
-  unsafeForceValue(value: T) {
-    this.previousItem = value;
+  stop() {
+    this.previousFrameLength = Infinity;
+
+    return this;
   }
 }

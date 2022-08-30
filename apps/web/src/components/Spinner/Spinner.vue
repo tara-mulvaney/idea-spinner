@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import { ref } from "vue";
-  import { SpinnerWheel, SpinnerWheelProps } from "./SpinnerWheel";
+  import { SpinnerWheel, SpinnerWheelProps } from "../SpinnerWheel";
 
   // see: https://github.com/vuejs/core/issues/4294
   interface SpinnerProps {
@@ -15,7 +15,7 @@
 
   const rowCount = ref(Math.ceil(props.wheels.length / props.maxColumns));
 
-  defineEmits(["spin", "edit-wheel", "lock-wheel", "unlock-wheel"]);
+  defineEmits(["start-spin", "edit-wheel", "lock-wheel", "unlock-wheel"]);
 </script>
 
 <template>
@@ -41,8 +41,8 @@
     <button
       class="SpinnerLever"
       :disabled="isSpinning || isLocked"
-      @click.prevent="$emit('spin', true)"
-      @keydown.enter="$emit('spin', true)"
+      @click.prevent="$emit('start-spin', true)"
+      @keydown.enter="$emit('start-spin', true)"
     >
       {{ isSpinning ? "Spinning..." : isLocked ? "Locked." : "Click to Spin!" }}
     </button>

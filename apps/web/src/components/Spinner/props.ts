@@ -1,4 +1,4 @@
-import type { SpinnerWheelProps } from "./SpinnerWheel";
+import type { SpinnerWheelProps } from "../SpinnerWheel";
 
 export interface SpinnerProps {
   hasSpun: boolean;

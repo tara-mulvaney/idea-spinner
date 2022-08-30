@@ -49,7 +49,7 @@ const wheel = new Wheel({
 
 #### Defined in
 
-[Spinner/index.ts:267](https://github.com/daniellacosse/idea-spinner/blob/7015a7d/packages/spinner/Spinner/index.ts#L267)
+[Spinner/index.ts:301](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L301)
 
 ## Properties
 
@@ -59,7 +59,7 @@ const wheel = new Wheel({
 
 #### Defined in
 
-[Spinner/index.ts:234](https://github.com/daniellacosse/idea-spinner/blob/7015a7d/packages/spinner/Spinner/index.ts#L234)
+[Spinner/index.ts:268](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L268)
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:235](https://github.com/daniellacosse/idea-spinner/blob/7015a7d/packages/spinner/Spinner/index.ts#L235)
+[Spinner/index.ts:269](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L269)
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:236](https://github.com/daniellacosse/idea-spinner/blob/7015a7d/packages/spinner/Spinner/index.ts#L236)
+[Spinner/index.ts:270](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L270)
 
 ## Accessors
 
@@ -97,7 +97,7 @@ True or false.
 
 #### Defined in
 
-[Spinner/index.ts:296](https://github.com/daniellacosse/idea-spinner/blob/7015a7d/packages/spinner/Spinner/index.ts#L296)
+[Spinner/index.ts:330](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L330)
 
 ___
 
@@ -115,7 +115,7 @@ The current wheel value.
 
 #### Defined in
 
-[Spinner/index.ts:287](https://github.com/daniellacosse/idea-spinner/blob/7015a7d/packages/spinner/Spinner/index.ts#L287)
+[Spinner/index.ts:321](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L321)
 
 ## Methods
 
@@ -144,33 +144,27 @@ This wheel, for utility.
 
 #### Defined in
 
-[Spinner/index.ts:313](https://github.com/daniellacosse/idea-spinner/blob/7015a7d/packages/spinner/Spinner/index.ts#L313)
+[Spinner/index.ts:347](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L347)
 
 ___
 
-### unsafeForceValue
+### stop
 
-▸ **unsafeForceValue**(`value`): `void`
+▸ **stop**(): [`Wheel`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Wheel.md)<`T`\>
 
-THIS IS NOT RECOMMENDED - forcing the wheel value can cause issues,
-namely the shuffle queue will not know of this. Make sure you know
-what you're doing.
+Immediately stops the wheel from spinning.
 
 **`example`**
 ```js
-wheel.unsafeForceValue("something dumb");
+wheel.stop();
 ```
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | `T` | The value to set the wheel to. |
 
 #### Returns
 
-`void`
+[`Wheel`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Wheel.md)<`T`\>
+
+This wheel, for utility.
 
 #### Defined in
 
-[Spinner/index.ts:346](https://github.com/daniellacosse/idea-spinner/blob/7015a7d/packages/spinner/Spinner/index.ts#L346)
+[Spinner/index.ts:378](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L378)

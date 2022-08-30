@@ -51,7 +51,7 @@ const spin = new Spin({
 
 #### Defined in
 
-[Spinner/index.ts:164](https://github.com/daniellacosse/idea-spinner/blob/7015a7d/packages/spinner/Spinner/index.ts#L164)
+[Spinner/index.ts:180](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L180)
 
 ## Properties
 
@@ -61,7 +61,7 @@ const spin = new Spin({
 
 #### Defined in
 
-[Spinner/index.ts:136](https://github.com/daniellacosse/idea-spinner/blob/7015a7d/packages/spinner/Spinner/index.ts#L136)
+[Spinner/index.ts:152](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L152)
 
 ___
 
@@ -71,7 +71,7 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:137](https://github.com/daniellacosse/idea-spinner/blob/7015a7d/packages/spinner/Spinner/index.ts#L137)
+[Spinner/index.ts:153](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L153)
 
 ## Accessors
 
@@ -89,7 +89,7 @@ True or false.
 
 #### Defined in
 
-[Spinner/index.ts:204](https://github.com/daniellacosse/idea-spinner/blob/7015a7d/packages/spinner/Spinner/index.ts#L204)
+[Spinner/index.ts:220](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L220)
 
 ## Methods
 
@@ -118,4 +118,27 @@ The current spin object, for utility
 
 #### Defined in
 
-[Spinner/index.ts:221](https://github.com/daniellacosse/idea-spinner/blob/7015a7d/packages/spinner/Spinner/index.ts#L221)
+[Spinner/index.ts:237](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L237)
+
+___
+
+### stop
+
+▸ **stop**(): [`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)<`T`\>
+
+Immediately stops the spin.
+
+**`example`**
+```js
+spin.stop();
+```
+
+#### Returns
+
+[`Spin`](https://github.com/daniellacosse/idea-spinner/tree/main/packages/spinner/docs/classes/Spin.md)<`T`\>
+
+This spin, for utility.
+
+#### Defined in
+
+[Spinner/index.ts:255](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L255)
