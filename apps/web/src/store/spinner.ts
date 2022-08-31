@@ -33,6 +33,12 @@ export const createSpinnerModule = (parameters: SpinnerParameters) => {
       [SpinnerMutations.SPIN](state: SpinnerState, physics?: SpinnerPhysics) {
         state.currentSpinID = state.spinner.createSpin(physics).id;
         state.isSpinning = true;
+
+        for (const wheelName in state.wheelOverrides) {
+          if (!state.wheelOverrides[wheelName].isLocked) {
+            delete state.wheelOverrides[wheelName];
+          }
+        }
       },
       [SpinnerMutations.ADVANCE](state: SpinnerState, time: number) {
         if (state.currentSpinID === undefined) {

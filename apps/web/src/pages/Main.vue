@@ -71,9 +71,16 @@
     }
 
     const wheel = currentSpin.wheels.get(wheelName);
+    const previousOverride = spinnerState.wheelOverrides[wheelName] as
+      | WheelOverride
+      | undefined;
 
     spinnerCommit(SpinnerMutations.OVERRIDE, {
-      override: { value: wheel?.value, ...override },
+      override: {
+        value: wheel?.value,
+        ...(previousOverride ?? {}),
+        ...override,
+      },
       wheel,
     });
   }
