@@ -63,6 +63,7 @@ export const createSpinnerModule = (parameters: SpinnerParameters) => {
         }
 
         state.spinner.stopSpin(state.currentSpinID);
+        state.isSpinning = false;
       },
     },
     namespaced: true,

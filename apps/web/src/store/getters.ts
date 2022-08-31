@@ -52,14 +52,18 @@ const getLiveSpinWheelProps = (
 
 export default {
   currentSpin({ spinner: state }: AppState): Spin | undefined {
-    return state.spinner.getSpin(state.currentSpinID ?? "");
+    if (!Boolean(state.currentSpinID)) return;
+
+    return state.spinner.getSpin(state.currentSpinID as string);
   },
-  lockedWheelCount({ spinner: state }: AppState): number {
-    return Object.values(state.wheelOverrides).filter(
-      ({ isLocked }) => isLocked
-    ).length;
+  isSpinnerFullyLocked({ spinner: state }: AppState): boolean {
+    return (
+      state.spinner.parameters.wheels.size ===
+      Object.values(state.wheelOverrides).filter(({ isLocked }) => isLocked)
+        .length
+    );
   },
-  spinnerWheelProps({ spinner: state }: AppState): SpinnerWheelProps[] {
+  spinnerWheelsProps({ spinner: state }: AppState): SpinnerWheelProps[] {
     if (state.currentSpinID === undefined) {
       return getNoSpinWheelProps(state);
     }
@@ -71,8 +75,5 @@ export default {
     }
 
     return getLiveSpinWheelProps(currentSpin, state.wheelOverrides);
-  },
-  wheelCount({ spinner: state }: AppState): number {
-    return state.spinner.parameters.wheels.size;
   },
 };

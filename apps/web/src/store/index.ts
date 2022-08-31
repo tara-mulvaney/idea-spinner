@@ -3,16 +3,20 @@ import { createSpinnerModule } from "./spinner";
 import demoData from "./demo.json";
 import getters from "./getters";
 import persist from "./persist";
-import { SpinnerParameters } from "@idea-spinner/spinner";
 import { SpinnerWheelProps } from "../components";
 import { createLogger, createStore } from "vuex";
+import { Spinner, SpinnerParameters } from "@idea-spinner/spinner";
 
 const hashPersistancePlugin = persist<AppState>({
   load: state => {
     if (!window.location.hash) return state;
 
+    const [oldState, newState] = [state, { ...state }];
+
     try {
-      const spinnerState = state.spinner;
+      const spinnerState = newState.spinner;
+
+      spinnerState.spinner = new Spinner(spinnerState.spinner.parameters);
 
       const spin = spinnerState.spinner.createSpin().stop();
 
@@ -23,23 +27,37 @@ const hashPersistancePlugin = persist<AppState>({
       ) as SpinnerWheelProps[];
 
       for (const { name, value, description, isLocked } of wheels) {
+        if (!Boolean(value)) continue;
+
         spinnerState.wheelOverrides[name] = {
           isLocked,
-          value: { description: description ?? "", value: value ?? "" },
+          value: { description: description ?? "", value: value as string },
         };
       }
 
-      state.spinner = spinnerState;
-    } catch (e) {
-      console.error(e);
+      newState.spinner = spinnerState;
+    } catch (error) {
+      console.error(error);
+
+      // don't return corrupted state in event of a parsing error
+      return oldState;
     }
 
-    return state;
+    return newState;
   },
   save: (_, state) => {
     if (!state.spinner.isSpinning) {
       window.location.hash = window.btoa(
-        JSON.stringify(getters.spinnerWheelProps(state))
+        JSON.stringify(
+          getters
+            .spinnerWheelsProps(state)
+            .map(({ value, name, description, isLocked }) => ({
+              description,
+              isLocked: isLocked ? true : undefined,
+              name,
+              value,
+            }))
+        )
       );
     }
   },

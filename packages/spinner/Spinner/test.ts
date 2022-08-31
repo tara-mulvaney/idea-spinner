@@ -61,6 +61,33 @@ test.concurrent("Spinner - advanceSpin", async () => {
   expect(item2).not.toEqual(item1);
 });
 
+test.concurrent("Spinner - stopSpin", async () => {
+  const spinner = new Spinner({
+    wheels: new Map([["wheel1", ["a", "b", "c"]]]),
+  });
+
+  const startingFrameLength = 100;
+  const spin = spinner.createSpin({
+    endingFrameLength: 300,
+    friction: 0.5,
+    startingFrameLength,
+    variance: 1,
+  });
+
+  spinner.stopSpin(spin.id);
+
+  expect(spin.isSpinning).toBe(false);
+});
+
+test.concurrent("Spinner - does nothing on missing spin ID", async () => {
+  const spinner = new Spinner({
+    wheels: new Map([["wheel1", ["a", "b", "c"]]]),
+  });
+
+  expect(spinner.advanceSpin("blahhh", 10)).toBeFalsy();
+  expect(spinner.stopSpin("boop")).toBeFalsy();
+});
+
 test.concurrent("Spin - isSpinning", async () => {
   const spin = new Spin({
     id: "spin1",

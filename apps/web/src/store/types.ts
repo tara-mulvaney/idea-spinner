@@ -8,7 +8,6 @@ export interface AppState {
 
 export interface AppGetters {
   currentSpin?: Spin;
-  lockedWheelCount: number;
-  spinnerWheelProps: SpinnerWheelProps[];
-  wheelCount: number;
+  isSpinnerFullyLocked: boolean;
+  spinnerWheelsProps: SpinnerWheelProps[];
 }

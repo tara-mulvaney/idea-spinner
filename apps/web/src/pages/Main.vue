@@ -10,10 +10,9 @@
 
   const store = useStore<AppState>();
   const appGetters = store.getters as AppGetters;
-  const wheels = computed(() => appGetters.spinnerWheelProps);
-  const isLocked = computed(
-    () => appGetters.wheelCount === appGetters.lockedWheelCount
-  );
+
+  const spinnerWheelsProps = computed(() => appGetters.spinnerWheelsProps);
+  const isSpinnerFullyLocked = computed(() => appGetters.isSpinnerFullyLocked);
 
   // spinner state helpers
   const spinnerState = store.state.spinner;
@@ -23,8 +22,8 @@
     options?: CommitOptions
   ) => store.commit(`spinner/${mutation}`, payload, options);
 
-  const isSpinning = computed(() => spinnerState.isSpinning);
   const hasSpun = computed(() => Boolean(spinnerState.currentSpinID));
+  const isSpinning = computed(() => spinnerState.isSpinning);
 
   function startSpin() {
     spinnerCommit(SpinnerMutations.SPIN);
@@ -84,9 +83,9 @@
   <div class="SpinnerContainer">
     <Spinner
       :has-spun="hasSpun"
-      :is-locked="isLocked"
+      :is-locked="isSpinnerFullyLocked"
       :is-spinning="isSpinning"
-      :wheels="wheels"
+      :wheels="spinnerWheelsProps"
       @edit-wheel="editWheel"
       @lock-wheel="lockWheel"
       @start-spin="startSpin"

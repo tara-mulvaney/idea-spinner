@@ -49,7 +49,7 @@ const wheel = new Wheel({
 
 #### Defined in
 
-[Spinner/index.ts:301](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L301)
+[Spinner/index.ts:301](https://github.com/daniellacosse/idea-spinner/blob/e1aad7c/packages/spinner/Spinner/index.ts#L301)
 
 ## Properties
 
@@ -59,7 +59,7 @@ const wheel = new Wheel({
 
 #### Defined in
 
-[Spinner/index.ts:268](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L268)
+[Spinner/index.ts:268](https://github.com/daniellacosse/idea-spinner/blob/e1aad7c/packages/spinner/Spinner/index.ts#L268)
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:269](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L269)
+[Spinner/index.ts:269](https://github.com/daniellacosse/idea-spinner/blob/e1aad7c/packages/spinner/Spinner/index.ts#L269)
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:270](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L270)
+[Spinner/index.ts:270](https://github.com/daniellacosse/idea-spinner/blob/e1aad7c/packages/spinner/Spinner/index.ts#L270)
 
 ## Accessors
 
@@ -97,7 +97,7 @@ True or false.
 
 #### Defined in
 
-[Spinner/index.ts:330](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L330)
+[Spinner/index.ts:330](https://github.com/daniellacosse/idea-spinner/blob/e1aad7c/packages/spinner/Spinner/index.ts#L330)
 
 ___
 
@@ -115,7 +115,7 @@ The current wheel value.
 
 #### Defined in
 
-[Spinner/index.ts:321](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L321)
+[Spinner/index.ts:321](https://github.com/daniellacosse/idea-spinner/blob/e1aad7c/packages/spinner/Spinner/index.ts#L321)
 
 ## Methods
 
@@ -144,7 +144,7 @@ This wheel, for utility.
 
 #### Defined in
 
-[Spinner/index.ts:347](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L347)
+[Spinner/index.ts:347](https://github.com/daniellacosse/idea-spinner/blob/e1aad7c/packages/spinner/Spinner/index.ts#L347)
 
 ___
 
@@ -167,4 +167,4 @@ This wheel, for utility.
 
 #### Defined in
 
-[Spinner/index.ts:378](https://github.com/daniellacosse/idea-spinner/blob/9350086/packages/spinner/Spinner/index.ts#L378)
+[Spinner/index.ts:378](https://github.com/daniellacosse/idea-spinner/blob/e1aad7c/packages/spinner/Spinner/index.ts#L378)
