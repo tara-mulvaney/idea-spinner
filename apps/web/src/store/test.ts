@@ -3,7 +3,7 @@ import createStore from ".";
 import { SpinnerMutations } from "./spinner";
 import { expect, test } from "@jest/globals";
 
-const { SPIN, ADVANCE, STOP } = SpinnerMutations;
+const { SPIN, ADVANCE, STOP, OVERRIDE } = SpinnerMutations;
 
 test.concurrent(`hashPersistancePlugin - load`, async () => {
   const targetObject = [
@@ -47,15 +47,31 @@ test.concurrent(`hashPersistancePlugin - save`, async () => {
         friction: 1,
         startingFrameLength: 100,
       },
-      wheels: new Map([["wheel1", ["option1"]]]),
+      wheels: new Map([
+        ["wheel1", ["option1"]],
+        ["wheel2", ["option2"]],
+      ]),
     },
   });
+  const storeGetters = store.getters as AppGetters;
 
   store.commit(`spinner/${SPIN}`);
+  store.commit(`spinner/${OVERRIDE}`, {
+    override: {
+      isLocked: true,
+      value: "option1",
+    },
+    wheel: storeGetters.currentSpin?.wheels.get("wheel1"),
+  });
   store.commit(`spinner/${STOP}`);
 
   expect(window.location.hash).toBe(
-    `#${window.btoa(JSON.stringify([{ name: "wheel1", value: "option1" }]))}`
+    `#${window.btoa(
+      JSON.stringify([
+        { isLocked: true, name: "wheel1", value: "option1" },
+        { name: "wheel2", value: "option2" },
+      ])
+    )}`
   );
 });
 
@@ -172,3 +188,29 @@ test.concurrent(
     expect(storeGetters.currentSpin).toBeUndefined();
   }
 );
+
+test.concurrent(`AppGetters - isSpinnerFullyLocked`, async () => {
+  const store = createStore({
+    spinner: {
+      defaultPhysics: {
+        endingFrameLength: 1000,
+        friction: 1,
+        startingFrameLength: 100,
+      },
+      wheels: new Map([["wheel1", ["option1"]]]),
+    },
+  });
+  const storeGetters = store.getters as AppGetters;
+
+  store.commit(`spinner/${SPIN}`);
+
+  store.commit(`spinner/${OVERRIDE}`, {
+    override: {
+      isLocked: true,
+      value: "option1",
+    },
+    wheel: storeGetters.currentSpin?.wheels.get("wheel1"),
+  });
+
+  expect(storeGetters.isSpinnerFullyLocked).toBe(true);
+});
