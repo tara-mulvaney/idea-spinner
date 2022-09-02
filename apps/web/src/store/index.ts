@@ -76,5 +76,8 @@ export default (
     modules: {
       spinner: createSpinnerModule(parameters.spinner),
     },
-    plugins: [createLogger(), hashPersistancePlugin],
+    plugins:
+      process.env.NODE_ENV === "development"
+        ? [createLogger(), hashPersistancePlugin]
+        : [hashPersistancePlugin],
   });
