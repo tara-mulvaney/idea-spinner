@@ -51,7 +51,7 @@ const spin = new Spin({
 
 #### Defined in
 
-[Spinner/index.ts:180](https://github.com/daniellacosse/idea-spinner/blob/9f3a6df/packages/spinner/Spinner/index.ts#L180)
+[Spinner/index.ts:180](https://github.com/daniellacosse/idea-spinner/blob/8aef896/packages/spinner/Spinner/index.ts#L180)
 
 ## Properties
 
@@ -61,7 +61,7 @@ const spin = new Spin({
 
 #### Defined in
 
-[Spinner/index.ts:152](https://github.com/daniellacosse/idea-spinner/blob/9f3a6df/packages/spinner/Spinner/index.ts#L152)
+[Spinner/index.ts:152](https://github.com/daniellacosse/idea-spinner/blob/8aef896/packages/spinner/Spinner/index.ts#L152)
 
 ___
 
@@ -71,7 +71,7 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:153](https://github.com/daniellacosse/idea-spinner/blob/9f3a6df/packages/spinner/Spinner/index.ts#L153)
+[Spinner/index.ts:153](https://github.com/daniellacosse/idea-spinner/blob/8aef896/packages/spinner/Spinner/index.ts#L153)
 
 ## Accessors
 
@@ -89,7 +89,7 @@ True or false.
 
 #### Defined in
 
-[Spinner/index.ts:220](https://github.com/daniellacosse/idea-spinner/blob/9f3a6df/packages/spinner/Spinner/index.ts#L220)
+[Spinner/index.ts:220](https://github.com/daniellacosse/idea-spinner/blob/8aef896/packages/spinner/Spinner/index.ts#L220)
 
 ## Methods
 
@@ -118,7 +118,7 @@ The current spin object, for utility
 
 #### Defined in
 
-[Spinner/index.ts:237](https://github.com/daniellacosse/idea-spinner/blob/9f3a6df/packages/spinner/Spinner/index.ts#L237)
+[Spinner/index.ts:237](https://github.com/daniellacosse/idea-spinner/blob/8aef896/packages/spinner/Spinner/index.ts#L237)
 
 ___
 
@@ -141,4 +141,4 @@ This spin, for utility.
 
 #### Defined in
 
-[Spinner/index.ts:255](https://github.com/daniellacosse/idea-spinner/blob/9f3a6df/packages/spinner/Spinner/index.ts#L255)
+[Spinner/index.ts:255](https://github.com/daniellacosse/idea-spinner/blob/8aef896/packages/spinner/Spinner/index.ts#L255)

@@ -102,6 +102,12 @@
 </template>
 
 <style>
+  body,
+  main,
+  .SpinnerContainer {
+    all: initial;
+  }
+
   main,
   .SpinnerContainer {
     height: 100vh;
@@ -110,14 +116,22 @@
 
   main {
     align-items: center;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
+    padding: var(--gutter-narrow);
   }
 
   .SpinnerContainer {
     display: block;
     max-height: var(--min-supported-width);
     max-width: var(--max-supported-width);
+  }
+
+  @media screen and (max-width: 760px) {
+    .SpinnerContainer {
+      align-self: flex-start;
+    }
   }
 
   :root {
@@ -135,7 +149,7 @@
 
     --color-primary: hsl(204, 64%, 90%);
     --color-primary-foreground: hsl(0, 0%, 0%);
-    --color-primary-variant: hsl(202, 68%, 42%);
+    --color-primary-variant: #227fb4;
     --color-primary-variant-foreground: hsl(0, 0%, 100%);
 
     --font-primary: "HelveticaNeue", Helvetica, sans-serif;

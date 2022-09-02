@@ -1,0 +1,24 @@
+{
+  "name": "Idea Spinner",
+  "short_name": "spinner",
+  "description": "The Idea Spinner helps you quickly generate creative prompts. This one is for board games!",
+  "icons": [
+    {
+      "src": "pwa/manifest-icon-192.maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "pwa/manifest-icon-512.maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "start_url": "/spinner/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#227fb4",
+  "lang": "en"
+}

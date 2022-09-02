@@ -42,7 +42,7 @@ const spinner = new Spinner({ wheels:
 
 #### Defined in
 
-[Spinner/index.ts:47](https://github.com/daniellacosse/idea-spinner/blob/9f3a6df/packages/spinner/Spinner/index.ts#L47)
+[Spinner/index.ts:47](https://github.com/daniellacosse/idea-spinner/blob/8aef896/packages/spinner/Spinner/index.ts#L47)
 
 ## Properties
 
@@ -52,7 +52,7 @@ const spinner = new Spinner({ wheels:
 
 #### Defined in
 
-[Spinner/index.ts:25](https://github.com/daniellacosse/idea-spinner/blob/9f3a6df/packages/spinner/Spinner/index.ts#L25)
+[Spinner/index.ts:25](https://github.com/daniellacosse/idea-spinner/blob/8aef896/packages/spinner/Spinner/index.ts#L25)
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 #### Defined in
 
-[Spinner/index.ts:26](https://github.com/daniellacosse/idea-spinner/blob/9f3a6df/packages/spinner/Spinner/index.ts#L26)
+[Spinner/index.ts:26](https://github.com/daniellacosse/idea-spinner/blob/8aef896/packages/spinner/Spinner/index.ts#L26)
 
 ## Methods
 
@@ -92,7 +92,7 @@ The advanced spin object, for utility.
 
 #### Defined in
 
-[Spinner/index.ts:121](https://github.com/daniellacosse/idea-spinner/blob/9f3a6df/packages/spinner/Spinner/index.ts#L121)
+[Spinner/index.ts:121](https://github.com/daniellacosse/idea-spinner/blob/8aef896/packages/spinner/Spinner/index.ts#L121)
 
 ___
 
@@ -127,7 +127,7 @@ The spin you've just started.
 
 #### Defined in
 
-[Spinner/index.ts:71](https://github.com/daniellacosse/idea-spinner/blob/9f3a6df/packages/spinner/Spinner/index.ts#L71)
+[Spinner/index.ts:71](https://github.com/daniellacosse/idea-spinner/blob/8aef896/packages/spinner/Spinner/index.ts#L71)
 
 ___
 
@@ -156,7 +156,7 @@ The Spin object.
 
 #### Defined in
 
-[Spinner/index.ts:103](https://github.com/daniellacosse/idea-spinner/blob/9f3a6df/packages/spinner/Spinner/index.ts#L103)
+[Spinner/index.ts:103](https://github.com/daniellacosse/idea-spinner/blob/8aef896/packages/spinner/Spinner/index.ts#L103)
 
 ___
 
@@ -185,4 +185,4 @@ The spin, for utility.
 
 #### Defined in
 
-[Spinner/index.ts:137](https://github.com/daniellacosse/idea-spinner/blob/9f3a6df/packages/spinner/Spinner/index.ts#L137)
+[Spinner/index.ts:137](https://github.com/daniellacosse/idea-spinner/blob/8aef896/packages/spinner/Spinner/index.ts#L137)

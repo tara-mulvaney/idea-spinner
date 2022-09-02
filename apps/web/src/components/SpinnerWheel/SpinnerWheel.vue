@@ -108,6 +108,9 @@
         For the life of me I could not get contenteditable 
         to work in Vue3 - so, my clever workaround was to bind the 
         size attribute to the current input value's length.
+
+        Still, contenteditable would allow for text wrapping here,
+        which would be nice (textarea doesn't work)
       -->
       <input
         :id="name"
@@ -211,7 +214,7 @@
 
   .SpinnerWheel__value--description::before {
     content: "ℹ️";
-    padding: var(--gutter-narrow);
+    padding: 0 var(--gutter-narrow);
   }
 
   .SpinnerWheel--tick {

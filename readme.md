@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/daniellacosse/idea-spinner/branch/main/graph/badge.svg?token=ZVNL2L4LPB)](https://codecov.io/gh/daniellacosse/idea-spinner)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-The Idea Spinner is an application design to help you quickly generate prompts for any defined creative activity or endeavor.
+The Idea Spinner is an application designed to help you quickly generate prompts for any defined creative activity or endeavor.
 
 *Currently it's set to only demo board game prompts - feel free to fork and modify the [demo.json](./apps/web/src/store/demo.json).*
 
