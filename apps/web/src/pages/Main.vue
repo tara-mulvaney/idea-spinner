@@ -149,7 +149,7 @@
 
     --color-primary: hsl(204, 64%, 90%);
     --color-primary-foreground: hsl(0, 0%, 0%);
-    --color-primary-variant: #227fb4;
+    --color-primary-variant: hsl(202, 68%, 42%);
     --color-primary-variant-foreground: hsl(0, 0%, 100%);
 
     --font-primary: "HelveticaNeue", Helvetica, sans-serif;

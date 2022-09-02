@@ -1,12 +1,14 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
+const base = "/spinner/";
+
 export default defineConfig({
-  base: "/spinner/",
+  base,
   plugins: [vue()],
   publicDir: "src/static",
   server: {
-    base: "/spinner/",
+    base,
     open: true,
   },
 });
